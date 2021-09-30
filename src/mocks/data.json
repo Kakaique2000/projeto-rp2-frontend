@@ -1,0 +1,37 @@
+{
+  "empregos": {
+    
+  },
+  "categorias": [
+    {
+      "id": 1,
+      "label": "encanador"
+    },
+    {
+      "id": 2,
+      "label": "eletricista"
+    },
+    {
+      "id": 3,
+      "label": "pintor"
+    }
+  ],
+  "distancias": [
+    {
+      "id": 1,
+      "label": "até 1km"
+    },
+    {
+      "id": 2,
+      "label": "até 2km"
+    },
+    {
+      "id": 2,
+      "label": "até 5km"
+    },
+    {
+      "id": 3,
+      "label": "até 10km"
+    }
+  ]
+}

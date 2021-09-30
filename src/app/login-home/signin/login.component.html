@@ -1,0 +1,115 @@
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <img class="img-fluid d-none d-sm-block mt-4"
+                src="https://100noticia.com.br/wp-content/uploads/2019/08/20190819_081114.jpg" alt="Welcome">
+        </div>
+
+        <div class="col-md-6">
+            <h4 class="text-center mt-4">Entrar</h4>
+
+            <form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
+
+                <div class="form-group">
+                    <input type="email" formControlName="userName" class="form-control" placeholder="e-mail" autofocus>
+                
+                <small *ngIf="loginForm.get('userName').errors?.required" class="text-danger d-block">
+                    e-mail obrigatório!
+                </small>
+            </div>
+
+                <div class="form-group">
+                    <input formControlName="password" type="password" class="form-control" placeholder="senha">
+                
+                <small *ngIf="loginForm.get('password').errors?.required" class="text-danger d-block">
+                    Senha obrigatória!
+                </small>
+            </div>
+
+                <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">
+                    entrar
+                </button>
+
+
+            </form>  
+               
+            <div class="row mt-1">
+                <div class="col ">
+                    <input name="lem_senha" type="checkbox" >
+                    <a> Continuar conectado </a>
+                </div>
+                <div class="col">
+                    <div class="text-right">
+                        <a  class="ls-login-forgot text-right" [routerLink]="['resetpassword']"  >Esqueci minha senha</a>
+                    </div>
+                    
+                </div>
+              </div>
+                
+            
+            <p class="form mt-3">Não é um usuário?<a [routerLink]="['register']"  > Cadastre-se</a></p>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="w-100 h-100">
+    <div class="d-flex justify-content-center">
+        <div>
+            <h2 class="text-center mt-5">Bem vindo!</h2>
+            <div class="d-flex justify-content-center">
+                <i class="material-icons" style="font-size: 100px">work_outline</i>
+            </div>
+            <h6 class="text-center mt-2">Uma nova jornada inicia aqui!</h6>
+
+            <div class="mt-5" style="min-width: 25vw">
+                <form [formGroup]="loginForm" (submit)="login()">
+                    <div class="example-form">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Usuário</mat-label>
+                            <input matInput #message formControlName="userName" maxlength="256" placeholder="e-mail" />
+                        </mat-form-field>
+
+                        <small *ngIf="loginForm.get('userName').errors?.required && loginForm.get('userName').touched" class="text-danger d-block">
+                            e-mail obrigatório!
+                        </small>
+                    </div>
+
+                    <div class="example-form">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Senha</mat-label>
+                            <input matInput #message formControlName="password" maxlength="256" type="password" />
+                        </mat-form-field>
+
+                        <small *ngIf="loginForm.get('password').errors?.required && loginForm.get('password').touched" class="text-danger d-block">
+                            Senha obrigatória!
+                        </small>
+                    </div>
+                    
+                    <div class="container-login100-form-btn mt-3">
+                        <button type="submit" class="login100-form-btn">Login</button>
+                    </div>
+                </form>
+
+                <ul class="login-more p-t-190">
+                    <li class="m-b-8" routerLink="/login/redefinir-senha">
+                        <span class="txt1">
+                            Esqueceu
+                        </span>
+                        <a [routerLink]="['resetpassword']" class="txt2">
+                            Usuário / Senha ?
+                        </a>
+                    </li>
+                    <li>
+                        <span class="txt1">
+                            Não tem conta?
+                        </span>
+                        <a [routerLink]="['register']" class="txt2">
+                            Registre-se
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

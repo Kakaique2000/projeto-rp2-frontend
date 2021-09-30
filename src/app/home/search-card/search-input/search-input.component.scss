@@ -1,0 +1,33 @@
+input.input-search {
+    border: 2px solid white;
+    border-right: none;
+    color: white;
+    padding: 0.5rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    background: transparent;
+    &:focus {
+        outline: none;
+    }
+
+    &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: white;
+        opacity: 0.75; /* Firefox */
+      }
+}
+
+.input-field {
+    display: flex;
+}
+
+div.input-search {
+    border: 2px solid white;
+    border-left: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    background: transparent;
+}

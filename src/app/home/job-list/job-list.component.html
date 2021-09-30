@@ -1,0 +1,28 @@
+<div *ngIf="jobs?.length > 0">
+  <div *ngFor="let obj of jobs">
+    <div id ="card-job" class="col-md-auto">
+      <div class="card ">
+        <div class="card-header">{{obj.occupation}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{obj.title}}</h5>
+          <p class="card-text">
+            {{obj.description}}&#10;
+          </p>
+          <p class="card-text">
+            R${{obj.salary}} mensais&#10;
+          </p>
+          <a  class="btn btn-primary" (click)="apply(obj.id)">candidatar</a>
+        </div>
+      <div class= "text-center">
+        <div class="card-footer text-muted">{{obj.city}}</div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div *ngIf="jobs?.length == 0" class="d-flex justify-content-center" >
+    <div class="d-flex justify-content-center">
+      <h4 id ="notfound" class="text-center mt-5">Nenhuma vaga foi encontrada <i class="material-icons" style="font-size: 40px">sentiment_very_dissatisfied</i></h4>
+  </div>
+</div>

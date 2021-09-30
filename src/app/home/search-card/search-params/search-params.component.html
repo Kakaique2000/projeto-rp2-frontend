@@ -1,0 +1,34 @@
+<mat-chip-list>
+
+  <!-- Categorias ============= -->
+  <div id="categorias">
+
+    <mat-chip color="accent" selected [matMenuTriggerFor]="menuCategoria" aria-label="categoria">
+        Área de Trabalho: {{ !categoriaSelected ? 'Selecione a área' : categoriaSelected }}
+        <mat-icon>keyboard_arrow_down
+        </mat-icon>
+    </mat-chip>
+    
+    <mat-menu #menuCategoria="matMenu">
+      <button *ngFor="let categoria of categorias" (click)="selectCategoria(categoria) " mat-menu-item>
+        <span>{{ categoria }}</span>
+      </button>
+    </mat-menu>
+  </div>
+
+  <div id="salaries">
+    <mat-chip color="accent" selected [matMenuTriggerFor]="menuSalaries" aria-label="salaries">
+        Faixa Salarial: {{ !salarySelected ? 'Selecione o salário' : salarySelected.label }}
+        <mat-icon>keyboard_arrow_down
+        </mat-icon>
+    </mat-chip>
+    
+    <mat-menu #menuSalaries="matMenu">
+      <button *ngFor="let salary of salaries" (click)="selectSalary(salary) " mat-menu-item>
+        <span>{{ salary.label }}</span>
+      </button>
+    </mat-menu>
+  </div>
+
+
+</mat-chip-list>

@@ -1,0 +1,10 @@
+<main>
+
+    <app-search-card [(contracted)]="contractedSearchCard" (paramChange)="updateParams($event)"
+    (keyup)="filter = $any($event).target.value">
+    </app-search-card>
+
+    <app-job-list (click)="shrinkSearchCard(true)" [jobs]="jobs | filterByJob:filter">
+    </app-job-list>
+
+</main>

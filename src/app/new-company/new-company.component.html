@@ -1,0 +1,76 @@
+  
+  
+  <h1 id="titlenewJob">Cadastre uma nova empresa</h1>
+
+
+  <div class="container">
+    <form [formGroup]="companyForm" (submit)="createCompany()"> 
+            
+      <mat-form-field class="example-full-width">
+        <mat-label>Nome da Empresa</mat-label>
+        <input matInput #message formControlName="name" maxlength="256" placeholder="Empresa ABC S/A" />
+    </mat-form-field>
+
+      <div class="d-flex justify-content-between">
+        <mat-form-field class="example-full-width">
+          <mat-label>Rua</mat-label>
+          <input matInput #message formControlName="street" maxlength="256" placeholder="Rua ABC" />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Número</mat-label>
+        <input matInput #message formControlName="number" maxlength="256" placeholder="123" />
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width"> 
+      <mat-label>Complemento</mat-label>
+      <input matInput #message formControlName="complement" maxlength="256" placeholder="Prédio XYZ, 1º Andar" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>CEP</mat-label>
+    <input matInput #message formControlName="cep" maxlength="9" placeholder="123456-78" mask="00000-000"/>
+</mat-form-field>
+
+
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Cidade</mat-label>
+      <input matInput #message formControlName="city" maxlength="256" placeholder="Osasco" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Estado</mat-label>
+    <input matInput #message formControlName="state" maxlength="256" placeholder="São Paulo" />
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+  <mat-label>CNPJ</mat-label>
+  <input matInput #message formControlName="cnpj" maxlength="18" placeholder="00.000.000/0000-00" mask="00.000.000/0000-00"/>
+</mat-form-field>
+     
+
+
+      <div class="btnsendcenter">
+        <button class="button" [disabled]="companyForm.invalid" >Cadastrar Empresa</button>
+      </div>
+
+  </form>   
+
+</div>
+
+<div class="container">
+  
+  <h5>Empresas cadastradas: </h5>
+  <div *ngIf="listCompanies?.length > 0">
+    <div *ngFor='let obj of listCompanies'>
+      <p> {{obj.name}} - {{obj.city}}</p>
+    </div>
+  </div>
+    <div *ngIf="listCompanies?.length == 0">
+      <p> Parece que você não tem nenhuma empresa cadastrada no momento  ;(</p>
+    </div>
+  
+</div>
+  

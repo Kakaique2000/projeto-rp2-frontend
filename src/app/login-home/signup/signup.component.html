@@ -1,0 +1,81 @@
+<div class="w-100 h-100">
+    <div class="d-flex justify-content-center">
+        <div>
+            <h2 class="text-center mt-5">Criar usuário</h2>
+            <div class="d-flex justify-content-center">
+                <i class="material-icons" style="font-size: 100px">face</i> 
+            </div>
+            <h6 class="text-center mt-2">Seja muito bem vindo ao time!</h6>
+
+            <div class="mt-5" style="min-width: 25vw"  *ngIf = "flag; else UserRegister">
+                <form class="example-form" [formGroup]="signupForm" (submit)="signup()">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Nome</mat-label>
+                        <input matInput #message formControlName="firstName" maxlength="256" placeholder="nome" />
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Sobrenome</mat-label>
+                        <input matInput #message formControlName="lastName" maxlength="256" placeholder="sobrenome" />
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput #message formControlName="email" maxlength="256" placeholder="E-mail" />
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>CPF</mat-label>
+                        <input matInput #message maxlength="256" formControlName="cpf" mask="000.000.000-00"
+                            placeholder="CPF" />
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Telefone</mat-label>
+                        <input matInput #message maxlength="256" formControlName="phone" placeholder="Telefone"
+                            type="number" />
+                    </mat-form-field>
+
+                    <div class="d-flex justify-content-between">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Gênero</mat-label>
+                            <mat-select formControlName="gender">
+                                <mat-option value="Masculino">Masculino</mat-option>
+                                <mat-option value="Feminino">Feminino</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Recrutador</mat-label>
+                            <mat-select formControlName="recruiter">
+                                <mat-option value="true">Sim</mat-option>
+                                <mat-option value="false">Não</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Senha</mat-label>
+                        <input matInput #message formControlName="password" maxlength="256" placeholder="Senha"
+                            type="password" />
+                    </mat-form-field>
+
+                    <!-- <mat-form-field class="example-full-width">
+                        <mat-label>Confirmar Senha</mat-label>
+                        <input matInput #message maxlength="256" placeholder="Confirmar Senha" type="password" />
+                    </mat-form-field> -->
+
+                    <div class="container-login100-form-btn mt-3 mb-5">
+                        <button class="login100-form-btn" [disabled]="signupForm.invalid" type="submit">Criar</button>
+                    </div>
+                </form>
+            </div>
+
+            <ng-template #UserRegister>
+                <div class="col mt-4">
+                    <h4>Usuário criado! Agora é só se<a [routerLink]="['']"> Logar!</a></h4>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

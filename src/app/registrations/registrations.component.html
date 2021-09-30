@@ -1,0 +1,36 @@
+  
+  
+  <h1 id="titleRegistration">Acompanhe suas candidaturas</h1>
+
+ <div class="container">
+  
+    <h5>Minhas Inscrições: </h5>
+    <div *ngIf="listRegistrations?.length > 0">
+      <div *ngFor='let obj of listRegistrations'>
+        <p> <b>Vaga:</b> {{obj.title}}, <b>Local:</b> {{obj.city}} - <b>Remuneração:</b> R${{obj.salary}}</p>
+      </div>
+    </div>
+      <div *ngIf="listRegistrations?.length == 0">
+        <p> Parece que você ainda não se candidatou em nenhuma vaga ;/ - 
+
+          <a [routerLink]="['../home']" class="txt2">
+            Buscar vagas disponíveis
+          </a>
+        </p>
+      </div>
+      
+    
+  </div>
+
+  <div class="container center">
+
+      <a [routerLink]="['../home']" class="txt2">
+        Buscar mais vagas
+      </a>
+    
+      
+    
+  </div>
+  
+
+  
