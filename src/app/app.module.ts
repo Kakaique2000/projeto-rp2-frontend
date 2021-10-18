@@ -45,11 +45,13 @@ export const customCurrencyMaskConfig = {
     RegistrationsModule,
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptor,
-    multi: true
-  },],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -34,6 +34,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { AsyncLoading } from '../shared/pipes/async-loading.pipe';
 import { NgxMaskModule } from 'ngx-mask';
+import { EllipsisPipe } from 'src/shared/pipes/ellipsis.pipe';
 
 const matModules = [
   MatCheckboxModule,
@@ -71,6 +72,7 @@ const matModules = [
 @NgModule({
   declarations: [
     AsyncLoading,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule,
@@ -82,6 +84,7 @@ const matModules = [
     BrowserModule,
     BrowserAnimationsModule,
     AsyncLoading,
+    EllipsisPipe,
     NgxMaskModule,
     ...matModules,
   ],

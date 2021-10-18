@@ -1,0 +1,27 @@
+<div class="t-card border relative  w-72 m-2">
+  <div class="">
+    <div class="absolute right-0 -top-4 text-sm transform scale-75">
+      <mat-chip-list>
+        <div style="cursor: pointer;" mat-chip color="primary" selected>
+          {{ job.knowledges[0].name }}
+        </div>
+        <div style="cursor: pointer;" *ngFor="let knowledge of (job.knowledges[1] && (job.knowledges | slice : 1 : 4) || [])" mat-chip color="accent" selected>
+          {{ knowledge.name }}
+        </div>
+      </mat-chip-list>
+    </div>
+    <div class="mx-3 mt-4">
+      <h5 class="text-gray-700 font-light text-lg  pr-3">{{job.title}}</h5>
+      <p class="text-xs mt-2">
+        {{job.description | ellipsis:150 }}&#10;
+      </p>
+      <p class="card-text uppercase mt-3 text-md font-bold">
+        R${{job.salary}} mensais&#10;
+      </p>
+    </div>
+  <div class="flex mt-2 justify-between bg-gray-100 items-center rounded-b-md">
+    <div class="p-3 flex items-center text-sm text-gray-400"><mat-icon>place</mat-icon> <span class="ml-1">{{job.city}}</span></div>
+    <button class="t-btn t-btn-blue transform scale-75" (click)="onApply.emit(job)">candidatar</button>
+  </div>
+  </div>
+</div>

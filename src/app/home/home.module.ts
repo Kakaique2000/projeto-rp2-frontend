@@ -12,6 +12,7 @@ import { SearchParamsService } from './search-card/search-params/search-params.s
 import { JobListComponent } from './job-list/job-list.component';
 import { FilterByJob } from './filter-by-job.pipe';
 import { FilterByDescription } from './job-list/filter-by-description.pipe';
+import { JobCardComponent } from './job-list/job-card/job-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FilterByDescription } from './job-list/filter-by-description.pipe';
     SearchParamsComponent,
     JobListComponent,
     FilterByJob,
-    FilterByDescription],
+    FilterByDescription,
+    JobCardComponent],
   imports: [
     HttpClientModule,
     FormsModule,

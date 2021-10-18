@@ -17,7 +17,7 @@ export class HomeLoginService {
     constructor(private http: HttpClient, private cookie: CookieService, private myService: MyService, private router: Router) { }
 
     get isLogged() {
-        return this._loggedUser && this.cookie.get('token').length > 0;
+        return this.cookie.get('token').length > 0;
     }
 
     private _loggedUser?: TokenDto.User;
@@ -32,11 +32,11 @@ export class HomeLoginService {
             tap(e => {
                 this.myService.setValue(e.user.id);
                 console.log(this.myService.getId);
-                
+
                 this._loggedUser = e.user;
 
-                this.cookie.set('token', e.token, 0.1);
-                this.cookie.set('userId', e.user.id, 0.1);
+              this.cookie.set('userId', e.user.id, 0.1);
+              this.cookie.set('token', e.token, 0.1)
             })
         );
     }

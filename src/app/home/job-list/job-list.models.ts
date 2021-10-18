@@ -1,12 +1,11 @@
 export interface JobModel {
 
   id: string;
-
-    title: String
-    description: String
-    salary: Number
-    occupation: String
-    city: String
+  title: string
+  description: string
+  salary: Number
+  knowledges: {id: number, name: string}[]
+  city: string
 
 
 }

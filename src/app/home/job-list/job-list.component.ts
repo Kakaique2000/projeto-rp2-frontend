@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { JobModel } from './job-list.models';
 import { JobListService } from './job-list.service';
 
@@ -15,7 +15,7 @@ export class JobListComponent implements OnInit {
 
   ngOnInit() {}
 
-  apply(event) { 
+  apply(event) {
     console.log(event)
     this.serviceJob.apply(event)
         .subscribe((res) => {

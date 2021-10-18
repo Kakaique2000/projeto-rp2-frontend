@@ -4,7 +4,9 @@
     (keyup)="filter = $any($event).target.value">
     </app-search-card>
 
-    <app-job-list (click)="shrinkSearchCard(true)" [jobs]="jobs | filterByJob:filter">
-    </app-job-list>
+    <section  class="mt-4 container px-4 mx-auto">
+      <app-job-list (click)="shrinkSearchCard(true)" [jobs]="jobs | filterByJob:filter">
+      </app-job-list>
+    </section>
 
 </main>
