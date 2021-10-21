@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { IUsuario } from '../home/search-card/search-params/search-params.models';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { NewUser } from './signup/new-user';
 import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
@@ -8,6 +7,7 @@ import { CookieService } from '../cookie.service';
 import { MyService } from '../globals';
 import { Router } from '@angular/router';
 import * as TokenDto from './user.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const API_URL = environment.api + '/auth/';
 @Injectable({
@@ -17,14 +17,14 @@ export class HomeLoginService {
     constructor(private http: HttpClient, private cookie: CookieService, private myService: MyService, private router: Router) { }
 
     get isLogged() {
-        return this.cookie.get('token').length > 0;
+        return this.cookie.get('Authorization').length > 0;
     }
 
-    private _loggedUser?: TokenDto.User;
+    private _loggedUser$ = new BehaviorSubject<TokenDto.User | null>(null);
 
-    get loggedUser(): TokenDto.User {
-        return this._loggedUser;
-    }
+  get loggedUser$(): Observable<TokenDto.User | null> {
+    return this._loggedUser$.asObservable();
+  }
 
     authenticate(email: string, password: string) {
 
@@ -33,10 +33,13 @@ export class HomeLoginService {
                 this.myService.setValue(e.user.id);
                 console.log(this.myService.getId);
 
-                this._loggedUser = e.user;
+              this._loggedUser$.next(e.user);
+
+              console.log(e);
+
 
               this.cookie.set('userId', e.user.id, 0.1);
-              this.cookie.set('token', e.token, 0.1)
+              this.cookie.set('Authorization', e.token, 0.1)
             })
         );
     }
@@ -71,7 +74,7 @@ export class HomeLoginService {
     logout() {
         this.cookie.delete('token');
         this.cookie.delete('userId');
-        delete this._loggedUser;
+        this._loggedUser$.next(null);
         this.router.navigate(['/'])
     }
 

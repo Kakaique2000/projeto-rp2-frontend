@@ -14,6 +14,7 @@ import { TokenInterceptor } from './token-interceptor';
 import { NewCompanyModule } from './new-company/new-company.module';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
 import { RegistrationsModule } from './registrations/registrations.module';
+import { MarkdownModule } from 'ngx-markdown';
 
 export const customCurrencyMaskConfig = {
   align: "left",
@@ -43,7 +44,8 @@ export const customCurrencyMaskConfig = {
     NewJobModule,
     NewCompanyModule,
     RegistrationsModule,
-    NgxCurrencyModule.forRoot(customCurrencyMaskConfig)
+    MarkdownModule.forRoot(),
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
   ],
   providers: [
     {

@@ -1,15 +1,15 @@
 <main>
   <section id="toolbar">
 
-    <mat-toolbar color='primary'>
-      <span>Bicos</span>
-    
-      <div class="space-flex"></div>
-    
-    <button *ngIf = 'showSideMenu' (click)="clickMenu()" mat-icon-button>
-        <mat-icon dir="rtl" >{{ menuIcone }}</mat-icon>
-      </button>
-    </mat-toolbar>
+    <header class="bg-indigo-900  text-white p-2">
+        <div class="container flex items-center">
+          <span class="text-2xl">Hefest</span>
+          <div class="space-flex"></div>
+          <button *ngIf='showSideMenu' (click)="clickMenu()" mat-icon-button>
+            <mat-icon dir="rtl" >{{ menuIcone }}</mat-icon>
+          </button>
+        </div>
+    </header>
   </section>
 
   <section class="space-flex" id="main-content">
@@ -20,7 +20,7 @@
             <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['home']" (click)="clickMenu()"> Buscar vagas</a></p>
             <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['editprofile']" (click)="clickMenu()"> Editar perfil</a></p>
             <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['myregister']" (click)="clickMenu()"> Minhas Inscrições</a></p>
-            <ng-container *ngIf="isRecruiter()">
+            <ng-container *ngIf="isRecruiter$() | async">
               <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['newjob']" (click)="clickMenu()"> Criar uma Vaga</a></p>
               <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['newcompany']" (click)="clickMenu()"> Cadastre uma empresa</a></p>
             </ng-container>

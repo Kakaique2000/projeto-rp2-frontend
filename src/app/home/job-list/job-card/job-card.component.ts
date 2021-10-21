@@ -14,6 +14,9 @@ export class JobCardComponent implements OnInit {
   @Input()
   job: JobModel;
 
+  @Input()
+  selected = false;
+
   @Output()
   onApply = new EventEmitter<JobModel>();
 

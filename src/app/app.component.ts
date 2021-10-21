@@ -28,9 +28,12 @@ export class AppComponent implements OnInit {
 
   }
 
-  isRecruiter() {
-    return this.loginService.loggedUser &&
-      this.loginService.loggedUser.role.find(e => e.name == 'ROLE_RECRUITER');
+  isRecruiter$() {
+    return this.loginService.loggedUser$.pipe(
+      map(
+        e => e?.role.find(role => role.name === 'ROLE_RECRUITER')
+      )
+    )
   }
 
   clickLogout() {

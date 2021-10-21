@@ -1,0 +1,27 @@
+<div class="border overflow-y-auto max-height mb-4 shadow-md rounded-md ml-4 p-8">
+    <header class="flex items-center overflow-ellipsis">
+      <img class="w-20 h-20 mr-4 rounded-lg" *ngIf="job.companyLogo as logo" [src]="logo" [title]="jobDetails?.company.name" [alt]="jobDetails?.company.name">
+      <div class="flex justify-center overflow-hidden  flex-col flex-grow-0">
+        <a href="javascript:null" [title]="jobDetails?.company.name" class="t-link-indigo">{{ jobDetails?.company.name }}</a>
+        <h2 [title]="job.title" class="md:text-xl sm:text-lg overflow-hidden overflow-ellipsis whitespace-nowrap pr-2">{{ job.title }}</h2>
+        <sub class="font-light text-lg text-gray-500">{{ job.city }}</sub>
+      </div>
+      <button class="w-30 ml-auto t-btn t-btn-indigo whitespace-nowrap md:text-lg sm:text-md">candidatar-se</button>
+    </header>
+    <section class="mt-4">
+      <mat-chip-list>
+        <button style="cursor: pointer" mat-chip *ngFor="let knowledge of job.knowledges" selected color="primary">
+          {{ knowledge.name }}
+        </button>
+      </mat-chip-list>
+    </section>
+    <div class="block px-8 mt-4 border-t"></div>
+    <main class="mt-4">
+        <section *ngIf="loadingJobDetails" class="t-center h-96">
+          <mat-spinner diameter="50" color="primary"></mat-spinner>
+        </section>
+        <markdown *ngIf="!loadingJobDetails && jobDetails" [data]="jobDetails.fullDescription">
+
+        </markdown>
+    </main>
+</div>

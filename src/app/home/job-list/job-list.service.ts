@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { JobModel } from './job-list.models';
+import { JobDetailsModel, JobModel } from './job-list.models';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'src/app/cookie.service';
+import { TypeSalary } from "src/app/new-job/new-job.model";
 
 const API_URL = environment.api + '/jobs';
 
@@ -14,11 +15,12 @@ export class JobListService {
 
   constructor(private http: HttpClient, private cookie: CookieService) { }
 
+  getJob(id: number) {
+    return this.http.get<JobDetailsModel>(`${this._url}/${id}`)
+  }
+
   getJobs(category: any, salary: any, query: string) {
 
-    const header = {
-      Authorization: 'Bearer ' + this.cookie.get('token')
-    };
 
     const params: any = {};
 
@@ -35,7 +37,6 @@ export class JobListService {
     }
 
     const httpOptions = {
-      headers: new HttpHeaders(header),
       params
     };
 
@@ -50,6 +51,10 @@ export class JobListService {
     });
 
     return this.http.post(API_URL +'/' + idJob+'/apply', {},);
-}
+  }
+
+  getSalaries() {
+    return this.http.get<TypeSalary>(`${this._url}/salaries`)
+  }
 
 }

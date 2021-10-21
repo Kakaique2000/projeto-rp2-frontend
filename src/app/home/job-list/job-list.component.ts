@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { JobModel } from './job-list.models';
 import { JobListService } from './job-list.service';
 
@@ -10,6 +10,17 @@ import { JobListService } from './job-list.service';
 export class JobListComponent implements OnInit {
 
   @Input() jobs: JobModel[] = [];
+  @Input() showingPreview = false;
+
+  @Output()
+  selectCard = new EventEmitter<JobModel>();
+
+  selectedId = -1;
+
+  onCardClick(job: JobModel) {
+    this.selectCard.emit(job);
+    this.selectedId = job.id;
+  }
 
   constructor(private serviceJob: JobListService) { }
 

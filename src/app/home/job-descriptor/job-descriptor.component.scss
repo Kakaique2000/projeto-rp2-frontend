@@ -1,0 +1,35 @@
+.max-height {
+  max-height: calc(100vh - 5rem);
+}
+
+markdown ::ng-deep {
+
+  a {
+    @apply text-indigo-500
+  }
+  p {
+    @apply mb-4;
+  }
+  h1 {
+    @apply text-3xl mb-8;
+  }
+  h2 {
+    @apply text-xl mb-6 font-semibold;
+  }
+  h3 {
+    @apply text-lg mb-4;
+  }
+  blockquote {
+    @apply bg-gray-100 pl-8 border-l-4 rounded border-gray-200 p-2 mb-4;
+    p {
+      margin: 0;
+    }
+  }
+  ul {
+    @apply pl-8 mb-4;
+    li {
+      @apply list-disc;
+    }
+  }
+}
+

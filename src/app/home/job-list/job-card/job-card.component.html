@@ -1,4 +1,4 @@
-<div class="t-card border relative  w-72 m-2">
+<div [class.ring]="selected" class="ring-indigo-200 t-card border relative m-2">
   <div class="">
     <div class="absolute right-0 -top-4 text-sm transform scale-75">
       <mat-chip-list>
@@ -11,7 +11,12 @@
       </mat-chip-list>
     </div>
     <div class="mx-3 mt-4">
-      <h5 class="text-gray-700 font-light text-lg  pr-3">{{job.title}}</h5>
+      <h5 class="text-gray-700 font-light text-lg  pr-3 overflow-ellipsis ">
+        <span class="flex items-center">
+          <img class="w-8 h-8 object-cover mr-2 rounded-full" *ngIf="job.companyLogo" [src]="job.companyLogo">
+          <span [title]="job.title" class="overflow-hidden overflow-ellipsis whitespace-nowrap">{{job.title}}</span>
+        </span>
+      </h5>
       <p class="text-xs mt-2">
         {{job.description | ellipsis:150 }}&#10;
       </p>
@@ -19,9 +24,9 @@
         R${{job.salary}} mensais&#10;
       </p>
     </div>
-  <div class="flex mt-2 justify-between bg-gray-100 items-center rounded-b-md">
-    <div class="p-3 flex items-center text-sm text-gray-400"><mat-icon>place</mat-icon> <span class="ml-1">{{job.city}}</span></div>
-    <button class="t-btn t-btn-blue transform scale-75" (click)="onApply.emit(job)">candidatar</button>
+  <div [class.bg-indigo-100]="selected" class="flex mt-2 justify-between bg-gray-100 items-center rounded-b-md">
+    <div [class.text-indigo-500]="selected" class="p-3 flex items-center text-sm text-gray-400"><mat-icon>place</mat-icon> <span class="ml-1">{{job.city}}</span></div>
+    <button class="t-btn t-btn-indigo transform scale-75" (click)="onApply.emit(job)">candidatar</button>
   </div>
   </div>
 </div>

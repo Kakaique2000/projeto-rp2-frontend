@@ -1,0 +1,20 @@
+<div class="flex justify-between max-w-lg">
+  <label for="search">refine sua pesquisa</label>
+  <a (click)="showSelect = !showSelect" href="javascript:null">mais opções</a>
+</div>
+<div class="flex items-stretch max-w-lg">
+  <input id="search" class="border flex-1 rounded-md block p-2" type="text">
+  <div class="ml-2 rounded-md cursor-pointer flex border h-fit-content hover:text-white hover:bg-indigo-600 text-gray-300 px-3 py-2">
+    <mat-icon>search</mat-icon>
+  </div>
+</div>
+<div *ngIf="showSelect">
+
+  <!-- Select de salários -->
+  <div class="flex flex-col mt-2 text-sm items-start">
+    <label class="mb-0" for="">salário</label>
+    <select class="rounded-md p-1 mt-1 shadow-sm border">
+      <option *ngFor="let keyval of (salaries | keyvalue)" [value]="keyval.key">{{ keyval.value }}</option>
+    </select>
+  </div>
+</div>

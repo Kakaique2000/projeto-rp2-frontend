@@ -10,6 +10,7 @@ import { JobListComponent } from './job-list.component';
 import { JobListService } from './job-list.service';
 import { JobModel } from './job-list.models';
 import { JobCardComponent } from './job-card/job-card.component';
+import { jobListStub } from './job-list.stub';
 
 
 export default {
@@ -22,7 +23,7 @@ export default {
       providers: [
         {
           provide: JobListService,
-          useValue: {}
+          useValue: jobListStub
         }
       ]
     }),
@@ -39,7 +40,7 @@ export const Default = Template.bind({})
 Default.args = {
   jobs: [
     {
-      id: '1',
+      id: 1,
       city: 'São Paulo',
       description: 'Analista desenvolvedor de React',
       knowledges: [{id: 1, name: 'Angular'}],
@@ -54,15 +55,16 @@ export const Três_Cards = Template.bind({})
 Três_Cards.args = {
   jobs: [
     {
-      id: '1',
+      id: 1,
       city: 'São Paulo',
       description: 'Analista desenvolvedor de React focado em aprender novas experiências e se dedicar à equipe de forma que trabalhar seja a única coisa que deseja em sua vida',
       knowledges: [{id: 2, name: 'React'}, {id:1, name: 'Angular'}],
       salary: 10000,
-      title: 'Analista desenvolvedor TI React Jr',
+      title: 'Analista desenvolvedor engenharia TI React Jr',
+      companyLogo: 'https://pbs.twimg.com/profile_images/1435308291756802049/5aNaRJtl_400x400.jpg'
     },
     {
-      id: '2',
+      id: 1,
       city: 'Rio de Janeiro',
       description: 'Analista desenvolvedor de Angular',
       knowledges: [{id: 1, name: 'Angular'}],
@@ -70,7 +72,7 @@ Três_Cards.args = {
       title: 'Analista de React Jr',
     },
     {
-      id: '3',
+      id: 1,
       city: 'São Paulo',
       description: 'Analista desenvolvedor de Vue',
       knowledges: [{id: 1, name: 'Angular'}],

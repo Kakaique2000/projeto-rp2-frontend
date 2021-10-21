@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   salarySelected: any;
   query: string;
 
+  cardSelected?: JobModel;
+
   constructor(private serviceJob: JobListService) { }
 
   shrinkSearchCard(contracted: boolean) {

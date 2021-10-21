@@ -1,12 +1,19 @@
 <main>
 
-    <app-search-card [(contracted)]="contractedSearchCard" (paramChange)="updateParams($event)"
-    (keyup)="filter = $any($event).target.value">
-    </app-search-card>
+    <div class="container px-4">
+      <h2 class="text-3xl my-4">Turbine seu portfolio com treinamentos exclusivos HEFEST!</h2>
+    </div>
 
-    <section  class="mt-4 container px-4 mx-auto">
-      <app-job-list (click)="shrinkSearchCard(true)" [jobs]="jobs | filterByJob:filter">
-      </app-job-list>
-    </section>
+
+    <!-- Jobs -->
+    <div class="container px-4">
+      <h2 class="text-3xl my-4">Vagas abertas perfeitas para você!</h2>
+      <section  class="mt-4 mx-auto home-grid" [class.showing-descriptor]="cardSelected" >
+        <app-job-list (selectCard)="cardSelected = $event" [showingPreview]="!!cardSelected" (click)="shrinkSearchCard(true)" [jobs]="jobs | filterByJob:filter">
+        </app-job-list>
+        <app-job-descriptor [job]="cardSelected" *ngIf="cardSelected">
+        </app-job-descriptor>
+      </section>
+    </div>
 
 </main>

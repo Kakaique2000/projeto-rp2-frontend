@@ -10,10 +10,19 @@ module.exports = {
     },
     darkMode: false, // or 'media' or 'class'
     theme: {
-      extend: {},
+      extend: {
+        height: {
+          'fit-content': 'fit-content'
+        },
+        width: {
+          'fit-content': 'fit-content'
+        }
+      },
     },
     variants: {
-      extend: {},
+      extend: {
+      },
     },
-    plugins: [],
+    plugins: [
+    ],
 };

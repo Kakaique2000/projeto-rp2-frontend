@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HomeLoginService } from '../login-home.service';
-import { IUsuario } from 'src/app/home/search-card/search-params/search-params.models';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +8,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit{
-    
+
     loginForm: FormGroup;
 
     constructor(private formBuilder: FormBuilder,
@@ -29,7 +26,7 @@ export class LoginComponent implements OnInit{
     }
 
     login() {
-        
+
         const email = this.loginForm.get('userName').value;
         const password = this.loginForm.get('password').value;
         this.loginService.authenticate(email, password)
@@ -40,13 +37,13 @@ export class LoginComponent implements OnInit{
             alert('email/senha errada ;(');
             this.loginForm.reset();
         })
-        
-        
+
+
     }
-    
+
 
     register(){
-        
+
     }
 
 }

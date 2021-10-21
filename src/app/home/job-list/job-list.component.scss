@@ -7,3 +7,12 @@
 #notfound{
   color: #a9a9a9;
 }
+
+.showing-preview {
+  @apply grid-cols-1;
+}
+
+.not-showing-preview {
+  @apply lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1;
+}
+

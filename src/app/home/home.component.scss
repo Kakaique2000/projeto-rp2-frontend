@@ -1,3 +1,9 @@
 main {
-    
+ .home-grid {
+   display: grid;
+   grid-template-columns: 1fr;
+   &.showing-descriptor {
+     grid-template-columns: 30rem 1fr;
+   }
+ }
 }

@@ -163,10 +163,10 @@ body {
 }
 
 $mat-primary: (
-  main: #1d3354,
-  lighter: #bbc2cc,
-  darker: #11203a,
-  200: #1d3354, // For slide toggle,
+  main: #3730A3,
+  lighter: #818CF8,
+  darker: #312E81,
+  200: #3730A3, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -185,10 +185,10 @@ body {
 }
 
 $mat-accent: (
-  main: #467599,
-  lighter: #c8d6e0,
-  darker: #2f587c,
-  200: #467599, // For slide toggle,
+  main: #F59E0B,
+  lighter: #FEF3C7,
+  darker: #D97706,
+  200: #92400E, // For slide toggle,
   contrast : (
     main: $light-primary-text,
     lighter: $dark-primary-text,
@@ -255,3 +255,4 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 * {
   outline: none !important;
 }
+

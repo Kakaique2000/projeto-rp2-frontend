@@ -1,6 +1,9 @@
-<div  class="d-flex flex-wrap" *ngIf="jobs?.length > 0">
+<div class="p-2">
+  <app-job-search></app-job-search>
+</div>
+<div [ngClass]="{'showing-preview': showingPreview,'not-showing-preview': !showingPreview }" class="grid  mt-2" *ngIf="jobs?.length > 0">
   <div *ngFor="let obj of jobs">
-    <app-job-card [job]="obj"></app-job-card>
+    <app-job-card (click)="onCardClick(obj)" [selected]="selectedId === obj.id" [job]="obj"></app-job-card>
   </div>
 </div>
 
