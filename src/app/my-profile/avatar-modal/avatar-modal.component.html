@@ -1,0 +1,12 @@
+<section class="flex flex-col sm:w-auto md:w-96">
+  <h2 class="md:text-xl sm:text-lg">Coloque o link da sua foto</h2>
+  <app-form-field
+    label="url"
+    [fControl]="formControl"
+    >
+  </app-form-field>
+
+  <button (click)="click.emit($event)" [class.t-disabled]="!formControl.valid || isSaving" class="t-center t-btn t-btn-indigo mt-6 ml-auto">
+    <span>salvar</span> <mat-spinner class="ml-2" *ngIf="isSaving" diameter="25"></mat-spinner>
+  </button>
+</section>

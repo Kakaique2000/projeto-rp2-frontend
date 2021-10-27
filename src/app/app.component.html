@@ -17,11 +17,11 @@
       <mat-sidenav [opened]="sideMenuOpened" mode="side" position="end">
         <div style="width: 200px" class="d-flex flex-column">
           <div>
-            <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['home']" (click)="clickMenu()"> Buscar vagas</a></p>
-            <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['editprofile']" (click)="clickMenu()"> Editar perfil</a></p>
-            <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['myregister']" (click)="clickMenu()"> Minhas Inscrições</a></p>
+            <!-- <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['home']" (click)="clickMenu()"> Buscar vagas</a></p> -->
+            <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['profile']" (click)="clickMenu()"> Editar perfil</a></p>
+            <!-- <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['myregister']" (click)="clickMenu()"> Minhas Inscrições</a></p> -->
             <ng-container *ngIf="isRecruiter$() | async">
-              <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['newjob']" (click)="clickMenu()"> Criar uma Vaga</a></p>
+              <!-- <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['newjob']" (click)="clickMenu()"> Criar uma Vaga</a></p> -->
               <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['newcompany']" (click)="clickMenu()"> Cadastre uma empresa</a></p>
             </ng-container>
           </div>

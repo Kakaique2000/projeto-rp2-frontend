@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 //Angular Material Components
@@ -32,9 +33,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { AsyncLoading } from '../shared/pipes/async-loading.pipe';
+import { AsyncLoading } from './shared/pipes/async-loading.pipe';
 import { NgxMaskModule } from 'ngx-mask';
-import { EllipsisPipe } from 'src/shared/pipes/ellipsis.pipe';
+import { EllipsisPipe } from 'src/app/shared/pipes/ellipsis.pipe';
+import { FormFieldComponent } from './shared/form-field/form-field.component';
 
 const matModules = [
   MatCheckboxModule,
@@ -72,20 +74,24 @@ const matModules = [
 @NgModule({
   declarations: [
     AsyncLoading,
-    EllipsisPipe
+    EllipsisPipe,
+    FormFieldComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ...matModules,
     NgxMaskModule.forRoot(),
+    ReactiveFormsModule
   ],
   exports: [
     BrowserModule,
     BrowserAnimationsModule,
     AsyncLoading,
+    ReactiveFormsModule,
     EllipsisPipe,
     NgxMaskModule,
+    FormFieldComponent,
     ...matModules,
   ],
   providers: [],

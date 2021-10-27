@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivationEnd, NavigationEnd, Router } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSpinner } from '@angular/material/progress-spinner';
+import { ActivationEnd, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
 import { HomeLoginService } from './login-home/login-home.service';
 
@@ -14,24 +16,60 @@ export class AppComponent implements OnInit {
   sideMenuOpened = false;
   showSideMenu;
 
+  loadingDialog: MatDialogRef<MatSpinner>;
+  loadingTimeout: any;
+
   constructor(
-    private route: Router,
-    private loginService: HomeLoginService) { }
+    private router: Router,
+    private loginService: HomeLoginService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.route.events.pipe(
+    this.router.events.pipe(
       filter(e => e instanceof ActivationEnd),
       map(e  => (e as any).snapshot.data)).subscribe(params => {
       this.showSideMenu = params['showSideMenu']
       console.log(params)
     })
 
+    this.router.events.subscribe((event: RouterEvent) => {
+      switch (true) {
+        case event instanceof NavigationStart: {
+          this.loadingTimeout = setTimeout(() => {
+            this.showLoading();
+          }, 100);
+          break;
+        }
+
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError: {
+          clearTimeout(this.loadingTimeout)
+          this.hideLoading();
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    });
+  }
+
+  showLoading() {
+    this.loadingDialog = this.dialog.open(MatSpinner, {
+      disableClose: true
+    })
+    this.loadingDialog.componentInstance.diameter = 75;
+  }
+
+  hideLoading() {
+    this.loadingDialog.close();
   }
 
   isRecruiter$() {
     return this.loginService.loggedUser$.pipe(
       map(
-        e => e?.role.find(role => role.name === 'ROLE_RECRUITER')
+        e => e?.roles?.find(role => role.name === 'ROLE_RECRUITER')
       )
     )
   }

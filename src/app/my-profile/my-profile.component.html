@@ -1,0 +1,91 @@
+<main class="flex flex-col">
+  <h2 class="container mt-12 mb-4 text-3xl">Minhas informações</h2>
+
+  <article
+    *ngIf="!user.emailVerified"
+    class="bg-yellow-400 rounded shadow p-3 container mb-4"
+  >
+    <p>E-mail não verificado, por favor, consulte seu e-mail para validação</p>
+  </article>
+
+  <article class="container lg:px-36 t-card-no-anim py-4">
+    <h2 class="text-2xl md:text-3xl font-light md:text-center  ml-2 md:ml-4">dados pessoais</h2>
+    <!-- Grid -->
+    <article
+      class="p-2 md:p-4 grid md:grid-cols-2 sm:grid-cols-1 sm:items-center md:items-start"
+    >
+      <div class="flex items-center flex-col">
+        <h3 class="mt-4 self-start md:self-center text-lg  mb-2">Foto de perfil</h3>
+        <div
+          id="profilePic"
+          class="
+          mr-0
+          w-48 h-48
+          relative
+          rounded-full
+          cursor-pointer
+          shadow
+          self-center
+          bg-cover
+          bg-center
+          transition-all
+          hover:shadow-lg
+          active:bg-opacity
+          md:mr-4
+          md:w-64 md:h-64
+          "
+          [ngStyle]="{ 'background-image': 'url(' +  getProfilePic() + ')' }"
+        >
+          <div
+          (click)="openProfileDialog()"
+            class="text-4xl group active:bg-opacity-40 hover:bg-opacity-25 bg-opacity-0 top-0 bottom-0 right-0 left-0 transition-colors absolute t-center rounded-full bg-black"
+          >
+            <mat-icon
+              [inline]="true"
+              class="select-none text-white group-hover:opacity-100 opacity-0 transition-opacity"
+              >edit</mat-icon
+            >
+          </div>
+        </div>
+        <div class="self-start">
+          <label class="t-input-label" for="cpf">Tipo de conta</label>
+          <p *ngFor="let role of getRoles()" [title]="role.infos" >{{ role.label }}</p>
+        </div>
+      </div>
+      <form [formGroup]="myInfosForm" class="flex self-center flex-col">
+        <app-form-field
+          label="nome completo"
+          [fControl]="nameControl"
+        ></app-form-field>
+
+        <app-form-field
+          label="telefone"
+          [fControl]="phoneControl"
+          mask="(00) 0000-0000||(00) 00000-0000"
+        ></app-form-field>
+
+        <app-form-field
+          label="e-mail"
+          [fControl]="emailControl"
+        ></app-form-field>
+
+        <app-form-field
+        label="CPF / CNPJ"
+        [fControl]="cpfCnpjControl"
+        mask="000.000.000-00||00.000.000/0000-00"
+      ></app-form-field>
+      </form>
+    </article>
+  </article>
+  <footer class="container flex">
+    <button
+      (click)="saveInfos()"
+      [disabled]="!myInfosForm.valid"
+      class="t-center disabled:cursor-not-allowed disabled:opacity-50 t-btn text-xl mr-4 my-4 ml-auto text-white bg-indigo-600"
+      class="{{ isSaving ? 'pointer-events-none cursor-wait opacity-50' : '' }}"
+    >
+      <span>salvar</span> <mat-spinner class="ml-2" *ngIf="isSaving" diameter="25"></mat-spinner>
+    </button>
+    {{ myInfosForm.errors }}
+  </footer>
+</main>

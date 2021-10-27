@@ -12,7 +12,7 @@
 
                 <div class="form-group">
                     <input type="email" formControlName="userName" class="form-control" placeholder="e-mail" autofocus>
-                
+
                 <small *ngIf="loginForm.get('userName').errors?.required" class="text-danger d-block">
                     e-mail obrigatório!
                 </small>
@@ -20,7 +20,7 @@
 
                 <div class="form-group">
                     <input formControlName="password" type="password" class="form-control" placeholder="senha">
-                
+
                 <small *ngIf="loginForm.get('password').errors?.required" class="text-danger d-block">
                     Senha obrigatória!
                 </small>
@@ -31,8 +31,8 @@
                 </button>
 
 
-            </form>  
-               
+            </form>
+
             <div class="row mt-1">
                 <div class="col ">
                     <input name="lem_senha" type="checkbox" >
@@ -42,11 +42,11 @@
                     <div class="text-right">
                         <a  class="ls-login-forgot text-right" [routerLink]="['resetpassword']"  >Esqueci minha senha</a>
                     </div>
-                    
+
                 </div>
               </div>
-                
-            
+
+
             <p class="form mt-3">Não é um usuário?<a [routerLink]="['register']"  > Cadastre-se</a></p>
         </div>
     </div>
@@ -85,9 +85,12 @@
                             Senha obrigatória!
                         </small>
                     </div>
-                    
+
                     <div class="container-login100-form-btn mt-3">
-                        <button type="submit" class="login100-form-btn">Login</button>
+                        <button type="submit" class="login100-form-btn {{ isLogingIn || !loginForm.valid ? 't-disabled' : '' }}">
+                          <span class="mr-2">Login</span>
+                          <mat-spinner *ngIf="isLogingIn" diameter="25"></mat-spinner>
+                        </button>
                     </div>
                 </form>
 

@@ -3,8 +3,16 @@
     @apply rounded-md shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1;
   }
 
+  .t-card-no-anim {
+    @apply rounded-md shadow-sm border;
+  }
+
   .t-btn {
     @apply py-2 px-4 rounded-3xl transition-all transform;
+  }
+
+  .t-divider {
+    @apply block border-t;
   }
 
   .t-btn:active {
@@ -13,6 +21,33 @@
 
   .t-center {
     @apply flex justify-center items-center;
+  }
+
+  .t-disabled {
+    @apply opacity-50 pointer-events-none cursor-default;
+  }
+
+  .t-input-label {
+    @apply text-lg mt-4;
+    &.focus {
+      @apply text-indigo-600;
+      &.error {
+        @apply text-red-600;
+      }
+    }
+  }
+  .t-input {
+    @apply t-card-no-anim w-full p-2 ring-2 ring-transparent focus:ring-indigo-600;
+    &.ng-invalid {
+      @apply ring-red-600;
+    }
+  }
+
+  .t-input-error {
+    @apply bg-red-600 opacity-0 transition-all transform translate-x-2 text-white rounded-md p-1 px-2 w-fit-content self-end absolute -bottom-4 -right-2 text-sm;
+    &.appear {
+      @apply translate-x-0 opacity-100;
+    }
   }
 
   .t-link-indigo {

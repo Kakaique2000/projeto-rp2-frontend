@@ -1,0 +1,17 @@
+  <label [ngClass]="getLabelNgClass()" [for]="label"
+    >{{label}}</label
+  >
+  <div class="relative">
+    <input
+      [formControl]="fControl"
+      (focus)="isInputInFocus = true"
+      (blur)="isInputInFocus = false"
+      [id]="label"
+      [mask]="mask"
+      type="text"
+      class="t-input"
+    />
+    <span class="t-input-error {{ fControl.invalid && 'appear' }}"
+      >{{ label }} inválido</span
+    >
+  </div>

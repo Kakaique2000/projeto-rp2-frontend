@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -15,6 +16,9 @@ import { NewCompanyModule } from './new-company/new-company.module';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
 import { RegistrationsModule } from './registrations/registrations.module';
 import { MarkdownModule } from 'ngx-markdown';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { FormFieldComponent } from './shared/form-field/form-field.component';
+import { AvatarModalComponent } from './my-profile/avatar-modal/avatar-modal.component';
 
 export const customCurrencyMaskConfig = {
   align: "left",
@@ -33,6 +37,8 @@ export const customCurrencyMaskConfig = {
   declarations: [
     DashboardComponent,
     AppComponent,
+    MyProfileComponent,
+    AvatarModalComponent,
   ],
   imports: [
     AppRoutingModule,

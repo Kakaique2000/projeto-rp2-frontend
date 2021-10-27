@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { HomeLoginService } from '../login-home.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HomeLoginService } from '../login-home.service';
 
 @Component({
     templateUrl: './login.component.html',
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
     loginForm: FormGroup;
+  isLogingIn: boolean;
 
     constructor(private formBuilder: FormBuilder,
                 private loginService : HomeLoginService,
@@ -26,15 +27,17 @@ export class LoginComponent implements OnInit{
     }
 
     login() {
-
+        this.isLogingIn = true;
         const email = this.loginForm.get('userName').value;
         const password = this.loginForm.get('password').value;
         this.loginService.authenticate(email, password)
         .subscribe(() => {
-            this.router.navigateByUrl('home');
-        },
-        erro => {
+            this.isLogingIn = false;
+            this.router.navigateByUrl('profile');
+          },
+          erro => {
             alert('email/senha errada ;(');
+            this.isLogingIn = false;
             this.loginForm.reset();
         })
 

@@ -1,11 +1,8 @@
-import { from, Observable } from 'rxjs';
+import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpInterceptor } from '@angular/common/http';
-import { HttpRequest } from '@angular/common/http';
-import { HttpHandler } from '@angular/common/http';
-import { HttpEvent } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { from, Observable } from 'rxjs';
 import { CookieService } from './cookie.service';
+import { sleep } from './shared/utils/sleep.util';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -32,7 +29,9 @@ export class TokenInterceptor implements HttpInterceptor {
     const newHeader = new HttpHeaders(headerSettings);
 
     changedRequest = request.clone({
-      headers: newHeader});
+      headers: newHeader
+    });
+    await sleep()
     return next.handle(changedRequest).toPromise();
   }
 

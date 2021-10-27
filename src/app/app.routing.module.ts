@@ -1,3 +1,4 @@
+import { MyProfileResolver } from './my-profile/my-profile.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -10,44 +11,58 @@ import { NewPasswordComponent } from './login-home/new-senha/new-password';
 import { NewCompanyComponent } from './new-company/new-company.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
 import { LoggedGuard } from './login-home/logged.guard';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 const routes: Routes = [
-  { path: 'home',
-   component: HomeComponent,
+  {
+    path: 'home',
+    component: HomeComponent,
     data: { showSideMenu: true },
-   canActivate: [LoggedGuard],
+    canActivate: [LoggedGuard],
   },
-  { path: 'register',
-   component: SignupComponent,
-  data: { showSideMenu: false },
-
+  {
+    path: 'register',
+    component: SignupComponent,
+    data: { showSideMenu: false },
   },
-  { path: 'newjob',
-   component: NewJobComponent,
-   data: {showSideMenu:true},
-   canActivate: [LoggedGuard],
+  {
+    path: 'profile',
+    component: MyProfileComponent,
+    data: { showSideMenu: true },
+    resolve: { user: MyProfileResolver }
   },
-  { path: 'resetpassword',
-   component: ResetPasswordComponent,
-   data: {showSideMenu:false}
+  {
+    path: 'newjob',
+    component: NewJobComponent,
+    data: { showSideMenu: true },
+    canActivate: [LoggedGuard],
   },
-  { path: '',
-  component: LoginComponent,
-  data: {showSideMenu:false}
+  {
+    path: 'resetpassword',
+    component: ResetPasswordComponent,
+    data: { showSideMenu: false }
   },
-  { path: 'reset-password',
-  component: NewPasswordComponent,
-  data: {showSideMenu:false}
+  {
+    path: '',
+    component: LoginComponent,
+    data: { showSideMenu: false }
   },
-  { path: 'newcompany',
-  component: NewCompanyComponent,
-  data: {showSideMenu:true},
-  canActivate: [LoggedGuard],
+  {
+    path: 'reset-password',
+    component: NewPasswordComponent,
+    data: { showSideMenu: false }
   },
-  { path: 'myregister',
-  component: RegistrationsComponent,
-  data: {showSideMenu:true},
-  canActivate: [LoggedGuard],
+  {
+    path: 'newcompany',
+    component: NewCompanyComponent,
+    data: { showSideMenu: true },
+    canActivate: [LoggedGuard],
+  },
+  {
+    path: 'myregister',
+    component: RegistrationsComponent,
+    data: { showSideMenu: true },
+    canActivate: [LoggedGuard],
   },
   { path: 'dashboard', component: DashboardComponent },
 ];
@@ -56,4 +71,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

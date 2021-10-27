@@ -16,7 +16,8 @@ export interface User {
   email: string;
   cpf: string;
   phone: string;
-  role: Role[];
+  profilePic: string;
+  roles: Role[];
   emailVerified: boolean;
 }
 

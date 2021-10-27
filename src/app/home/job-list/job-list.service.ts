@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { JobDetailsModel, JobModel } from './job-list.models';
+import { JobDetailsModel, JobModel, Knowledge } from './job-list.models';
 import { environment } from 'src/environments/environment';
 import { CookieService } from 'src/app/cookie.service';
 import { TypeSalary } from "src/app/new-job/new-job.model";
@@ -55,6 +55,10 @@ export class JobListService {
 
   getSalaries() {
     return this.http.get<TypeSalary>(`${this._url}/salaries`)
+  }
+
+  getKnowledges() {
+    return this.http.get<Knowledge[]>(`${this._url}/knowledge`)
   }
 
 }
