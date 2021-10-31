@@ -1,3 +1,6 @@
+import { Knowledge } from "../home/job-list/job-list.models";
+import { CompanyModel } from './../new-company/new-company.model';
+
 export interface Role {
   id: number;
   name: string;
@@ -19,5 +22,21 @@ export interface User {
   profilePic: string;
   roles: Role[];
   emailVerified: boolean;
+  knowledges: UserKnowledge[];
+  city: string;
+  state: string;
+  biography: string;
 }
 
+export interface UserDetails extends User {
+  companies: CompanyModel[],
+  fullBiography: string,
+}
+
+export interface UserKnowledge {
+  knowledge:      Knowledge;
+  knowledgeLevel: KnowledgeLevel;
+  validated:      boolean;
+}
+
+export type KnowledgeLevel = 'INICIANTE' | 'MÉDIO' | 'AVANÇADO' | 'EXPERT'

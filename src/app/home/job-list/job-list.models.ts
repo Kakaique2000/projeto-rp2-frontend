@@ -1,3 +1,4 @@
+import { User } from './../../login-home/user.model';
 export interface JobModel {
 
   id: number;
@@ -17,7 +18,13 @@ export interface JobDetailsModel {
   fullDescription: string;
   salary:          number;
   knowledges:      Knowledge[];
-  company:         CompanyModel;
+  company: CompanyModel;
+  createdAt: string;
+}
+
+export interface JobRecruiterDetailsModel extends Omit<JobDetailsModel, 'company'> {
+  companyId: number;
+  users: User[];
 }
 
 export interface Knowledge {

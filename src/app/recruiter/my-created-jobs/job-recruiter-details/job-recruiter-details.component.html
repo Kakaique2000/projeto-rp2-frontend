@@ -1,0 +1,45 @@
+<div (click)="expand == false ? (expand = true) : null" class="border overflow-y-auto max-height md:m-4 m-1.5 shadow-md rounded-md md:p-8 p-2.5 transition-colors focus:bg-indigo-50">
+  <header class="flex items-center justify-between overflow-ellipsis">
+    <div class="flex justify-center overflow-hidden pr-1.5 md:pr-4 flex-col flex-1">
+      <!-- <a href="javascript:null" [title]="job.companyId" class="t-link-indigo">{{ job.companyId }}</a> -->
+      <h2
+        [title]="job.title"
+        class="flex md:flex-row flex-col justify-between md:text-xl sm:text-lg  overflow-ellipsis whitespace-nowrap pr-2"
+      >
+        <span class="overflow-ellipsis overflow-hidden">{{ job.title }}</span>
+        <small class="text-gray-500">criado em {{ job.createdAt | date:'dd/MM/YYYY' }}</small>
+      </h2>
+      <sub class="font-light md:text-lg text-sm text-gray-500">{{ job.description }}</sub>
+    </div>
+
+    <div class="flex flex-col md:flex-row">
+      <button (click)="$event.stopPropagation()" class="ml-auto mb-2 t-btn-indigo-sec h-fit-content t-icon md:text-lg sm:text-md">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+      (click)="expand = !expand; $event.stopPropagation()"
+        class="ml-2 h-fit-content t-icon t-btn-indigo md:text-lg sm:text-md transform transition-transform rotate-0"
+        [class.rotate-180]="expand">
+        <mat-icon>expand_more</mat-icon>
+      </button>
+    </div>
+  </header>
+  <main #main class="max-h-0 transition-all overflow-hidden">
+    <section class="mt-2">
+      <mat-tab-group>
+        <mat-tab label="Inscrições">
+          <div #inscricoes class="p-2 grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-mansory" >
+            <div class="bg-white hover:z-10" *ngFor="let userGrid of usersGrid$ | async" >
+              <div *ngFor="let user of userGrid" class="flex flex-col">
+                <app-user-profile-card (mouseenter)="updateMaxHeightCard()" [user]="user"></app-user-profile-card>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <mat-tab label="Vaga">
+
+        </mat-tab>
+      </mat-tab-group>
+    </section>
+  </main>
+</div>

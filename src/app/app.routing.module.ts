@@ -1,17 +1,19 @@
-import { MyProfileResolver } from './my-profile/my-profile.resolver';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HomeComponent } from './home/home.component';
+import { LoggedGuard } from './login-home/logged.guard';
+import { NewPasswordComponent } from './login-home/new-senha/new-password';
+import { ResetPasswordComponent } from './login-home/reset-password/reset-password';
 import { LoginComponent } from './login-home/signin/login.component';
 import { SignupComponent } from './login-home/signup/signup.component';
-import { NewJobComponent } from './new-job/new-job.component';
-import { ResetPasswordComponent } from './login-home/reset-password/reset-password';
-import { NewPasswordComponent } from './login-home/new-senha/new-password';
-import { NewCompanyComponent } from './new-company/new-company.component';
-import { RegistrationsComponent } from './registrations/registrations.component';
-import { LoggedGuard } from './login-home/logged.guard';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { MyProfileResolver } from './my-profile/my-profile.resolver';
+import { NewCompanyComponent } from './new-company/new-company.component';
+import { NewJobComponent } from './new-job/new-job.component';
+import { MyCreatedJobsResolver } from './recruiter/my-created-jobs.resolver';
+import { MyCreatedJobsComponent } from './recruiter/my-created-jobs/my-created-jobs.component';
+import { RegistrationsComponent } from './registrations/registrations.component';
 
 const routes: Routes = [
   {
@@ -63,6 +65,13 @@ const routes: Routes = [
     component: RegistrationsComponent,
     data: { showSideMenu: true },
     canActivate: [LoggedGuard],
+  },
+  {
+    path: 'recruiter/jobs',
+    component: MyCreatedJobsComponent,
+    data: { showSideMenu: true },
+    canActivate: [LoggedGuard],
+    resolve: {jobs: MyCreatedJobsResolver}
   },
   { path: 'dashboard', component: DashboardComponent },
 ];

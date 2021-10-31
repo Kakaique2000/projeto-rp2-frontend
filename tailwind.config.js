@@ -28,8 +28,13 @@ module.exports = {
         backgroundOpacity: ['active'],
         opacity: ['disabled'],
         cursor: ['disabled'],
+        backgroundColor: ['active', 'group-active'],
+        borderColor: ['active'],
+        display: ['group-hover'],
+        zIndex: ['hover']
       },
     },
     plugins: [
+      require('tailwindcss-interaction-variants'),
     ],
 };

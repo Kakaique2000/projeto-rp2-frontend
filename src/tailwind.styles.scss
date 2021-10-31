@@ -11,6 +11,10 @@
     @apply py-2 px-4 rounded-3xl transition-all transform;
   }
 
+  .t-icon {
+    @apply p-2 rounded-full flex;
+  }
+
   .t-divider {
     @apply block border-t;
   }
@@ -65,10 +69,16 @@
   }
 
   .t-btn-indigo {
-    @apply bg-indigo-500 cursor-pointer;
+    @apply bg-indigo-500 cursor-pointer transition-colors;
     @apply hover:bg-indigo-600;
-    @apply focus:bg-indigo-700;
+    @apply active:bg-indigo-700;
     color: white !important;
+  }
+
+  .t-btn-indigo-sec {
+    @apply cursor-pointer text-indigo-500 bg-white border-2 transition-colors;
+    @apply hover:bg-indigo-100 hover:border-indigo-200;
+    @apply active:bg-indigo-200 active:border-indigo-500;
   }
 
 

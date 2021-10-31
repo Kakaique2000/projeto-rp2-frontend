@@ -1,9 +1,10 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { JobDetailsModel, JobModel, Knowledge } from './job-list.models';
-import { environment } from 'src/environments/environment';
 import { CookieService } from 'src/app/cookie.service';
 import { TypeSalary } from "src/app/new-job/new-job.model";
+import { Page } from "src/app/shared/models/page.model";
+import { environment } from 'src/environments/environment';
+import { JobDetailsModel, JobModel, JobRecruiterDetailsModel, Knowledge } from './job-list.models';
 
 const API_URL = environment.api + '/jobs';
 
@@ -59,6 +60,13 @@ export class JobListService {
 
   getKnowledges() {
     return this.http.get<Knowledge[]>(`${this._url}/knowledge`)
+  }
+
+  /**
+   * Recupera os jobs de um recruiter com os usuarios inscritos nele
+   */
+  getCreatedJobs() {
+    return this.http.get<Page<JobRecruiterDetailsModel>>(`${this._url}/created`)
   }
 
 }

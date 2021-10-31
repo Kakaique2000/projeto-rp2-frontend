@@ -35,9 +35,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskModule } from 'ngx-mask';
 import { EllipsisPipe } from 'src/app/shared/pipes/ellipsis.pipe';
-import { UserProfileCardComponent } from './shared/components/user-profile-card/user-profile-card.component';
-import { FormFieldComponent } from './shared/form-field/form-field.component';
-import { AsyncLoading } from './shared/pipes/async-loading.pipe';
+import { AsyncLoading } from '../pipes/async-loading.pipe';
 
 const matModules = [
   MatCheckboxModule,
@@ -76,8 +74,6 @@ const matModules = [
   declarations: [
     AsyncLoading,
     EllipsisPipe,
-    FormFieldComponent,
-    UserProfileCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,15 +84,13 @@ const matModules = [
   ],
   exports: [
     BrowserModule,
-    UserProfileCardComponent,
     BrowserAnimationsModule,
     AsyncLoading,
     ReactiveFormsModule,
     EllipsisPipe,
     NgxMaskModule,
-    FormFieldComponent,
     ...matModules,
   ],
   providers: [],
 })
-export class SharedModule {}
+export class TestingSharedModule {}

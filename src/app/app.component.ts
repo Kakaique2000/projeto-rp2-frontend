@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
   }
 
   hideLoading() {
-    this.loadingDialog.close();
+    this.loadingDialog?.close();
   }
 
   isRecruiter$() {

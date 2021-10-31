@@ -1,0 +1,55 @@
+<article class="t-card group border mb-2 flex flex-col hover:bg-gray-100 ">
+  <header class="flex active:bg-gray-200 transition-colors p-2 items-center">
+    <img [src]="getProfilePic()" width="64" height="64" class="border rounded-full object-cover" alt="">
+    <div class="ml-4">
+      <h3 class="text-lg group cursor-pointer hover:underline hover:text-indigo-600">{{ user.name }}
+      </h3>
+      <span class="text-md font-light group-hover:text-indigo-400 text-gray-400"><mat-icon [inline]="true" >place</mat-icon> {{ user.city }}, {{ user.state }}</span>
+    </div>
+  </header>
+  <main class="p-4 border-t group-active:bg-gray-50 bg-white rounded-b bg-opacity-50 hidden group-hover:block group-hover:opacity-100 opacity-0 transition-opacity">
+    <section class="flex">
+      <button onclick="event.stopPropagation()"
+      class="rounded-md m-1 flex justify-between flex-1 border-2 t-center p-1 border-red-600 text-red-600
+      hover:text-white hover:bg-red-600 active:bg-red-700 active:border-red-700 transition-colors">
+        <span>Rejeitar</span>
+        <mat-icon>close</mat-icon>
+      </button>
+      <button onclick="event.stopPropagation()"
+      class="rounded-md m-1 flex justify-between flex-1 border-2 t-center p-1 border-green-600 text-green-600
+      hover:text-white hover:bg-green-600 active:bg-green-700 active:border-green-700 transition-colors">
+        <span>Aprovar</span>
+        <mat-icon>done</mat-icon>
+      </button>
+    </section>
+    <section class="flex flex-wrap pb-2 show-first-two">
+      <div class="mt-2 ml-2" *ngIf="userKnowledgesPerLevel['EXPERT'].length">
+        <p class="text-md text-gray-500">Expert</p>
+        <p [title]="userKnowledgesString(userKnowledgesPerLevel['EXPERT'], 10)" class="text-sm text-gray-500 font-light">
+          {{ userKnowledgesString(userKnowledgesPerLevel['EXPERT']) }}
+        </p>
+      </div>
+      <div class="mt-2 ml-2" *ngIf="userKnowledgesPerLevel['AVANÇADO'].length">
+        <p class="text-md text-gray-500">Avançado</p>
+        <p [title]="userKnowledgesString(userKnowledgesPerLevel['AVANÇADO'], 10)" class="text-sm text-gray-500 font-light">
+          {{ userKnowledgesString(userKnowledgesPerLevel['AVANÇADO']) }}
+        </p>
+      </div>
+      <div class="mt-2 ml-2" *ngIf="userKnowledgesPerLevel['MÉDIO'].length ">
+        <p class="text-md text-gray-500">Intermediario</p>
+        <p [title]="userKnowledgesString(userKnowledgesPerLevel['MÉDIO'], 10)" class="text-sm text-gray-500 font-light">
+          {{ userKnowledgesString(userKnowledgesPerLevel['MÉDIO']) }}
+        </p>
+      </div>
+      <div class="mt-2 ml-2" *ngIf="userKnowledgesPerLevel['INICIANTE'].length">
+        <p class="text-md text-gray-500">Iniciante</p>
+        <p [title]="userKnowledgesString(userKnowledgesPerLevel['INICIANTE'], 10)" class="text-sm text-gray-500 font-light">
+          {{ userKnowledgesString(userKnowledgesPerLevel['INICIANTE']) }}
+        </p>
+      </div>
+    </section>
+    <small>
+      {{ user.biography }}
+    </small>
+  </main>
+</article>
