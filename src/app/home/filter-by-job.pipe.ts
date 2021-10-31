@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { JobModel } from './job-list/job-list.models';
+import { JobDto } from '../shared/models/job.models';
 
 @Pipe({ name: 'filterByJob'})
 export class FilterByJob implements PipeTransform {
 
-    transform(jobs: JobModel[], descriptionQuery: string) {
+    transform(jobs: JobDto[], descriptionQuery: string) {
         descriptionQuery = descriptionQuery
             .trim()
             .toLowerCase();

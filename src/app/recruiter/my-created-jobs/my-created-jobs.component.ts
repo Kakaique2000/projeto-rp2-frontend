@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { JobRecruiterDetailsModel } from 'src/app/home/job-list/job-list.models';
+import { JobRecruiterDetailsDto } from 'src/app/shared/models/job.models';
 
 @Component({
   selector: 'app-my-created-jobs',
@@ -12,7 +12,7 @@ export class MyCreatedJobsComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   @Input()
-  jobs: JobRecruiterDetailsModel[] = this.route.snapshot.data.jobs;
+  jobs: JobRecruiterDetailsDto[] = this.route.snapshot.data.jobs;
 
   ngOnInit(): void {
   }

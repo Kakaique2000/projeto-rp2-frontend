@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TypeSalary } from 'src/app/new-job/new-job.model';
-import { Knowledge } from '../job-list/job-list.models';
+import { TypeSalary } from 'src/app/shared/models/new-job.model';
+import { KnowledgeDto } from '../../shared/models/job.models';
 import { JobListService } from '../job-list/job-list.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class JobSearchComponent implements OnInit {
   showSelect = false;
 
   salaries: TypeSalary;
-  knowledges: Knowledge[] = [];
+  knowledges: KnowledgeDto[] = [];
 
   ngOnInit(): void {
     this.jobService.getSalaries().subscribe({

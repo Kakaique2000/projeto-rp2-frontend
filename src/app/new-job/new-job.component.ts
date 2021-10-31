@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CompanyModel } from '../new-company/new-company.model';
-import { NewJob, TypeJob, TypeSalary } from './new-job.model';
+import { NewJob, TypeJob } from '../shared/models/new-job.model';
 import { NewJobService } from './new-job.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { NewJobService } from './new-job.service';
   templateUrl: './new-job.component.html',
   styleUrls: ['./new-job.component.scss']
 })
-export class NewJobComponent implements OnInit { 
+export class NewJobComponent implements OnInit {
 
   Object = Object;
   areas;
@@ -24,7 +24,7 @@ export class NewJobComponent implements OnInit {
   ngOnInit() {
     this.configForm()
     this.callAreas()
-    this.callCompanies()    
+    this.callCompanies()
   }
 
   callAreas() {

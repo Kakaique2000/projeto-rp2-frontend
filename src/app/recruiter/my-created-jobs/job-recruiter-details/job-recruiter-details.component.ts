@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { JobRecruiterDetailsModel } from 'src/app/home/job-list/job-list.models';
+import { JobRecruiterDetailsDto } from 'src/app/shared/models/job.models';
 
 @Component({
   selector: 'app-job-recruiter-details',
@@ -13,7 +13,7 @@ export class JobRecruiterDetailsComponent implements OnInit {
   constructor(public breakpointObserver: BreakpointObserver) { }
 
   @Input()
-  job: JobRecruiterDetailsModel;
+  job: JobRecruiterDetailsDto;
 
   @ViewChild('main')
   mainElement: ElementRef<HTMLElement>
@@ -23,7 +23,7 @@ export class JobRecruiterDetailsComponent implements OnInit {
 
   _expand = false;
 
-  usersGrid$ = this.breakpointObserver
+  jobApplicationGrid$ = this.breakpointObserver
     .observe(['(min-width: 1024px)', '(min-width: 768px)', '(min-width: 640px)'])
     .pipe(
       map(state => {
@@ -31,19 +31,19 @@ export class JobRecruiterDetailsComponent implements OnInit {
 
         if (state.breakpoints['(min-width: 1024px)']) {
           return [
-            this.job.users.filter((_, index) => index % 3 === 0),
-            this.job.users.filter((_, index) => index % 3 === 1),
-            this.job.users.filter((_, index) => index % 3 === 2),
+            this.job.jobApplications.filter((_, index) => index % 3 === 0),
+            this.job.jobApplications.filter((_, index) => index % 3 === 1),
+            this.job.jobApplications.filter((_, index) => index % 3 === 2),
           ]
         }
         if (state.breakpoints['(min-width: 768px)']) {
           return [
-            this.job.users.filter((_, index) => index % 2 === 0),
-            this.job.users.filter((_, index) => index % 2 === 1),
+            this.job.jobApplications.filter((_, index) => index % 2 === 0),
+            this.job.jobApplications.filter((_, index) => index % 2 === 1),
           ]
         }
 
-        return [this.job.users];
+        return [this.job.jobApplications];
       })
     )
 

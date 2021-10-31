@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { JobModel } from './job-list.models';
+import { JobDto } from '../../shared/models/job.models';
 import { JobListService } from './job-list.service';
 
 @Component({
@@ -9,15 +9,15 @@ import { JobListService } from './job-list.service';
 })
 export class JobListComponent implements OnInit {
 
-  @Input() jobs: JobModel[] = [];
+  @Input() jobs: JobDto[] = [];
   @Input() showingPreview = false;
 
   @Output()
-  selectCard = new EventEmitter<JobModel>();
+  selectCard = new EventEmitter<JobDto>();
 
   selectedId = -1;
 
-  onCardClick(job: JobModel) {
+  onCardClick(job: JobDto) {
     this.selectCard.emit(job);
     this.selectedId = job.id;
   }

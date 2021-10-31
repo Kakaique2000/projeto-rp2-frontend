@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { KnowledgeLevel, User } from 'src/app/login-home/user.model';
+import { KnowledgeLevel, UserDto } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-user-profile-card',
@@ -15,7 +15,7 @@ export class UserProfileCardComponent implements OnInit {
 
 
   @Input()
-  user: User = this.route.snapshot.data.user;
+  user: UserDto = this.route.snapshot.data.user;
 
   get userKnowledges(): KnowledgeSimple[] {
     return this.user.knowledges.map(e => ({

@@ -1,21 +1,20 @@
-import { HomeLoginService } from './../login-home/login-home.service';
 import { Injectable } from '@angular/core';
 import {
-  Router, Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot
+  ActivatedRouteSnapshot, Resolve,
+  RouterStateSnapshot
 } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { User } from '../login-home/user.model';
+import { Observable } from 'rxjs';
+import { UserDto } from '../shared/models/user.model';
+import { HomeLoginService } from './../login-home/login-home.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MyProfileResolver implements Resolve<User> {
+export class MyProfileResolver implements Resolve<UserDto> {
 
   constructor(private homeLogin: HomeLoginService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserDto> {
     return this.homeLogin.reloadUser();
   }
 }

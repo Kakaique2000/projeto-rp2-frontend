@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
-import { JobModel } from '../job-list.models';
+import { JobDto } from '../../../shared/models/job.models';
 
 @Component({
   selector: 'app-job-card',
@@ -12,13 +11,13 @@ export class JobCardComponent implements OnInit {
   constructor() { }
 
   @Input()
-  job: JobModel;
+  job: JobDto;
 
   @Input()
   selected = false;
 
   @Output()
-  onApply = new EventEmitter<JobModel>();
+  onApply = new EventEmitter<JobDto>();
 
   ngOnInit(): void {
   }

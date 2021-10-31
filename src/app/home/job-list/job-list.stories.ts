@@ -1,16 +1,16 @@
 // Button.stories.ts
 
-import { Meta, Story } from '@storybook/angular/types-6-0';
 import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
-
-
+import { Meta, Story } from '@storybook/angular/types-6-0';
 import { SharedModule } from 'src/app/shared.module';
-
+import { JobDto } from '../../shared/models/job.models';
+import { JobCardComponent } from './job-card/job-card.component';
 import { JobListComponent } from './job-list.component';
 import { JobListService } from './job-list.service';
-import { JobModel } from './job-list.models';
-import { JobCardComponent } from './job-card/job-card.component';
 import { jobListStub } from './job-list.stub';
+
+
+
 
 
 export default {
@@ -47,7 +47,7 @@ Default.args = {
       salary: 10000,
       title: 'Analista de React Jr',
     }
-  ] as JobModel[]
+  ] as JobDto[]
 }
 
 export const Três_Cards = Template.bind({})
@@ -79,12 +79,12 @@ Três_Cards.args = {
       salary: 10000,
       title: 'Analista de React Jr',
     },
-  ] as JobModel[]
+  ] as JobDto[]
 }
 
 
 export const Vazio = Template.bind({})
 Vazio.args = {
   jobs: [
-  ] as JobModel[]
+  ] as JobDto[]
 }

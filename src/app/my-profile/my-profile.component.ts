@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import * as AppValidators from "src/app/shared/validators";
-import { User } from '../login-home/user.model';
+import { UserDto } from '../shared/models/user.model';
 import { UserService } from '../shared/services/user.service';
 import { HomeLoginService } from './../login-home/login-home.service';
 import { AvatarModalComponent } from './avatar-modal/avatar-modal.component';
@@ -37,7 +37,7 @@ export class MyProfileComponent implements OnInit, OnDestroy {
 
 
   @Input()
-  user: User = this.route.snapshot.data.user;
+  user: UserDto = this.route.snapshot.data.user;
 
   myInfosForm: FormGroup
   activeElement: HTMLElement | null;

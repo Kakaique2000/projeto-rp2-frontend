@@ -1,7 +1,7 @@
 import { userMock } from 'src/app/shared/services/user.mock';
+import { JobDetailsDto, JobRecruiterDetailsDto } from '../../shared/models/job.models';
 import { userMock2 } from './../../shared/services/user.mock';
-import { JobDetailsModel, JobRecruiterDetailsModel } from './job-list.models';
-export const jobMock: JobDetailsModel = {
+export const jobMock: JobDetailsDto = {
   "createdAt": "2021-10-31T15:20:33.73134",
   "id": 1,
   "title": "Desenvolvedor Angular JR",
@@ -68,7 +68,7 @@ export const jobMock: JobDetailsModel = {
   }
 }
 
-export const JobRecruiterMock: JobRecruiterDetailsModel = {
+export const JobRecruiterMock: JobRecruiterDetailsDto = {
   ...jobMock,
   companyId: 1,
   users: [userMock, userMock2]

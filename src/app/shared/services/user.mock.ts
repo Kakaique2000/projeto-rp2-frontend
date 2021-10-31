@@ -1,6 +1,6 @@
-import { User } from './../../login-home/user.model';
+import { UserDto } from '../models/user.model';
 
-export const userMock: User = {
+export const userMock: UserDto = {
   cpf: '45529955886',
   email: 'admin@admin.com',
   id: 1,
@@ -96,7 +96,7 @@ export const userMock: User = {
   I am completely passionate about my career and job, and I never stop studying, It's just addicting for me!! Just love it for all my being!`
 }
 
-export const userMock2: User = {
+export const userMock2: UserDto = {
   cpf: '45529955886',
   email: 'admin@admin.com',
   id: 1,

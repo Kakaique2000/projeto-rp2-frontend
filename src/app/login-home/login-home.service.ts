@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { NewUser } from './signup/new-user';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { delay, take, tap } from 'rxjs/operators';
 import { CookieService } from '../cookie.service';
 import { MyService } from '../globals';
-import { Router } from '@angular/router';
-import * as TokenDto from './user.model';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import * as TokenDto from '../shared/models/user.model';
+import { NewUser } from './signup/new-user';
 
 const API_URL = environment.api + '/auth/';
 @Injectable({
@@ -25,14 +25,14 @@ export class HomeLoginService {
     return this.cookie.get('Authorization').length > 0;
   }
 
-  private _loggedUser$ = new BehaviorSubject<TokenDto.User | null>(null);
+  private _loggedUser$ = new BehaviorSubject<TokenDto.UserDto | null>(null);
 
-  get loggedUser$(): Observable<TokenDto.User | null> {
+  get loggedUser$(): Observable<TokenDto.UserDto | null> {
     return this._loggedUser$.asObservable();
   }
 
   reloadUser() {
-    return this.http.get<TokenDto.User>(environment.api + '/users/me').pipe(
+    return this.http.get<TokenDto.UserDto>(environment.api + '/users/me').pipe(
       tap(user => this._loggedUser$.next(user))
     )
   }

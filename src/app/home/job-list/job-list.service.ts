@@ -1,10 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { CookieService } from 'src/app/cookie.service';
-import { TypeSalary } from "src/app/new-job/new-job.model";
+import { TypeSalary } from "src/app/shared/models/new-job.model";
 import { Page } from "src/app/shared/models/page.model";
 import { environment } from 'src/environments/environment';
-import { JobDetailsModel, JobModel, JobRecruiterDetailsModel, Knowledge } from './job-list.models';
+import { JobDetailsDto, JobDto, JobRecruiterDetailsDto, KnowledgeDto } from '../../shared/models/job.models';
 
 const API_URL = environment.api + '/jobs';
 
@@ -17,7 +17,7 @@ export class JobListService {
   constructor(private http: HttpClient, private cookie: CookieService) { }
 
   getJob(id: number) {
-    return this.http.get<JobDetailsModel>(`${this._url}/${id}`)
+    return this.http.get<JobDetailsDto>(`${this._url}/${id}`)
   }
 
   getJobs(category: any, salary: any, query: string) {
@@ -41,7 +41,7 @@ export class JobListService {
       params
     };
 
-    return this.http.get<JobModel[]>(API_URL, httpOptions);
+    return this.http.get<JobDto[]>(API_URL, httpOptions);
   }
 
   apply(idJob: any) {
@@ -59,14 +59,14 @@ export class JobListService {
   }
 
   getKnowledges() {
-    return this.http.get<Knowledge[]>(`${this._url}/knowledge`)
+    return this.http.get<KnowledgeDto[]>(`${this._url}/knowledge`)
   }
 
   /**
    * Recupera os jobs de um recruiter com os usuarios inscritos nele
    */
   getCreatedJobs() {
-    return this.http.get<Page<JobRecruiterDetailsModel>>(`${this._url}/created`)
+    return this.http.get<Page<JobRecruiterDetailsDto>>(`${this._url}/created`)
   }
 
 }

@@ -1,5 +1,6 @@
-import { Knowledge } from "../home/job-list/job-list.models";
-import { CompanyModel } from './../new-company/new-company.model';
+import { CompanyModel } from '../../new-company/new-company.model';
+import { JobApplicationDto } from './job-application.model';
+import { KnowledgeDto as KnowledgeDto } from "./job.models";
 
 export interface Role {
   id: number;
@@ -10,10 +11,10 @@ export interface Role {
 export interface Token {
   token: string;
   type: string;
-  user: User;
+  user: UserDto;
 }
 
-export interface User {
+export interface UserDto {
   id: number;
   name: string;
   email: string;
@@ -22,19 +23,20 @@ export interface User {
   profilePic: string;
   roles: Role[];
   emailVerified: boolean;
-  knowledges: UserKnowledge[];
+  knowledges: UserKnowledgeDto[];
   city: string;
   state: string;
   biography: string;
+  jobApplications: JobApplicationDto[];
 }
 
-export interface UserDetails extends User {
+export interface UserDetailsDto extends UserDto {
   companies: CompanyModel[],
   fullBiography: string,
 }
 
-export interface UserKnowledge {
-  knowledge:      Knowledge;
+export interface UserKnowledgeDto {
+  knowledge:      KnowledgeDto;
   knowledgeLevel: KnowledgeLevel;
   validated:      boolean;
 }

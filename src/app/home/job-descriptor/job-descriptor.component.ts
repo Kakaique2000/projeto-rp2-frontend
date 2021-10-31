@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { NEVER, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { JobDetailsModel, JobModel } from '../job-list/job-list.models';
+import { JobDetailsDto, JobDto } from '../../shared/models/job.models';
 import { JobListService } from '../job-list/job-list.service';
 
 @Component({
@@ -14,8 +12,8 @@ export class JobDescriptorComponent implements OnInit {
   constructor(private jobService: JobListService) { }
 
   @Input()
-  job: JobModel;
-  jobDetails?: JobDetailsModel;
+  job: JobDto;
+  jobDetails?: JobDetailsDto;
   loadingJobDetails: boolean;
 
   ngOnInit(): void {

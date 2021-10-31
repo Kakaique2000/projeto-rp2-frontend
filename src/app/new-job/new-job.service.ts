@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
 import { environment as env } from 'src/environments/environment';
-import { ICategoria, NewJob, TypeJob, TypeSalary } from './new-job.model';
-import { CompanyModel } from '../new-company/new-company.model';
 import { CookieService } from '../cookie.service';
 import { MyService } from '../globals';
+import { CompanyModel } from '../new-company/new-company.model';
+import { NewJob, TypeJob, TypeSalary } from '../shared/models/new-job.model';
 
 const API_URL = env.api + '/jobs/';
 const API_URL_COMPANIE = env.api + '/users/';
