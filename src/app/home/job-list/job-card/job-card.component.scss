@@ -1,0 +1,5 @@
+:host::ng-deep {
+  .mat-progress-spinner circle, .mat-spinner circle {
+    @apply text-white stroke-current text-opacity-30;
+  }
+}

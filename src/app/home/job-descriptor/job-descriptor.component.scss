@@ -2,6 +2,13 @@
   max-height: calc(100vh - 5rem);
 }
 
+:host::ng-deep {
+  .mat-progress-spinner circle, .mat-spinner circle {
+    @apply text-white stroke-current text-opacity-30;
+  }
+}
+
+
 markdown ::ng-deep {
 
   a {

@@ -2,10 +2,7 @@
   <div class="">
     <div class="absolute right-0 -top-4 text-sm transform scale-75">
       <mat-chip-list>
-        <div style="cursor: pointer;" mat-chip color="primary" selected>
-          {{ job.knowledges[0].name }}
-        </div>
-        <div style="cursor: pointer;" *ngFor="let knowledge of (job.knowledges[1] && (job.knowledges | slice : 1 : 4) || [])" mat-chip color="accent" selected>
+        <div  *ngFor="let knowledge of job.knowledges" style="cursor: pointer;" mat-chip color="primary" selected>
           {{ knowledge.name }}
         </div>
       </mat-chip-list>
@@ -26,7 +23,14 @@
     </div>
   <div [class.bg-indigo-100]="selected" class="flex mt-2 justify-between bg-gray-100 items-center rounded-b-md">
     <div [class.text-indigo-500]="selected" class="p-3 flex items-center text-sm text-gray-400"><mat-icon>place</mat-icon> <span class="ml-1">{{job.city}}</span></div>
-    <button class="t-btn t-btn-indigo transform scale-75" (click)="onApply.emit(job)">candidatar</button>
+    <button class="t-btn t-btn-indigo text-xs mr-2 p-2 transition-all t-center
+    {{ (candidated || loading) && 't-disabled' }}"
+    (click)="onApply.emit(job); $event.stopPropagation()">
+      <span>{{ candidated ? 'candidatado' :  'candidatar-se' }}</span>
+      <span *ngIf="loading" class="ml-2">
+        <mat-spinner [diameter]="16"></mat-spinner>
+      </span>
+    </button>
   </div>
   </div>
 </div>

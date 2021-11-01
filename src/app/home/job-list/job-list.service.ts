@@ -1,6 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { Subject } from 'rxjs';
+import { finalize, map, switchMap } from 'rxjs/operators';
 import { CookieService } from 'src/app/cookie.service';
+import { HomeLoginService } from 'src/app/login-home/login-home.service';
 import { TypeSalary } from "src/app/shared/models/new-job.model";
 import { Page } from "src/app/shared/models/page.model";
 import { environment } from 'src/environments/environment';
@@ -14,7 +17,17 @@ const API_URL = environment.api + '/jobs';
 export class JobListService {
   public _url: string = "http://localhost:8080/jobs";
 
-  constructor(private http: HttpClient, private cookie: CookieService) { }
+  constructor(private http: HttpClient, private cookie: CookieService, private homeLoginService: HomeLoginService) { }
+
+  idLoading$ = new Subject<number>();
+
+  isUserCandidated$(id: number) {
+    return this.homeLoginService.loggedUser$.pipe(
+      map(user => {
+        return !!user.jobApplications.find(e => e.job.id === id)
+      })
+    )
+  }
 
   getJob(id: number) {
     return this.http.get<JobDetailsDto>(`${this._url}/${id}`)
@@ -44,14 +57,16 @@ export class JobListService {
     return this.http.get<JobDto[]>(API_URL, httpOptions);
   }
 
-  apply(idJob: any) {
-    const params = new HttpParams({
-        fromObject: {
-            id: idJob
-        }
-    });
-
-    return this.http.post(API_URL +'/' + idJob+'/apply', {},);
+  apply(idJob: number) {
+    this.idLoading$.next(idJob);
+    return this.http.post(API_URL + '/' + idJob + '/apply', {},).pipe(
+      switchMap(() => {
+        const resetIdLoading = () => this.idLoading$.next(-1);
+        return this.homeLoginService.reloadUser().pipe(
+          finalize(() => resetIdLoading())
+        )
+      })
+    );
   }
 
   getSalaries() {

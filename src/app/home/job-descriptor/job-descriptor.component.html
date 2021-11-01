@@ -6,7 +6,15 @@
         <h2 [title]="job.title" class="md:text-xl sm:text-lg overflow-hidden overflow-ellipsis whitespace-nowrap pr-2">{{ job.title }}</h2>
         <sub class="font-light text-lg text-gray-500">{{ job.city }}</sub>
       </div>
-      <button class="w-30 ml-auto t-btn t-btn-indigo whitespace-nowrap md:text-lg sm:text-md">candidatar-se</button>
+      <button
+      (click)="apply()"
+      class="w-30 ml-auto t-btn t-center t-btn-indigo whitespace-nowrap md:text-lg sm:text-md
+      {{ (candidated || loading) ? 't-disabled' : '' }}">
+        {{ candidated ? 'candidatado' : 'candidatar-se'}}
+        <span class="ml-2">
+          <mat-spinner *ngIf="loading" [diameter]="24"></mat-spinner>
+        </span>
+      </button>
     </header>
     <section class="mt-4">
       <mat-chip-list>

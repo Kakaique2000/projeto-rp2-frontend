@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { HomeLoginService } from 'src/app/login-home/login-home.service';
 import { JobDto } from '../../shared/models/job.models';
 import { JobListService } from './job-list.service';
 
@@ -16,20 +17,22 @@ export class JobListComponent implements OnInit {
   selectCard = new EventEmitter<JobDto>();
 
   selectedId = -1;
+  loadingId = -1
 
   onCardClick(job: JobDto) {
     this.selectCard.emit(job);
     this.selectedId = job.id;
   }
 
-  constructor(private serviceJob: JobListService) { }
+  constructor(public serviceJob: JobListService, private homeLoginService: HomeLoginService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  apply(event) {
-    console.log(event)
-    this.serviceJob.apply(event)
-        .subscribe((res) => {
+  apply(event: JobDto) {
+    this.loadingId = event.id;
+    this.serviceJob.apply(event.id)
+    .subscribe((res) => {
+      this.loadingId = -1;
          alert('Candidatura efetiva com sucesso, boa sorte!')
         },
         erro => {

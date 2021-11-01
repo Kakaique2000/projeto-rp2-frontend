@@ -3,7 +3,11 @@
 </div>
 <div [ngClass]="{'showing-preview': showingPreview,'not-showing-preview': !showingPreview }" class="grid  mt-2" *ngIf="jobs?.length > 0">
   <div *ngFor="let obj of jobs">
-    <app-job-card (click)="onCardClick(obj)" [selected]="selectedId === obj.id" [job]="obj"></app-job-card>
+    <app-job-card
+      (click)="onCardClick(obj)"
+      (onApply)="apply($event)"
+      [selected]="selectedId === obj.id"
+      [job]="obj"></app-job-card>
   </div>
 </div>
 
