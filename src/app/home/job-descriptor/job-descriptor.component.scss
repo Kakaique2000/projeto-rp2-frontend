@@ -2,8 +2,9 @@
   max-height: calc(100vh - 5rem);
 }
 
+
 :host::ng-deep {
-  .mat-progress-spinner circle, .mat-spinner circle {
+  .white-spinner circle, .white-spinner circle {
     @apply text-white stroke-current text-opacity-30;
   }
 }

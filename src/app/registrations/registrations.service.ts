@@ -1,10 +1,9 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CompanyModel } from '../new-company/new-company.model';
+import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 import { CookieService } from '../cookie.service';
 import { MyService } from '../globals';
-import { Registrations } from './registrations.model';
-import { environment } from "src/environments/environment";
+import { JobApplicationDto } from "../shared/models/job-application.model";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class RegistrationsService {
 
   constructor(private http: HttpClient, private cookie: CookieService, private myService: MyService) { }
 
-  
+
   getAllRegister() {
     const header = {
       'Authorization': 'Bearer ' + this.cookie.get("token")
@@ -26,6 +25,6 @@ export class RegistrationsService {
     };
 
 
-    return this.http.get<Registrations[]>(`${this._url}${this.cookie.get('userId')}/jobs`, headerToken);
+    return this.http.get<JobApplicationDto[]>(`${this._url}${this.cookie.get('userId')}/jobs`, headerToken);
   }
 }

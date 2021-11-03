@@ -1,14 +1,12 @@
 // Button.stories.ts
-
-import { Meta, Story } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
-
-
-import { SharedModule } from 'src/app/shared.module';
-import { JobDescriptorComponent } from './job-descriptor.component';
+import { Meta, Story } from '@storybook/angular/types-6-0';
 import { MarkdownModule } from 'ngx-markdown';
-import { JobListService } from '../job-list/job-list.service';
-import { jobListStub } from '../job-list/job-list.stub';
+import { SharedModule } from 'src/app/shared.module';
+import { storiesProviders } from 'src/app/shared/utils/stories.util';
+import { JobDescriptorComponent } from './job-descriptor.component';
+
+
 
 export default {
   title: 'Components/Job/Job Descriptor',
@@ -19,12 +17,7 @@ export default {
         SharedModule,
         MarkdownModule.forRoot()
       ],
-      providers: [
-        {
-          provide: JobListService,
-          useValue: jobListStub
-        }
-      ]
+      providers: storiesProviders
     }),
   ]
 } as Meta;

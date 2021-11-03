@@ -1,3 +1,4 @@
+import { jobMock } from 'src/app/home/job-list/job.mock';
 import { UserDto } from '../models/user.model';
 
 export const userMock: UserDto = {
@@ -91,12 +92,24 @@ export const userMock: UserDto = {
   ],
   state: 'SP',
   city: 'São Paulo',
+
+  jobApplications: [
+    {
+      approved: true,
+      createdAt: '2021-10-31T19:53:12.0264911',
+      updatedAt: '2021-10-31T19:53:12.0264911',
+      job: jobMock,
+      user: null as any
+    }
+  ],
   biography: `Hi my name is Kaique and I identify myself as the most toolmaker in the world haha. I can't see any proccess being slow that I seek some way for doing it the most optimal way possible (without never losing quality!!!)
 
   I am completely passionate about my career and job, and I never stop studying, It's just addicting for me!! Just love it for all my being!`
 }
 
 export const userMock2: UserDto = {
+  city: 'Florianópolis',
+  state: 'SC',
   cpf: '45529955886',
   email: 'admin@admin.com',
   id: 1,
@@ -104,6 +117,15 @@ export const userMock2: UserDto = {
   phone: '11974104310',
   profilePic: 'https://dt2sdf0db8zob.cloudfront.net/wp-content/uploads/2019/12/9-Best-Online-Avatars-and-How-to-Make-Your-Own-for-Free-image1-5.png',
   emailVerified: true,
+  jobApplications: [
+    {
+      approved: true,
+      createdAt: '2021-10-31T19:53:12.0264911',
+      updatedAt: '2021-10-31T19:53:12.0264911',
+      job: jobMock,
+      user: null as any
+    }
+  ],
   roles: [
     {
       name: 'ROLE_ADMIN',
@@ -185,8 +207,6 @@ export const userMock2: UserDto = {
       "validated": true
     },
   ],
-  state: 'SP',
-  city: 'São Paulo',
   biography: `Hi my name is Kaique and I identify myself as the most toolmaker in the world haha. I can't see any proccess being slow that I seek some way for doing it the most optimal way possible (without never losing quality!!!)
 
   I am completely passionate about my career and job, and I never stop studying, It's just addicting for me!! Just love it for all my being!`
