@@ -29,6 +29,9 @@
       <mat-tab-group>
         <mat-tab label="Inscrições">
           <div #inscricoes class="p-2 grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-mansory" >
+            <div class="p-4" *ngIf="job.jobApplications.length === 0">
+              <p class="text-lg">Ainda não há nenhuma candidatura para esta vaga.</p>
+            </div>
             <div class="bg-white hover:z-10" *ngFor="let jobApplication of jobApplicationGrid$ | async" >
               <div *ngFor="let jobApplication of jobApplication" class="flex flex-col">
                 <app-user-profile-card (mouseenter)="updateMaxHeightCard()" [user]="jobApplication.user"></app-user-profile-card>

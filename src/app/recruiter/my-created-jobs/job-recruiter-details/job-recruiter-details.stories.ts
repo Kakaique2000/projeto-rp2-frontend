@@ -41,6 +41,6 @@ export const WithMoreUsers = Template.bind({});
 WithMoreUsers.args = {
   job: {
     ...JobRecruiterMock,
-    users: [JobRecruiterMock.users[0], JobRecruiterMock.users[1], JobRecruiterMock.users[0], JobRecruiterMock.users[1], JobRecruiterMock.users[1],]
+    jobApplications: [JobRecruiterMock.jobApplications[0], JobRecruiterMock.jobApplications[0], JobRecruiterMock.jobApplications[0],]
   }
 }

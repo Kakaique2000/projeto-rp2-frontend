@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { JobListService } from 'src/app/home/job-list/job-list.service';
 import { HomeLoginService } from 'src/app/login-home/login-home.service';
 import { JobDto } from '../../shared/models/job.models';
-import { JobListService } from './job-list.service';
-
 @Component({
   selector: 'app-job-list',
   templateUrl: './job-list.component.html',

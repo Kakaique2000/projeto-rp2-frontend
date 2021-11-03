@@ -16,7 +16,9 @@ export interface JobDto {
 export interface JobDetailsDto {
   id:              number;
   title:           string;
-  description:     string;
+  description: string;
+  city: string;
+  state: string;
   fullDescription: string;
   salary:          number;
   knowledges:      KnowledgeDto[];

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { JobListService } from 'src/app/home/job-list/job-list.service';
 import { JobDto } from '../../../shared/models/job.models';
-import { JobListService } from './../job-list.service';
 
 @Component({
   selector: 'app-job-card',

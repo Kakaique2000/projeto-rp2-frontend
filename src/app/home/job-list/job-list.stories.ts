@@ -2,32 +2,27 @@
 
 import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 import { Meta, Story } from '@storybook/angular/types-6-0';
-import { SharedModule } from 'src/app/shared.module';
+import { storiesProviders } from 'src/app/shared/utils/stories.util';
+import { TestingSharedModule } from 'src/app/shared/utils/testing.shared.module';
 import { JobDto } from '../../shared/models/job.models';
 import { JobCardComponent } from './job-card/job-card.component';
 import { JobListComponent } from './job-list.component';
-import { JobListService } from './job-list.service';
-import { jobListStub } from './job-list.stub';
 
 
 
 
 
 export default {
-  title: 'Components/Job List',
+  title: 'Components/Job/Job List',
   component: JobListComponent,
   decorators: [
     moduleMetadata({
       declarations: [JobCardComponent],
-      imports: [SharedModule],
-      providers: [
-        {
-          provide: JobListService,
-          useValue: jobListStub
-        }
-      ]
+      imports: [TestingSharedModule],
+      providers: storiesProviders,
     }),
     componentWrapperDecorator(story => `<div style='display: flex; flex-wrap: wrap'>${story}</div>`)
+
   ]
 } as Meta;
 

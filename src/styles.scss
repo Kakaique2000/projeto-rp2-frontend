@@ -229,6 +229,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   @include angular-material-theme($altTheme);
 }
 
+
 // Specific component overrides, pieces that are not in line with the general theming
 
 // Handle buttons appropriately, with respect to line-height

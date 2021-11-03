@@ -1,14 +1,31 @@
-import { of } from "rxjs";
-import { delay } from "rxjs/operators";
+import { of, Subject } from "rxjs";
+import { delay, tap } from "rxjs/operators";
+import { userMock } from './../../shared/services/user.mock';
 import { JobListService } from "./job-list.service";
 import { jobMock } from "./job.mock";
 
-export const jobListStub: Partial < JobListService > = {
-  getJob: () => of(jobMock).pipe(
-    delay(1000)
-  ),
+export class jobListStub implements Partial<JobListService> {
 
-  getJobs: () => of([
+  idLoading$ = new Subject<number>();
+
+  apply = (id: number) => {
+    this.idLoading$.next(id)
+    return of(userMock).pipe(
+      delay(1500),
+      tap(e => this.idLoading$.next(-1))
+    );
+  }
+
+  isUserCandidated$(id: number) {
+    return of(false)
+  }
+
+
+  getJob = () => of(jobMock).pipe(
+    delay(1000)
+  )
+
+  getJobs = () => of([
     {
       "id": 1,
       "title": "Desenvolvedor Angular JR",

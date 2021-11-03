@@ -5,8 +5,8 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { JobListService } from '../home/job-list/job-list.service';
 import { JobRecruiterDetailsDto } from '../shared/models/job.models';
-import { JobListService } from './../home/job-list/job-list.service';
 
 @Injectable({
   providedIn: 'root'
