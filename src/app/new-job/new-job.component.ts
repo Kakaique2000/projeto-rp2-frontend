@@ -16,7 +16,8 @@ export class NewJobComponent implements OnInit {
   areas;
   salary;
   jobForm: FormGroup;
-  listCompanies : CompanyModel[] = []
+  listCompanies : CompanyModel[] = [];
+  showDescriptionPreview = true;
 
   constructor(private formBuilder: FormBuilder,
     private router : Router, private newJobService: NewJobService) {  }
