@@ -57,9 +57,11 @@ export class NewJobService {
     const salary = newjob.salary;
     const occupation = newjob.occupation;
     const companyId = newjob.companyId;
+    const knowledges = newjob.knowledges;
+    const fullDescription = newjob.description;
 
 
-    return this.http.post(API_URL, { title, description, salary, occupation, companyId }, options);
+    return this.http.post(API_URL, { title, description, salary, occupation, companyId, knowledges, fullDescription }, options);
 
   }
 
