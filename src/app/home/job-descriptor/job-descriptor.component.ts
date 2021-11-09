@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
 import { JobDetailsDto, JobDto } from '../../shared/models/job.models';
 
@@ -26,14 +27,6 @@ export class JobDescriptorComponent implements OnInit, OnChanges, OnDestroy {
 
     this.subscriptions.push(
 
-      this.jobService.idLoading$.subscribe({
-        next: id => this.loading = this.job.id === id
-      }),
-
-      this.jobService.isUserCandidated$(this.job.id).subscribe({
-        next: isCandidated => this.candidated = isCandidated
-      }),
-
     );
 
   }
@@ -52,7 +45,7 @@ export class JobDescriptorComponent implements OnInit, OnChanges, OnDestroy {
   apply() {
     this.jobService.apply(this.job.id)
       .subscribe((res) => {
-        alert('Candidatura efetiva com sucesso, boa sorte!')
+        alert('Candidatura efetivada com sucesso, boa sorte!')
       },
         erro => {
           console.log(erro)
@@ -67,6 +60,22 @@ export class JobDescriptorComponent implements OnInit, OnChanges, OnDestroy {
         this.loadingJobDetails = false;
       }
     })
+
+    this.jobService.isUserCandidated$(this.job.id).pipe(take(1)).subscribe({
+      next: isCandidated => this.candidated = isCandidated
+    })
+
+
+    this.jobService.idLoading$.subscribe({
+      next: id => {
+        this.loading = this.job.id === id;
+        this.jobService.isUserCandidated$(this.job.id).pipe(take(1)).subscribe({
+          next: isCandidated => this.candidated = isCandidated
+        })
+      }
+    })
+
+
   }
 
 }
