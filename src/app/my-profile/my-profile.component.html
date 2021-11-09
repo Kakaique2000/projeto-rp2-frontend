@@ -74,8 +74,65 @@
         [fControl]="cpfCnpjControl"
         mask="000.000.000-00||00.000.000/0000-00"
       ></app-form-field>
+      <div *ngIf="getRoles()[0].label !== 'Recrutador'">      
+        <label class="t-input-label" >Carta de Apresentação</label>
+        <textarea [formControl]="biographyControl" formControlName="biography" class="form-control" rows="7"
+        placeholder="Fale um pouco sobre você e suas habilidades" ></textarea>
+    </div>
       </form>
     </article>
+    <mat-divider></mat-divider>
+    <div *ngIf="getRoles()[0].label !== 'Recrutador'">
+    <label class="t-input-label mr-2" >Adicionar Experiência profissional</label>
+    <button (click)="openExperienceDialog()" mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" >
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <div *ngIf="getExperience(); else elseNotInfos">
+      <div class="t-card" *ngFor='let obj of getExperience()'>
+        <mat-card class="example-card mt-3">
+          <mat-card-title>{{obj.companyName}}</mat-card-title>
+          <mat-card-content>
+            <p>{{obj.office}}</p>
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+          <mat-card-content>
+            <p>Período: {{obj.initialDate}} - {{obj.endDate}}</p>
+          </mat-card-content>
+        </mat-card>
+   </div>
+  </div>
+
+  <ng-template  #elseNotInfos>
+    <mat-divider class="mt-2 mb-2"></mat-divider>
+  </ng-template>
+
+
+    <label class="t-input-label mr-2" >Adicionar Certificado</label>
+    <button (click)="openCertifiedDialog()" mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" >
+      <mat-icon>add</mat-icon>
+    </button>
+
+      <mat-card class="example-card mt-3 mb-3">
+        <mat-card-title>Certificados : </mat-card-title>
+        <mat-card-content *ngFor='let obj of getCertified()'>
+          <a href="{{obj.url}}" target="_blank"> - {{obj.name}}</a>
+        </mat-card-content>
+      </mat-card>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Skills</mat-label>
+      <mat-select [formControl]="skills" multiple>
+        <mat-select-trigger>
+          {{skills.value ? skills.value[0] : ''}}
+          <span *ngIf="skills.value?.length > 1" class="example-additional-selection">
+            (+{{skills.value.length - 1}} {{skills.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let skill of skillsList" [value]="skill">{{skill}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   </article>
   <footer class="container flex">
     <button

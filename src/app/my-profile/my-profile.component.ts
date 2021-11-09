@@ -1,14 +1,17 @@
+import { formatDate } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import * as AppValidators from "src/app/shared/validators";
-import { UserDto } from '../shared/models/user.model';
+import { UserCertifiedDto, UserDto, UserExperienceDto } from '../shared/models/user.model';
 import { UserService } from '../shared/services/user.service';
 import { HomeLoginService } from './../login-home/login-home.service';
 import { AvatarModalComponent } from './avatar-modal/avatar-modal.component';
+import { CertifiedModalComponent } from './certified-modal/certified-modal.component';
+import { ExperienceModalComponent } from './experience-modal/experience-modal.component';
 
 
 
@@ -43,11 +46,23 @@ export class MyProfileComponent implements OnInit, OnDestroy {
   activeElement: HTMLElement | null;
   isSaving = false;
 
+  experience = new Array();
+  skills =  new FormControl();
+  skillsList: string[] = ['Java', 'Angular', 'React', 'HTML', 'CSS', 'Pyton'];
+
   getProfilePic() {
     return (this.user.profilePic && this.user.profilePic !== '') ?
       this.user.profilePic :
       'https://jsl-online.com/wp-content/uploads/2017/01/placeholder-user.png'
   }
+
+  getExperience() {
+   return  this.user.experience.length > 0 ? this.user.experience : [];
+  }
+
+  getCertified() {
+    return  this.user.certificates.length > 0 ? this.user.certificates : [];
+   }
 
   mensagemTransacao(message: string) {
     this.snackBar.open(message, 'ok', {duration: 2000 });
@@ -74,6 +89,60 @@ export class MyProfileComponent implements OnInit, OnDestroy {
     })
   }
 
+  openExperienceDialog() {
+    const dialog = this.dialog.open(ExperienceModalComponent);
+    const modal = dialog.componentInstance;
+    modal.click.subscribe({
+      next: () => {
+        modal.isSaving = true;
+        let experienceArray: Array<UserExperienceDto> = new Array();
+        experienceArray.push(modal.formControl.value);
+        experienceArray[0].initialDate = modal.formControl.value['initialDate'].substring(0, 2) + "/" + modal.formControl.value['initialDate'].substring(2);
+        experienceArray[0].endDate = modal.formControl.value['endDate'].substring(0, 2) + "/" + modal.formControl.value['endDate'].substring(2);
+        const experienceObject = {
+          experience: experienceArray
+        }
+        this.userService.patchUser(this.user.id, experienceObject as any ).subscribe({
+          next: () => {
+            modal.isSaving = false;
+            dialog.close();
+            this.mensagemTransacao('Experiência salva com sucesso');
+          },
+          error: () => {
+            this.mensagemTransacao('ops, ocorreu um erro ao salvar');
+          }
+        });
+      }
+    })
+  }
+
+  openCertifiedDialog() {
+    const dialog = this.dialog.open(CertifiedModalComponent);
+    const modal = dialog.componentInstance;
+    modal.click.subscribe({
+      next: () => {
+        modal.isSaving = true;
+        let certifiedArray: Array<UserCertifiedDto> = new Array();
+        certifiedArray.push(modal.formControl.value);
+        const certifiedObject = {
+          certificates: certifiedArray
+        }
+        console.log(certifiedObject)
+        this.userService.patchUser(this.user.id, certifiedObject as any ).subscribe({
+          next: () => {
+            modal.isSaving = false;
+            dialog.close();
+            this.mensagemTransacao('Certificado salvo com sucesso');
+          },
+          error: () => {
+            this.mensagemTransacao('ops, ocorreu um erro ao salvar');
+          }
+        });
+      }
+    })
+  
+  }
+
   getRoles(): RoleDescription[] {
     return this.user.roles.map(
       e => {
@@ -89,7 +158,6 @@ export class MyProfileComponent implements OnInit, OnDestroy {
       }
     )
   }
-
 
   get emailControl() {
     return this.myInfosForm.get('email') as FormControl;
@@ -107,6 +175,10 @@ export class MyProfileComponent implements OnInit, OnDestroy {
     return this.myInfosForm.get('cpfcnpj') as FormControl;
   }
 
+  get biographyControl() {
+    return this.myInfosForm.get('biography') as FormControl;
+  }
+
   saveInfos() {
     this.isSaving = true;
     this.userService.patchUser(this.user.id, this.myInfosForm.value).subscribe({
@@ -122,7 +194,7 @@ export class MyProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
+    this.experience = this.user.experience;
     this.myInfosForm = this.fb.group({
       name: [
         this!.user.name,
@@ -151,6 +223,12 @@ export class MyProfileComponent implements OnInit, OnDestroy {
           Validators.required,
         ]
       ],
+      biography: [
+        this!.user.biography,
+        [
+          Validators.maxLength(300)
+        ]
+      ]
     })
 
     this.subscriptions.push(this.homeService.loggedUser$.subscribe({

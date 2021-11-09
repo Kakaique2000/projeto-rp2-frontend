@@ -21,6 +21,8 @@ import { FormFieldComponent } from './shared/form-field/form-field.component';
 import { AvatarModalComponent } from './my-profile/avatar-modal/avatar-modal.component';
 import { MyCreatedJobsComponent } from './recruiter/my-created-jobs/my-created-jobs.component';
 import { JobRecruiterDetailsComponent } from './recruiter/my-created-jobs/job-recruiter-details/job-recruiter-details.component';
+import { ExperienceModalComponent } from './my-profile/experience-modal/experience-modal.component';
+import { CertifiedModalComponent } from './my-profile/certified-modal/certified-modal.component';
 
 export const customCurrencyMaskConfig = {
   align: "left",
@@ -41,6 +43,8 @@ export const customCurrencyMaskConfig = {
     AppComponent,
     MyProfileComponent,
     AvatarModalComponent,
+    ExperienceModalComponent,
+    CertifiedModalComponent,
     MyCreatedJobsComponent,
     JobRecruiterDetailsComponent,
   ],

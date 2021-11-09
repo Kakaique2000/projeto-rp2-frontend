@@ -1,0 +1,21 @@
+<section class="flex flex-col sm:w-auto md:w-96">
+    <h2 class="md:text-xl sm:text-lg">Adicionar Certificado</h2>
+    <div class="d-flex justify-content-between">
+    <app-form-field
+      class="mr-2"
+      label="nome do curso"
+      [fControl]="nameCourseControl"
+      >
+    </app-form-field>
+
+    <app-form-field
+      class="ml-2"
+      label="Link do Certificado"
+      [fControl]="linkCourseControl"
+      >
+    </app-form-field>
+  </div>
+    <button (click)="click.emit($event)" [class.t-disabled]="!formControl.valid || isSaving" class="t-center t-btn t-btn-indigo mt-6 ml-auto">
+      <span>salvar</span> <mat-spinner class="ml-2" *ngIf="isSaving" diameter="25"></mat-spinner>
+    </button>
+  </section>
