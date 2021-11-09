@@ -28,6 +28,8 @@ export interface UserDto {
   state: string;
   biography: string;
   jobApplications: JobApplicationDto[];
+  experience: UserExperienceDto[];
+  certificates: UserCertifiedDto[];
 }
 
 export interface UserDetailsDto extends UserDto {
@@ -39,6 +41,18 @@ export interface UserKnowledgeDto {
   knowledge:      KnowledgeDto;
   knowledgeLevel: KnowledgeLevel;
   validated:      boolean;
+}
+
+export interface UserExperienceDto {
+  office:      String;
+  companyName: String;
+  initialDate: String;
+  endDate:     String;
+}
+
+export interface UserCertifiedDto {
+  name: String;
+  url: String;
 }
 
 export type KnowledgeLevel = 'INICIANTE' | 'MÉDIO' | 'AVANÇADO' | 'EXPERT'
