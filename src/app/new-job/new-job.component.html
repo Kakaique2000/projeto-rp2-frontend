@@ -1,46 +1,44 @@
+<h1 id="titlenewJob">Criar uma nova vaga</h1>
 
 
-  <h1 id="titlenewJob">Criar uma nova vaga</h1>
+<div class="container">
+  <form [formGroup]="jobForm" (submit)="createJob()">
+    <div class="form-group">
+      <label id="label" for="exampleFormControlInput1">Título da vaga</label>
+
+      <input type="text" formControlName="title" class="form-control" id="titulo" placeholder="Motorista de Kombi">
+    </div>
 
 
-  <div class="container">
-    <form [formGroup]="jobForm" (submit)="createJob()">
-      <div class="form-group">
-        <label id ="label" for="exampleFormControlInput1">Título da vaga</label>
+    <div *ngIf="listCompanies?.length == 0" class="form-group">
+      <label id="label" for="exampleFormControlInput1">Empresa</label>
+      <select class="form-control" id="typejob" formControlName="companyId" [disabled]="true">
+        <option value="" disabled selected>Você precisa cadastrar uma empresa.</option>
+      </select>
+    </div>
 
-        <input type="text" formControlName="title" class="form-control" id="titulo" placeholder="Motorista de Kombi">
-      </div>
+    <div *ngIf="listCompanies?.length > 0" class="form-group">
+      <label id="label" for="exampleFormControlInput1">Empresa</label>
+      <select class="form-control" id="typejob" formControlName="companyId">
+        <option value="" disabled selected>Selecione a empresa</option>
+        <option *ngFor='let obj of listCompanies' [value]="obj.id">{{obj.name}} </option>
+      </select>
+    </div>
 
+    <div class="form-group" *ngIf="areas">
+      <label id="labelDescription" for="exampleFormControlSelect1">Área da vaga</label>
+      <select class="form-control" id="typejob" formControlName="occupation">
+        <option value="" disabled selected>Selecione o setor da sua vaga</option>
+        <option *ngFor='let key of Object?.keys(areas)'>{{areas[key]}}</option>
+      </select>
+    </div>
 
-      <div *ngIf="listCompanies?.length == 0" class="form-group">
-        <label id ="label" for="exampleFormControlInput1">Empresa</label>
-        <select class="form-control" id="typejob" formControlName="companyId" [disabled]="true">
-          <option value="" disabled selected>Você precisa cadastrar uma empresa.</option>
-        </select>
-      </div>
+    <div class="form-group">
+      <label id="label" for="exampleFormControlInput1">Salário mensal</label>
 
-      <div *ngIf="listCompanies?.length > 0" class="form-group">
-        <label id ="label" for="exampleFormControlInput1">Empresa</label>
-        <select class="form-control" id="typejob" formControlName="companyId">
-          <option value="" disabled selected>Selecione a empresa</option>
-          <option *ngFor='let obj of listCompanies' [value]="obj.id" >{{obj.name}} </option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label id ="labelDescription"  for="exampleFormControlSelect1">Área da vaga</label>
-        <select class="form-control" id="typejob" formControlName="occupation">
-          <option value="" disabled selected>Selecione o setor da sua vaga</option>
-          <option *ngFor='let key of Object?.keys(areas)' >{{areas[key]}}</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label id ="label" for="exampleFormControlInput1">Salário mensal</label>
-
-        <input currencyMask class="form-control" formControlName="salary"  placeholder="R$ 980,00" >
-      </div>
-<!--
+      <input currencyMask class="form-control" formControlName="salary" placeholder="R$ 980,00">
+    </div>
+    <!--
       <div class="form-group">
         <label id ="labelDescription"  for="exampleFormControlSelect1">Salário mensal</label>
         <select class="form-control" id="salaryJob" formControlName="salary">
@@ -48,20 +46,32 @@
         </select>
       </div>
   -->
-      <div class="form-group">
-        <label id ="labelDescription"  for="exampleFormControlTextarea1">Descrição da vaga</label>
-        <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="10"
+    <div class="form-group">
+      <label id="labelDescription" for="exampleFormControlTextarea1">Descrição da vaga</label>
+      <textarea formControlName="description" class="form-control" id="exampleFormControlTextarea1" rows="10"
         placeholder="Vaga de Motorista &#10;
         Experiência:
           • Experiência como motorista (mesmo que aplicativo);&#10;
           Requisitos:
           • CNH Categoria B (EAR obrigatória)&#10;
-          Benefícios: VT, VR, Plano de Saúde e Dental." maxlength="500" minlength="80" ></textarea>
-      </div>
-      <div class="btnsendcenter">
-        <button class="button" >Enviar vaga</button>
-      </div>
+          Benefícios: VT, VR, Plano de Saúde e Dental." maxlength="500" minlength="80"></textarea>
+    </div>
+    <div 
+      class="preview-toggle"
+      (click)="showDescriptionPreview = !showDescriptionPreview"
+      [class.visible]="showDescriptionPreview"
+      >
+      <span>{{showDescriptionPreview ? 'Esconder prévia' : 'Visualizar prévia'}}</span>
+      <mat-icon>remove_red_eye</mat-icon>
+    </div>
+    <div class="description-preview" *ngIf="showDescriptionPreview">
+      <markdown [data]="jobForm.get('description').value ? jobForm.get('description').value : ''">
+
+      </markdown>
+    </div>
+    <div class="btnsendcenter">
+      <button class="button">Enviar vaga</button>
+    </div>
   </form>
 
-  </div>
-
+</div>

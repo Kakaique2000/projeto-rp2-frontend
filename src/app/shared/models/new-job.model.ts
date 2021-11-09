@@ -37,6 +37,7 @@ export interface NewJob {
   salary: string;
   occupation: string;
   companyId: string;
+  knowledges: Array<any>;
 }
 
 

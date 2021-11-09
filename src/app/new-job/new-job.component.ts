@@ -16,10 +16,11 @@ export class NewJobComponent implements OnInit {
   areas;
   salary;
   jobForm: FormGroup;
-  listCompanies : CompanyModel[] = []
+  listCompanies: CompanyModel[] = [];
+  showDescriptionPreview = true;
 
   constructor(private formBuilder: FormBuilder,
-    private router : Router, private newJobService: NewJobService) {  }
+    private router: Router, private newJobService: NewJobService) { }
 
   ngOnInit() {
     this.configForm()
@@ -29,10 +30,10 @@ export class NewJobComponent implements OnInit {
 
   callAreas() {
     this.newJobService.getAreas()
-        .subscribe((res : TypeJob) => {
-         this.areas = res
-         console.log(this.areas)
-        },
+      .subscribe((res: TypeJob) => {
+        this.areas = res
+        console.log(this.areas)
+      },
         erro => {
           console.log(erro)
         });
@@ -40,60 +41,63 @@ export class NewJobComponent implements OnInit {
 
   callCompanies() {
     this.newJobService.getAllCompanies()
-        .subscribe((res : CompanyModel[]) => {
-          console.log(res)
-         this.listCompanies = res['content'] as CompanyModel[]
-        },
+      .subscribe((res: CompanyModel[]) => {
+        console.log(res)
+        this.listCompanies = res['content'] as CompanyModel[]
+      },
         erro => {
           console.log(erro)
         });
   }
 
-  createJob(){
+  createJob() {
     const newJob = this.jobForm.getRawValue() as NewJob;
-        this.newJobService.createJob(newJob)
-        .subscribe(() => {
-          alert('Vaga Criada')
-          this.routerTo('home')
-        },
+
+    newJob.knowledges = [];
+
+    this.newJobService.createJob(newJob)
+      .subscribe(() => {
+        alert('Vaga Criada')
+        this.routerTo('home')
+      },
         erro => {
           alert('Vaga inválida')
         })
   }
 
-  routerTo(route : String) {
+  routerTo(route: String) {
     this.router.navigateByUrl(route.toString());
   }
 
   configForm() {
     this.jobForm = this.formBuilder.group({
       title: ['',
-          [
-              Validators.required,
-              Validators.minLength(2)
-          ]
+        [
+          Validators.required,
+          Validators.minLength(2)
+        ]
       ],
       description: ['',
-          [
-              Validators.required
-          ]
+        [
+          Validators.required
+        ]
       ],
       salary: ['',
-          [
-              Validators.required
-          ]
+        [
+          Validators.required
+        ]
       ],
       occupation: ['',
-          [
-              Validators.required
-          ]
+        [
+          Validators.required
+        ]
       ],
       companyId: ['',
-          [
-              Validators.required
-          ]
+        [
+          Validators.required
+        ]
       ]
-  });
+    });
 
   }
 
