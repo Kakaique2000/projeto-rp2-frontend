@@ -5,8 +5,8 @@
 
     <p class="p-4 bg-gray-100">{{ knowledge.description }}</p>
 
-    <section class="p-4" id="knowledges">
-      <h2 class="text-2xl my-2">Aumenta seu conhecimento</h2>
+    <section *ngIf="knowledge.contents.length > 0" class="p-4" id="knowledges">
+      <h2 class="text-2xl my-2">Aumente seu conhecimento</h2>
       <div class="py-4" *ngFor="let contentType of tiposConteudo">
         <div *ngIf="hasContentType(contentType, knowledge)">
           <h3 class="text-xl mb-2">{{ contentType | lowercase }}s</h3>
