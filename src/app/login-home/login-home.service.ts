@@ -56,16 +56,7 @@ export class HomeLoginService {
   }
 
   signup(newUser: NewUser) {
-    const firstName = newUser.firstName;
-    const lastName = newUser.lastName;
-    const email = newUser.email;
-    const password = newUser.password;
-    const gender = newUser.gender;
-    const cpf = newUser.cpf;
-    const phone = newUser.phone;
-    const recruiter = newUser.recruiter;
-
-    return this.http.post(API_URL + 'signup', { firstName, lastName, email, password, gender, cpf, phone, recruiter });
+    return this.http.post(API_URL + 'signup', newUser);
   }
 
   sendEmail(email: string) {

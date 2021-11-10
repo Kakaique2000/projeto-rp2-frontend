@@ -3,7 +3,7 @@
         <div>
             <h2 class="text-center mt-5">Criar usuário</h2>
             <div class="d-flex justify-content-center">
-                <i class="material-icons" style="font-size: 100px">face</i> 
+                <i class="material-icons" style="font-size: 100px">face</i>
             </div>
             <h6 class="text-center mt-2">Seja muito bem vindo ao time!</h6>
 
@@ -50,6 +50,21 @@
                             <mat-select formControlName="recruiter">
                                 <mat-option value="true">Sim</mat-option>
                                 <mat-option value="false">Não</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Cidade</mat-label>
+                            <input matInput #message formControlName="city" maxlength="256" placeholder="E-mail" />
+
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Estado</mat-label>
+                            <mat-select formControlName="state">
+                                <mat-option *ngFor="let state of states" [value]="state[0]">{{ state[1] }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
