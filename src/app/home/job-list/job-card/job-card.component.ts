@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
+import { KnowledgeDto } from 'src/app/shared/models/knowledge.model';
+import { KnowledgeService } from 'src/app/shared/services/knowledge.service';
 import { JobDto } from '../../../shared/models/job.models';
 
 @Component({
@@ -10,7 +12,7 @@ import { JobDto } from '../../../shared/models/job.models';
 })
 export class JobCardComponent implements OnInit, OnDestroy {
 
-  constructor(public jobService: JobListService) { }
+  constructor(public jobService: JobListService, private knowledgeService: KnowledgeService) { }
 
   loading = false;
   candidated = false
@@ -26,7 +28,6 @@ export class JobCardComponent implements OnInit, OnDestroy {
   @Output()
   onApply = new EventEmitter<JobDto>();
 
-
   ngOnInit(): void {
     this.subscriptions.push(
 
@@ -40,6 +41,11 @@ export class JobCardComponent implements OnInit, OnDestroy {
 
     );
   }
+
+  openTips(knowledge: KnowledgeDto) {
+    this.knowledgeService.popKnowledgeTips(knowledge);
+  }
+
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(sub => sub.unsubscribe())

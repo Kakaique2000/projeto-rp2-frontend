@@ -2,7 +2,7 @@
   <div class="">
     <div class="absolute right-0 -top-4 text-sm transform scale-75">
       <mat-chip-list>
-        <div  *ngFor="let knowledge of job.knowledges" style="cursor: pointer;" mat-chip color="primary" selected>
+        <div (click)="openTips(knowledge)" *ngFor="let knowledge of job.knowledges" style="cursor: pointer;" mat-chip color="primary" selected>
           {{ knowledge.name }}
         </div>
       </mat-chip-list>

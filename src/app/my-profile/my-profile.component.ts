@@ -1,6 +1,5 @@
-import { formatDate } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -48,7 +47,7 @@ export class MyProfileComponent implements OnInit, OnDestroy {
 
   experience = new Array();
   skills =  new FormControl();
-  skillsList: string[] = ['Java', 'Angular', 'React', 'HTML', 'CSS', 'Pyton'];
+  skillsList: string[] = ['Java', 'Angular', 'React', 'HTML', 'CSS', 'Python'];
 
   getProfilePic() {
     return (this.user.profilePic && this.user.profilePic !== '') ?
@@ -140,7 +139,7 @@ export class MyProfileComponent implements OnInit, OnDestroy {
         });
       }
     })
-  
+
   }
 
   getRoles(): RoleDescription[] {

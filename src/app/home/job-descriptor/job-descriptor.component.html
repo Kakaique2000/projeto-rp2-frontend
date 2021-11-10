@@ -18,7 +18,7 @@
     </header>
     <section class="mt-4">
       <mat-chip-list>
-        <button style="cursor: pointer" mat-chip *ngFor="let knowledge of job.knowledges" selected color="primary">
+        <button (click)="openTips(knowledge)" style="cursor: pointer" mat-chip *ngFor="let knowledge of job.knowledges" selected color="primary">
           {{ knowledge.name }}
         </button>
       </mat-chip-list>

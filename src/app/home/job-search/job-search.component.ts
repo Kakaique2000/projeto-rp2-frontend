@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
+import { KnowledgeDto } from 'src/app/shared/models/knowledge.model';
 import { TypeSalary } from 'src/app/shared/models/new-job.model';
-import { KnowledgeDto } from '../../shared/models/job.models';
 @Component({
   selector: 'app-job-search',
   templateUrl: './job-search.component.html',

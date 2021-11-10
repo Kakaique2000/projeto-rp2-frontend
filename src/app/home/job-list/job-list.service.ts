@@ -4,10 +4,11 @@ import { Subject } from 'rxjs';
 import { finalize, map, switchMap } from 'rxjs/operators';
 import { CookieService } from 'src/app/cookie.service';
 import { HomeLoginService } from 'src/app/login-home/login-home.service';
+import { KnowledgeDto } from 'src/app/shared/models/knowledge.model';
 import { TypeSalary } from "src/app/shared/models/new-job.model";
 import { Page } from "src/app/shared/models/page.model";
 import { environment } from 'src/environments/environment';
-import { JobDetailsDto, JobDto, JobRecruiterDetailsDto, KnowledgeDto } from '../../shared/models/job.models';
+import { JobDetailsDto, JobDto, JobRecruiterDetailsDto } from '../../shared/models/job.models';
 
 const API_URL = environment.api + '/jobs';
 

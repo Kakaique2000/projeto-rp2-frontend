@@ -1,6 +1,6 @@
 import { CompanyModel } from '../../new-company/new-company.model';
 import { JobApplicationDto } from './job-application.model';
-import { KnowledgeDto as KnowledgeDto } from "./job.models";
+import { KnowledgeDto } from './knowledge.model';
 
 export interface Role {
   id: number;

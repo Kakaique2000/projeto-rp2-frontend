@@ -1,5 +1,6 @@
 import { CompanyDto } from './company.model';
 import { JobApplicationDto } from './job-application.model';
+import { KnowledgeDto } from './knowledge.model';
 
 export interface JobDto {
 
@@ -7,7 +8,7 @@ export interface JobDto {
   title: string;
   description: string;
   salary: Number;
-  knowledges: { id: number, name: string }[];
+  knowledges: KnowledgeDto[];
   city: string;
   companyLogo?: string;
 
@@ -29,12 +30,6 @@ export interface JobDetailsDto {
 export interface JobRecruiterDetailsDto extends Omit<JobDetailsDto, 'company'> {
   companyId: number;
   jobApplications: JobApplicationDto[];
-}
-
-export interface KnowledgeDto {
-  id:   number;
-  name: string;
-  jobs?: any[];
 }
 
 

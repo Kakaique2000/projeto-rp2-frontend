@@ -35,6 +35,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxMaskModule } from 'ngx-mask';
 import { EllipsisPipe } from 'src/app/shared/pipes/ellipsis.pipe';
+import { KnowledgeContentListComponent } from './shared/components/knowledge-content-list/knowledge-content-list.component';
+import { KnowledgeContentComponent } from './shared/components/knowledge-content-list/knowledge-content/knowledge-content.component';
 import { UserProfileCardComponent } from './shared/components/user-profile-card/user-profile-card.component';
 import { FormFieldComponent } from './shared/form-field/form-field.component';
 import { AsyncLoading } from './shared/pipes/async-loading.pipe';
@@ -72,12 +74,19 @@ const matModules = [
   MatSortModule,
   MatPaginatorModule
 ]
+
+const projectComponents = [
+  KnowledgeContentComponent,
+  FormFieldComponent,
+  UserProfileCardComponent,
+  KnowledgeContentListComponent,
+]
+
 @NgModule({
   declarations: [
     AsyncLoading,
     EllipsisPipe,
-    FormFieldComponent,
-    UserProfileCardComponent,
+    ...projectComponents
   ],
   imports: [
     BrowserModule,
@@ -88,13 +97,12 @@ const matModules = [
   ],
   exports: [
     BrowserModule,
-    UserProfileCardComponent,
     BrowserAnimationsModule,
     AsyncLoading,
     ReactiveFormsModule,
     EllipsisPipe,
     NgxMaskModule,
-    FormFieldComponent,
+    ...projectComponents,
     ...matModules,
   ],
   providers: [],

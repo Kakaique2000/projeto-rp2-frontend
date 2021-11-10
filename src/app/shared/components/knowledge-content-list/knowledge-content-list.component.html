@@ -1,0 +1,17 @@
+<div *ngIf="!isLoading; else loadingTemplate">
+  <app-knowledge-content
+    *ngFor="let content of contents"
+   [content]="content">
+  </app-knowledge-content>
+  <div *ngIf="contents.length===0">
+    <p class="text-center">lamentamos, mas não encontramos nenhum conteúdo sobre {{ knowledge.name }}</p>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="t-center p-8">
+    <mat-spinner diameter="32"></mat-spinner>
+  </div>
+</ng-template>
+
+

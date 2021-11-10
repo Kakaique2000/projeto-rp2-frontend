@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
+import { KnowledgePageComponent } from './knowledge-page/knowledge-page.component';
+import { KnowledgePageResolver } from './knowledge-page/knowledge-page.resolver';
 import { LoggedGuard } from './login-home/logged.guard';
 import { NewPasswordComponent } from './login-home/new-senha/new-password';
 import { ResetPasswordComponent } from './login-home/reset-password/reset-password';
@@ -20,6 +22,13 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     data: { showSideMenu: true },
+    canActivate: [LoggedGuard],
+  },
+  {
+    path: 'knowledges',
+    component: KnowledgePageComponent,
+    data: { showSideMenu: true },
+    resolve: {knowledge: KnowledgePageResolver},
     canActivate: [LoggedGuard],
   },
   {

@@ -2,7 +2,9 @@ import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
+import { KnowledgeService } from 'src/app/shared/services/knowledge.service';
 import { JobDetailsDto, JobDto } from '../../shared/models/job.models';
+import { KnowledgeDto } from './../../shared/models/knowledge.model';
 
 @Component({
   selector: 'app-job-descriptor',
@@ -11,7 +13,7 @@ import { JobDetailsDto, JobDto } from '../../shared/models/job.models';
 })
 export class JobDescriptorComponent implements OnInit, OnChanges, OnDestroy {
 
-  constructor(public jobService: JobListService) { }
+  constructor(public jobService: JobListService, private knowledgeService: KnowledgeService) { }
 
   @Input()
   job: JobDto;
@@ -50,6 +52,10 @@ export class JobDescriptorComponent implements OnInit, OnChanges, OnDestroy {
         erro => {
           console.log(erro)
         });
+  }
+
+  openTips(knowledge: KnowledgeDto) {
+    this.knowledgeService.popKnowledgeTips(knowledge);
   }
 
   reloadJobDetails() {
