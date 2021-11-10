@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { KnowledgeDto } from '../shared/models/knowledge.model';
+import { KnowledgeDto } from './../shared/models/knowledge.model';
 
 @Component({
   selector: 'app-knowledge-page',
@@ -15,8 +15,20 @@ export class KnowledgePageComponent implements OnInit {
 
   contents: any;
 
+  tiposConteudo = [
+  'CURSO',
+	'PODCAST',
+	'ARTIGO',
+	'VÍDEO',
+	'PLAYLIST',
+	'POST',
+  ]
+
   constructor(private route: ActivatedRoute) { }
 
+  hasContentType(contentType: string, knowledge: KnowledgeDto) {
+    return knowledge.contents.find(e => e.contentType === contentType);
+  }
 
   ngOnInit(): void {
     this.subscriptions.push(

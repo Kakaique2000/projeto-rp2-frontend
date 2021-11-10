@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   query: string;
 
   cardSelected?: JobDto;
+  isLoading = false;
 
   constructor(private serviceJob: JobListService) { }
 
@@ -43,13 +44,16 @@ export class HomeComponent implements OnInit {
   }
 
   searchJobs() {
+    this.isLoading = true;
     this.serviceJob.getJobs(this.categorySelected, this.salarySelected, this.query)
-      .subscribe((res: any) => {
+    .subscribe((res: any) => {
+        this.isLoading = false;
         console.log(res);
         this.jobs = res['content'] as JobDto[];
         console.log(this.jobs);
       },
-        erro => {
+      erro => {
+          this.isLoading = false;
           console.log(erro);
         });
   }

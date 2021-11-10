@@ -4,7 +4,7 @@ import {
   RouterStateSnapshot
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { KnowledgeDto } from '../shared/models/knowledge.model';
 import { KnowledgeService } from './../shared/services/knowledge.service';
 
@@ -16,8 +16,7 @@ export class KnowledgePageResolver implements Resolve<KnowledgeDto> {
   constructor(private knowledgeService: KnowledgeService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<KnowledgeDto> {
-    return this.knowledgeService.getKnowledges().pipe(
+    return this.knowledgeService.getKnowledge(route.params.id).pipe(
       take(1),
-      map(([e]) => e),
     )}
 }

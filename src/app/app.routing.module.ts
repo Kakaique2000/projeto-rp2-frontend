@@ -25,7 +25,7 @@ const routes: Routes = [
     canActivate: [LoggedGuard],
   },
   {
-    path: 'knowledges',
+    path: 'knowledges/:id',
     component: KnowledgePageComponent,
     data: { showSideMenu: true },
     resolve: {knowledge: KnowledgePageResolver},

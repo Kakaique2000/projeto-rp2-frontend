@@ -1,4 +1,4 @@
-<div *ngIf="!isLoading; else loadingTemplate">
+<div class="grid grid-cols-{{columns}} gap-2" *ngIf="!isLoading; else loadingTemplate">
   <app-knowledge-content
     *ngFor="let content of contents"
    [content]="content">

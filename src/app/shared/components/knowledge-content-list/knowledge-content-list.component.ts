@@ -11,7 +11,17 @@ import { KnowledgeService } from 'src/app/shared/services/knowledge.service';
 export class KnowledgeContentListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription[] = [];
-  contents: ContentDto[];
+  _contents: ContentDto[];
+
+  get contents() {
+    if (this.filterContent) {
+      return this._contents
+        .filter(e => e.contentType.toLocaleLowerCase() === this.filterContent.toLocaleLowerCase())
+        .slice(0, this.limit)
+    }
+
+    return this._contents;
+  }
 
   constructor(private knowledgeService: KnowledgeService) {
   }
@@ -19,21 +29,19 @@ export class KnowledgeContentListComponent implements OnInit, OnDestroy {
   @Input()
   knowledge: KnowledgeDto;
 
+  @Input()
+  columns = 1;
+
+  @Input()
+  filterContent = null;
+
+  @Input()
+  limit = 3;
+
   isLoading = false;
 
   ngOnInit(): void {
-    this.isLoading = true;
-    this.subscriptions.push(
-
-      this.knowledgeService.getKnowledgeContents(this.knowledge.id).subscribe({
-        next: content => {
-          this.contents = content;
-          this.isLoading = false;
-        }
-      })
-
-
-    )
+    this._contents = this.knowledge.contents;
   }
 
   ngOnDestroy(): void {

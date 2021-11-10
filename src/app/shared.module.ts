@@ -33,6 +33,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserModule } from '@angular/platform-browser';
 //Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
 import { EllipsisPipe } from 'src/app/shared/pipes/ellipsis.pipe';
 import { KnowledgeContentListComponent } from './shared/components/knowledge-content-list/knowledge-content-list.component';
@@ -90,6 +91,7 @@ const projectComponents = [
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     BrowserAnimationsModule,
     ...matModules,
     NgxMaskModule.forRoot(),
@@ -99,6 +101,7 @@ const projectComponents = [
     BrowserModule,
     BrowserAnimationsModule,
     AsyncLoading,
+    RouterModule,
     ReactiveFormsModule,
     EllipsisPipe,
     NgxMaskModule,

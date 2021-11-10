@@ -1,4 +1,19 @@
 
-  <app-knowledge-content-list [knowledge]="knowledge">
+  <main class="container">
 
-  </app-knowledge-content-list>
+    <h1 class="text-3xl p-4">{{ knowledge.name }}</h1>
+
+    <p class="p-4 bg-gray-100">{{ knowledge.description }}</p>
+
+    <section class="p-4" id="knowledges">
+      <h2 class="text-2xl my-2">Aumenta seu conhecimento</h2>
+      <div class="py-4" *ngFor="let contentType of tiposConteudo">
+        <div *ngIf="hasContentType(contentType, knowledge)">
+          <h3 class="text-xl mb-2">{{ contentType | lowercase }}s</h3>
+          <app-knowledge-content-list [limit]="9" [filterContent]="contentType" [columns]="3" [knowledge]="knowledge">
+
+          </app-knowledge-content-list>
+        </div>
+      </div>
+    </section>
+  </main>

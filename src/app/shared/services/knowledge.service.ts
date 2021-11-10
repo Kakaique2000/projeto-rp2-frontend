@@ -20,9 +20,17 @@ export class KnowledgeService {
     return this.http.get<KnowledgeDto[]>(`${env.api}/jobs/knowledge`)
   }
 
+  getKnowledge(id: number) {
+    return this.http.get<KnowledgeDto>(`${env.api}/jobs/knowledge/${id}`)
+  }
+
   popKnowledgeTips(knowledge: KnowledgeDto) {
     const tipsDialog = this.dialog.open(KnowledgeTipsComponent);
     tipsDialog.componentInstance.knowledge = knowledge;
+  }
+
+  closeKnowledgeTips() {
+    this.dialog.closeAll();
   }
 
 }

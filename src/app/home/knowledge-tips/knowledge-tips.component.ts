@@ -25,6 +25,10 @@ export class KnowledgeTipsComponent implements OnInit, OnDestroy {
 
   }
 
+  closeTips() {
+    this.knowledgeService.closeKnowledgeTips();
+  }
+
   ngOnDestroy() {
 
   }

@@ -11,8 +11,12 @@
   </div>
 </div>
 
-  <div *ngIf="jobs?.length == 0" class="d-flex justify-content-center" >
-    <div class="d-flex justify-content-center">
-      <h4 id ="notfound" class="text-center mt-5">Nenhuma vaga foi encontrada <i class="material-icons" style="font-size: 40px">sentiment_very_dissatisfied</i></h4>
+<div *ngIf="jobs?.length == 0 && !isLoading" class="d-flex justify-content-center" >
+  <div class="d-flex justify-content-center">
+    <h4 id ="notfound" class="text-center mt-5">Nenhuma vaga foi encontrada <i class="material-icons" style="font-size: 40px">sentiment_very_dissatisfied</i></h4>
   </div>
+</div>
+
+<div class="flex t-center p-12" *ngIf="isLoading">
+  <mat-spinner diameter="64"></mat-spinner>
 </div>
