@@ -12,6 +12,8 @@ export class JobListComponent implements OnInit {
   @Input() jobs: JobDto[] = [];
   @Input() showingPreview = false;
 
+  @Input() isLoading = false;
+
   @Output()
   selectCard = new EventEmitter<JobDto>();
 

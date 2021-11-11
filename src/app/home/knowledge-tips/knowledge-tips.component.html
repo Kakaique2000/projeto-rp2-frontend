@@ -2,6 +2,9 @@
 <article class="max-w-md">
   <h2 class="text-2xl text-indigo-600 mb-2">{{ knowledge.name }}</h2>
   <p class="text-sm mb-4 italic">"{{ knowledge.description }}"</p>
-  <h2 class="text-lg  mb-2">Para saber mais sobre </h2>
+  <div class="flex justify-between">
+    <span class="text-lg  mb-2">Para saber mais sobre </span>
+    <a href="javascript:null" (click)="closeTips()" class="t-link-indigo" target="_blank" [routerLink]="['/knowledges', knowledge.id ]" >ver tudo</a>
+  </div>
   <app-knowledge-content-list [knowledge]="knowledge"></app-knowledge-content-list>
 </article>
