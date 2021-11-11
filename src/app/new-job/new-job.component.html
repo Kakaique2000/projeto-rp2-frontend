@@ -48,7 +48,7 @@
   -->
     <div class="form-group">
       <label id="labelDescription" for="exampleFormControlTextarea1">Descrição da vaga</label>
-      <textarea formControlName="full_description" class="form-control" id="exampleFormControlTextarea1" rows="10"
+      <textarea formControlName="fullDescription" class="form-control" id="exampleFormControlTextarea1" rows="10"
         placeholder="Vaga de desenvolvedor mobile &#10;
         Experiência:
           • Experiência com Android, kotlin e java;&#10;
@@ -66,7 +66,7 @@
       <mat-icon>remove_red_eye</mat-icon>
     </div>
     <div class="description-preview" *ngIf="showDescriptionPreview">
-      <markdown [data]="jobForm.get('description').value ? jobForm.get('description').value : ''">
+      <markdown [data]="jobForm.get('fullDescription').value ? jobForm.get('fullDescription').value : ''">
 
       </markdown>
     </div>
