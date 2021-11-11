@@ -9,7 +9,7 @@
     <div class="container px-4">
       <h2 class="text-3xl my-4">Vagas abertas perfeitas para você!</h2>
       <section  class="mt-4 mx-auto home-grid" [class.showing-descriptor]="cardSelected" >
-        <app-job-list (selectCard)="cardSelected = $event" [showingPreview]="!!cardSelected" (click)="shrinkSearchCard(true)" [jobs]="jobs | filterByJob:filter">
+        <app-job-list [(contracted)]="contractedSearchCard"  (paramChange)="updateParams($event)" (keyup)="filter = $event.target['value']" (selectCard)="cardSelected = $event" [showingPreview]="!!cardSelected" (click)="shrinkSearchCard(true)" [jobs]="jobs | filterByJob:filter">
         </app-job-list>
         <app-job-descriptor [job]="cardSelected" *ngIf="cardSelected">
         </app-job-descriptor>

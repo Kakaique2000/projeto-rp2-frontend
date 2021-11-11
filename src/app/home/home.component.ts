@@ -45,7 +45,6 @@ export class HomeComponent implements OnInit {
   searchJobs() {
     this.serviceJob.getJobs(this.categorySelected, this.salarySelected, this.query)
       .subscribe((res: any) => {
-        console.log(res);
         this.jobs = res['content'] as JobDto[];
         console.log(this.jobs);
       },

@@ -3,7 +3,7 @@
   <a (click)="showSelect = !showSelect" href="javascript:null">mais opções <mat-icon>{{ showSelect ? 'expand_less' : 'expand_more' }}</mat-icon></a>
 </div>
 <div class="flex items-stretch max-w-lg">
-  <input id="search" class="border flex-1 rounded-md block p-2" type="text">
+  <input [(ngModel)]="this.searchQuery" (blur)="blur.emit($event)" id="search" class="border flex-1 rounded-md block p-2" type="text">
   <div class="ml-2 rounded-md cursor-pointer flex border h-fit-content hover:text-white hover:bg-indigo-600 text-gray-300 px-3 py-2">
     <mat-icon>search</mat-icon>
   </div>
@@ -11,10 +11,11 @@
 <div class="flex flex-wrap" *ngIf="showSelect">
 
   <!-- Select de salários -->
-  <div class="flex flex-col mr-2 mt-2 text-sm items-start">
+  <div class="flex flex-col mr-2 mt-2 text-sm items-start" >
     <label class="mb-0" for="">salário</label>
-    <select class="rounded-md p-1 mt-1 shadow-sm border">
-      <option *ngFor="let keyval of (salaries | keyvalue)" [value]="keyval.key">{{ keyval.value }}</option>
+    <select #salarySelect (change)="selectSalary(salarySelect.value)" class="rounded-md p-1 mt-1 shadow-sm border" >
+      <option value="todos" >Todos</option>
+      <option *ngFor="let keyval of (salaries | keyvalue)" [value]="keyval.key" >{{ keyval.value }} </option>
     </select>
   </div>
   <!-- Select de conhecimentos -->
