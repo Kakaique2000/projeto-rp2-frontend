@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
 import { KnowledgeService } from 'src/app/shared/services/knowledge.service';
+import { SnackHelperService } from 'src/app/shared/snack-helper.service';
 import { JobDetailsDto, JobDto } from '../../shared/models/job.models';
 import { KnowledgeDto } from './../../shared/models/knowledge.model';
 
@@ -13,7 +14,11 @@ import { KnowledgeDto } from './../../shared/models/knowledge.model';
 })
 export class JobDescriptorComponent implements OnInit, OnChanges, OnDestroy {
 
-  constructor(public jobService: JobListService, private knowledgeService: KnowledgeService) { }
+  constructor(
+    public jobService: JobListService,
+    private knowledgeService: KnowledgeService,
+    private snack: SnackHelperService
+  ) { }
 
   @Input()
   job: JobDto;
@@ -44,13 +49,18 @@ export class JobDescriptorComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+
   apply() {
     this.jobService.apply(this.job.id)
       .subscribe((res) => {
-        alert('Candidatura efetivada com sucesso, boa sorte!')
+        if (!this.candidated) {
+          this.snack.okTransacao('candidatura efetivada com sucesso, boa sorte!');
+        } else {
+          this.snack.okTransacao('candidatura cancelada com sucesso');
+        }
       },
-        erro => {
-          console.log(erro)
+      erro => {
+        this.snack.okTransacao('ops, ocorreu um erro, tente novamente mais tarde');
         });
   }
 

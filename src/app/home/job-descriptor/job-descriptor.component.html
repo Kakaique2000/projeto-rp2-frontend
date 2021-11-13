@@ -9,7 +9,9 @@
       <button
       (click)="apply()"
       class="w-30 ml-auto t-btn t-center t-btn-indigo whitespace-nowrap md:text-lg sm:text-md
-      {{ (candidated || loading) ? 't-disabled' : '' }}">
+      {{ candidated ? 'opacity-50' : '' }}
+      {{ loading ? 't-disabled' : '' }}
+      ">
         {{ candidated ? 'candidatado' : 'candidatar-se'}}
         <span *ngIf="loading" class="ml-2 white-spinner">
           <mat-spinner [diameter]="24"></mat-spinner>

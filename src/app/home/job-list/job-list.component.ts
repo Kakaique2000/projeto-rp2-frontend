@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
 import { HomeLoginService } from 'src/app/login-home/login-home.service';
+import { SnackHelperService } from 'src/app/shared/snack-helper.service';
 import { JobDto } from '../../shared/models/job.models';
 @Component({
   selector: 'app-job-list',
@@ -25,7 +26,7 @@ export class JobListComponent implements OnInit {
     this.selectedId = job.id;
   }
 
-  constructor(public serviceJob: JobListService, private homeLoginService: HomeLoginService) { }
+  constructor(public serviceJob: JobListService, private homeLoginService: HomeLoginService, private snack: SnackHelperService) { }
 
   ngOnInit() { }
 
@@ -34,8 +35,8 @@ export class JobListComponent implements OnInit {
     this.serviceJob.apply(event.id)
     .subscribe((res) => {
       this.loadingId = -1;
-         alert('Candidatura efetiva com sucesso, boa sorte!')
-        },
+      this.snack.okTransacao('candidatura efetivada com sucesso, boa sorte!')
+    },
         erro => {
           console.log(erro)
         });
