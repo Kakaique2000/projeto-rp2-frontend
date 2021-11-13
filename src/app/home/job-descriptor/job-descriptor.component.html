@@ -30,8 +30,8 @@
         <section *ngIf="loadingJobDetails" class="t-center h-96">
           <mat-spinner  diameter="50" color="primary"></mat-spinner>
         </section>
-        <markdown *ngIf="!loadingJobDetails && jobDetails" [data]="jobDetails.fullDescription">
+        <app-markdown-viewer *ngIf="!loadingJobDetails && jobDetails" [data]="jobDetails.fullDescription">
 
-        </markdown>
+        </app-markdown-viewer>
     </main>
 </div>

@@ -26,7 +26,7 @@
   </header>
   <main #main class="max-h-0 transition-all overflow-hidden">
     <section class="mt-2">
-      <mat-tab-group>
+      <mat-tab-group (selectedTabChange)="updateMaxHeightCard()">
         <mat-tab label="Inscrições">
           <div #inscricoes class="p-2 grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-mansory" >
             <div class="p-4" *ngIf="job.jobApplications.length === 0">
@@ -40,7 +40,10 @@
           </div>
         </mat-tab>
         <mat-tab label="Vaga">
-
+          <div class="my-4">
+            <app-markdown-viewer [data]="job.fullDescription">
+            </app-markdown-viewer>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </section>

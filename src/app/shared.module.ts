@@ -34,10 +34,12 @@ import { BrowserModule } from '@angular/platform-browser';
 //Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
 import { NgxMaskModule } from 'ngx-mask';
 import { EllipsisPipe } from 'src/app/shared/pipes/ellipsis.pipe';
 import { KnowledgeContentListComponent } from './shared/components/knowledge-content-list/knowledge-content-list.component';
 import { KnowledgeContentComponent } from './shared/components/knowledge-content-list/knowledge-content/knowledge-content.component';
+import { MarkdownViewerComponent } from './shared/components/markdown-viewer/markdown-viewer.component';
 import { UserProfileCardComponent } from './shared/components/user-profile-card/user-profile-card.component';
 import { FormFieldComponent } from './shared/form-field/form-field.component';
 import { AsyncLoading } from './shared/pipes/async-loading.pipe';
@@ -81,19 +83,22 @@ const projectComponents = [
   FormFieldComponent,
   UserProfileCardComponent,
   KnowledgeContentListComponent,
+  MarkdownViewerComponent
 ]
 
 @NgModule({
   declarations: [
     AsyncLoading,
     EllipsisPipe,
-    ...projectComponents
+    ...projectComponents,
+
   ],
   imports: [
     BrowserModule,
     RouterModule,
     BrowserAnimationsModule,
     ...matModules,
+    MarkdownModule.forChild(),
     NgxMaskModule.forRoot(),
     ReactiveFormsModule
   ],
