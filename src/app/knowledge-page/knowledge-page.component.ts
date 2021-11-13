@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { KnowledgeDto } from './../shared/models/knowledge.model';
+import { KnowledgeDetailsDto } from './../shared/models/knowledge.model';
 
 @Component({
   selector: 'app-knowledge-page',
@@ -11,7 +11,7 @@ import { KnowledgeDto } from './../shared/models/knowledge.model';
 export class KnowledgePageComponent implements OnInit {
   subscriptions: Subscription[] = [];
 
-  knowledge: KnowledgeDto = this.route.snapshot.data.knowledge;
+  knowledge: KnowledgeDetailsDto = this.route.snapshot.data.knowledge;
 
   contents: any;
 
@@ -26,7 +26,7 @@ export class KnowledgePageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
 
-  hasContentType(contentType: string, knowledge: KnowledgeDto) {
+  hasContentType(contentType: string, knowledge: KnowledgeDetailsDto) {
     return knowledge.contents.find(e => e.contentType === contentType);
   }
 

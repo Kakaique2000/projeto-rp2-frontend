@@ -5,6 +5,9 @@ export interface KnowledgeDto {
   name: string;
   description: string;
   jobs?: JobDto[];
+}
+
+export interface KnowledgeDetailsDto extends KnowledgeDto {
   contents?: ContentDto[];
 }
 

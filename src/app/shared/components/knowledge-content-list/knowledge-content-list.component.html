@@ -3,7 +3,7 @@
     *ngFor="let content of contents"
    [content]="content">
   </app-knowledge-content>
-  <div *ngIf="contents.length===0">
+  <div *ngIf="contents?.length===0">
     <p class="text-center">lamentamos, mas não encontramos nenhum conteúdo sobre {{ knowledge.name }}</p>
   </div>
 </div>

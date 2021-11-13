@@ -1,17 +1,18 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ContentDto, KnowledgeDto } from 'src/app/shared/models/knowledge.model';
+import { ContentDto, KnowledgeDetailsDto, KnowledgeDto } from 'src/app/shared/models/knowledge.model';
 import { KnowledgeService } from 'src/app/shared/services/knowledge.service';
+import { BaseDataFetchComponent } from './../base-data-fetching.component';
 
 @Component({
   selector: 'app-knowledge-content-list',
   templateUrl: './knowledge-content-list.component.html',
   styleUrls: ['./knowledge-content-list.component.scss']
 })
-export class KnowledgeContentListComponent implements OnInit, OnDestroy {
+export class KnowledgeContentListComponent extends BaseDataFetchComponent implements OnInit {
 
   subscriptions: Subscription[] = [];
-  _contents: ContentDto[];
+  _contents: ContentDto[] = [];
 
   get contents() {
     if (this.filterContent) {
@@ -24,10 +25,11 @@ export class KnowledgeContentListComponent implements OnInit, OnDestroy {
   }
 
   constructor(private knowledgeService: KnowledgeService) {
+    super();
   }
 
   @Input()
-  knowledge: KnowledgeDto;
+  knowledge: KnowledgeDto | KnowledgeDetailsDto;
 
   @Input()
   columns = 1;
@@ -41,11 +43,29 @@ export class KnowledgeContentListComponent implements OnInit, OnDestroy {
   isLoading = false;
 
   ngOnInit(): void {
-    this._contents = this.knowledge.contents;
-  }
 
-  ngOnDestroy(): void {
-    this.subscriptions.forEach(e => e.unsubscribe())
+
+    if ((this.knowledge as KnowledgeDetailsDto).contents?.length) {
+      this._contents = (this.knowledge as KnowledgeDetailsDto).contents;
+    }
+
+    if (!this._contents?.length) {
+      this.isLoading = true;
+
+      this.addSub(
+        this.knowledgeService.getKnowledgeContents(this.knowledge.id).subscribe({
+          next: val => {
+            this.isLoading = false;
+            this._contents = val;
+          },
+          error: _err => {
+            this.isLoading = false
+          }
+        })
+      )
+    }
+
+
   }
 
 
