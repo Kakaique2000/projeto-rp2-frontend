@@ -18,6 +18,11 @@ export class JobListComponent implements OnInit {
   @Output()
   selectCard = new EventEmitter<JobDto>();
 
+  searchQuery = ''
+  @Input() contracted = false;
+  @Output() contractedChange = new EventEmitter<boolean>();
+  @Output() paramChange = new EventEmitter();
+
   selectedId = -1;
   loadingId = -1
 
@@ -40,6 +45,19 @@ export class JobListComponent implements OnInit {
         erro => {
           console.log(erro)
         });
+  }
+
+  setContracted(contracted: boolean) {
+    this.contracted = contracted;
+    this.contractedChange.emit(this.contracted);
+  }
+
+  search(term: string) {
+    this.paramChange.emit({type: 'query', data: term});
+  }
+
+  emitParamChange(data) {
+    this.paramChange.emit(data);
   }
 
 }

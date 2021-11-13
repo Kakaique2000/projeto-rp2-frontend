@@ -77,7 +77,7 @@ export class NewJobComponent implements OnInit {
           Validators.minLength(2)
         ]
       ],
-      description: ['',
+      fullDescription: ['',
         [
           Validators.required
         ]

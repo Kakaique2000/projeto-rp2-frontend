@@ -53,15 +53,14 @@ export class NewJobService {
     let options = { headers: headers };
 
     const title = newjob.title;
-    const description = newjob.description;
+    const description = newjob.fullDescription;
     const salary = newjob.salary;
-    const occupation = newjob.occupation;
     const companyId = newjob.companyId;
     const knowledges = newjob.knowledges;
-    const fullDescription = newjob.description;
+    const fullDescription = newjob.fullDescription;
 
 
-    return this.http.post(API_URL, { title, description, salary, occupation, companyId, knowledges, fullDescription }, options);
+    return this.http.post(API_URL, { title, description, salary, companyId, knowledges, fullDescription }, options);
 
   }
 
