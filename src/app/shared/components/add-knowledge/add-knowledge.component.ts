@@ -40,6 +40,11 @@ export class AddKnowledgeComponent extends BaseDataFetchComponent implements OnI
     })
   }
 
+  get knowledgesFiltered() {
+    return this.knowledges
+      .filter(e => e.name.toLocaleLowerCase().includes(this.knowledgeControl.value?.toLocaleLowerCase()))
+  }
+
   userKnowledgeSave() {
     const knowledgeName = this.knowledgeControl.value as string;
     const knowledgeId = this.knowledges

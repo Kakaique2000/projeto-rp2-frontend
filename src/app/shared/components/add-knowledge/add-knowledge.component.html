@@ -31,7 +31,7 @@
     </p>
 
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let knowledge of knowledges" [value]="knowledge.name">
+      <mat-option *ngFor="let knowledge of knowledgesFiltered" [value]="knowledge.name">
         {{ knowledge.name }}
       </mat-option>
     </mat-autocomplete>
