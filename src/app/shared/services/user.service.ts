@@ -23,6 +23,7 @@ export class UserService {
 
   patchLoggedUser(userForm: Partial<UserForm>) {
     return this.homeLoginService.loggedUser$.pipe(
+      take(1),
       switchMap(user => this.http.patch<UserDto>(`${this.API}/${user.id}`, userForm)
         .pipe(tap(_ => {
           this.homeLoginService.reloadUser().pipe(take(1)).subscribe()

@@ -63,7 +63,8 @@ export class AddKnowledgeComponent extends BaseDataFetchComponent implements OnI
         next: e => {
           this.loadingUserUpdate = false;
           this.createUserKnowledge.emit(knowledge);
-          this.snack.okTransacao('conhecimento adicionado com sucesso')
+          this.snack.okTransacao('conhecimento adicionado com sucesso');
+          this.clearFields();
         },
         error: err => {
           this.loadingUserUpdate = false;
@@ -71,6 +72,13 @@ export class AddKnowledgeComponent extends BaseDataFetchComponent implements OnI
         }
       })
     )
+  }
+
+  clearFields() {
+    this.knowledgeControl.setValue('');
+    this.knowledgeControl.markAsPristine();
+    this.knowledgeLevelControl.setValue('');
+    this.knowledgeLevelControl.markAsPristine();
   }
 
   ngOnInit(): void {

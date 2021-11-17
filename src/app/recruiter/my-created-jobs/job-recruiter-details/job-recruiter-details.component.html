@@ -27,18 +27,78 @@
   <main #main class="max-h-0 transition-all overflow-hidden">
     <section class="mt-2">
       <mat-tab-group (selectedTabChange)="updateMaxHeightCard()">
+
+        <!-- -------------------------------------
+                  Tab de inscrições
+        ------------------------------------- -->
+
         <mat-tab label="Inscrições">
-          <div #inscricoes class="p-2 grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-mansory" >
+          <div #inscricoes >
             <div class="p-4" *ngIf="job.jobApplications.length === 0">
               <p class="text-lg">Ainda não há nenhuma candidatura para esta vaga.</p>
             </div>
-            <div class="bg-white hover:z-10" *ngFor="let jobApplication of jobApplicationGrid$ | async" >
-              <div *ngFor="let jobApplication of jobApplication" class="flex flex-col">
-                <app-user-profile-card (mouseenter)="updateMaxHeightCard()" [user]="jobApplication.user"></app-user-profile-card>
+
+            <!-- Candidaturas pendentes -->
+            <section *ngIf="jobApplicationGridPending$ | async as jobApplications">
+              <div *ngIf="jobApplications[0].length > 0">
+                <section class="t-center p-4 text-gray-400 border-gray-400">
+                  <div class="t-divider flex-1 -ml-4"></div>
+                  <span class="mx-2">Candidaturas pendentes</span>
+                  <div class="t-divider flex-1 -mr-4"></div>
+                </section>
+                <section class="p-2 grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-mansory">
+                  <div class="bg-white hover:z-10" *ngFor="let jobApplication of jobApplications" >
+                    <div *ngFor="let jobApplication of jobApplication" class="flex flex-col">
+                      <app-user-profile-card (mouseenter)="updateMaxHeightCard()" [user]="jobApplication.user"></app-user-profile-card>
+                    </div>
+                  </div>
+                </section>
               </div>
-            </div>
+            </section>
+
+            <!-- Candidaturas aprovadas -->
+            <section *ngIf="jobApplicationGridApproved$ | async as jobApplications">
+              <div *ngIf="jobApplications[0].length > 0">
+                <section class="t-center p-4 text-gray-400 border-gray-400">
+                  <div class="t-divider flex-1 -ml-4"></div>
+                  <span class="mx-2">Candidaturas aprovadas para o processo seletivo</span>
+                  <div class="t-divider flex-1 -mr-4"></div>
+                </section>
+                <section class="p-2 grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-mansory">
+                  <div class="bg-white hover:z-10" *ngFor="let jobApplication of jobApplications" >
+                    <div *ngFor="let jobApplication of jobApplication" class="flex flex-col">
+                      <app-user-profile-card (mouseenter)="updateMaxHeightCard()" [user]="jobApplication.user"></app-user-profile-card>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </section>
+
+            <!-- Candidaturas rejeitadas -->
+            <section *ngIf="jobApplicationGridRejected$ | async as jobApplications">
+              <div *ngIf="jobApplications[0].length > 0">
+                <section class="t-center p-4 text-gray-400 border-gray-400">
+                  <div class="t-divider flex-1 -ml-4"></div>
+                  <span class="mx-2">Candidaturas rejeitadas para o processo seletivo</span>
+                  <div class="t-divider flex-1 -mr-4"></div>
+                </section>
+                <section class="p-2 grid gap-2 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 grid-mansory">
+                  <div class="bg-white hover:z-10" *ngFor="let jobApplication of jobApplications" >
+                    <div *ngFor="let jobApplication of jobApplication" class="flex flex-col">
+                      <app-user-profile-card (mouseenter)="updateMaxHeightCard()" [user]="jobApplication.user"></app-user-profile-card>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </section>
+
           </div>
         </mat-tab>
+
+        <!-- -------------------------------------
+                  Tab de Vagas
+        ------------------------------------- -->
+
         <mat-tab label="Vaga">
           <div class="my-4">
             <app-markdown-viewer [data]="job.fullDescription">

@@ -1,16 +1,15 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { JobRecruiterDetailsDto } from 'src/app/shared/models/job.models';
+import { BreakpointUtils } from 'src/app/shared/utils/breakpoint.util';
 
 @Component({
   selector: 'app-job-recruiter-details',
   templateUrl: './job-recruiter-details.component.html',
   styleUrls: ['./job-recruiter-details.component.scss']
 })
-export class JobRecruiterDetailsComponent implements OnInit {
+export class JobRecruiterDetailsComponent implements OnInit, OnChanges {
 
-  constructor(public breakpointObserver: BreakpointObserver) { }
+  constructor(public breakpointUtils: BreakpointUtils) { }
 
   @Input()
   job: JobRecruiterDetailsDto;
@@ -23,29 +22,12 @@ export class JobRecruiterDetailsComponent implements OnInit {
 
   _expand = false;
 
-  jobApplicationGrid$ = this.breakpointObserver
-    .observe(['(min-width: 1024px)', '(min-width: 768px)', '(min-width: 640px)'])
-    .pipe(
-      map(state => {
-        console.log(state.breakpoints);
 
-        if (state.breakpoints['(min-width: 1024px)']) {
-          return [
-            this.job.jobApplications.filter((_, index) => index % 3 === 0),
-            this.job.jobApplications.filter((_, index) => index % 3 === 1),
-            this.job.jobApplications.filter((_, index) => index % 3 === 2),
-          ]
-        }
-        if (state.breakpoints['(min-width: 768px)']) {
-          return [
-            this.job.jobApplications.filter((_, index) => index % 2 === 0),
-            this.job.jobApplications.filter((_, index) => index % 2 === 1),
-          ]
-        }
+  jobApplicationGrid$ = this.breakpointUtils.getAsGrid(this!.job?.jobApplications ?? [])
 
-        return [this.job.jobApplications];
-      })
-    )
+  jobApplicationGridApproved$ = this.breakpointUtils.getAsGrid(this!.job?.jobApplications.filter(e => e.approved === true) ?? [])
+  jobApplicationGridPending$ = this.breakpointUtils.getAsGrid(this!.job?.jobApplications.filter(e => e.approved === null) ?? [])
+  jobApplicationGridRejected$ = this.breakpointUtils.getAsGrid(this!.job?.jobApplications.filter(e => e.approved === false) ?? [])
 
 
   get expand() {
@@ -71,8 +53,19 @@ export class JobRecruiterDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.job);
+  }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.job) {
+      this.resetJobApplicationGrid()
+      this.updateMaxHeightCard();
+    }
+  }
 
+  resetJobApplicationGrid() {
+    this.jobApplicationGridApproved$ = this.breakpointUtils.getAsGrid(this!.job?.jobApplications.filter(e => e.approved === true) ?? [])
+    this.jobApplicationGridPending$ = this.breakpointUtils.getAsGrid(this!.job?.jobApplications.filter(e => e.approved === null) ?? [])
+    this.jobApplicationGridRejected$ = this.breakpointUtils.getAsGrid(this!.job?.jobApplications.filter(e => e.approved === false) ?? [])
   }
 
 }
