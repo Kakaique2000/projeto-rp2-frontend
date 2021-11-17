@@ -1,15 +1,23 @@
 import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { JobRecruiterDetailsDto } from 'src/app/shared/models/job.models';
+import { UserDto } from 'src/app/shared/models/user.model';
 import { BreakpointUtils } from 'src/app/shared/utils/breakpoint.util';
+import { JobListService } from './../../../home/job-list/job-list.service';
+import { BaseDataFetchComponent } from './../../../shared/components/base-data-fetching.component';
+import { SnackHelperService } from './../../../shared/snack-helper.service';
 
 @Component({
   selector: 'app-job-recruiter-details',
   templateUrl: './job-recruiter-details.component.html',
   styleUrls: ['./job-recruiter-details.component.scss']
 })
-export class JobRecruiterDetailsComponent implements OnInit, OnChanges {
+export class JobRecruiterDetailsComponent extends BaseDataFetchComponent implements OnInit, OnChanges {
 
-  constructor(public breakpointUtils: BreakpointUtils) { }
+  constructor(
+    public breakpointUtils: BreakpointUtils,
+    private jobService: JobListService,
+    private snack: SnackHelperService
+  ) { super() }
 
   @Input()
   job: JobRecruiterDetailsDto;
@@ -53,6 +61,28 @@ export class JobRecruiterDetailsComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     console.log(this.job);
+  }
+
+  approveRejectUser(user: UserDto, approve: boolean) {
+    this.addSub(
+      this.jobService.modifyApproval(this.job.id, user.id, approve).subscribe({
+        next: val => {
+          this.addSub(this.jobService.getCreatedJobs()
+            .subscribe({
+              next: val => {
+                this.job = val.content.find(e => e.id === this.job.id);
+                this.resetJobApplicationGrid();
+                this.updateMaxHeightCard();
+              }
+            }))
+          this.snack.okTransacao('candidatura aprovada com sucesso')
+        },
+        error: err => {
+
+          this.snack.okTransacao('ops, ocorreu um erro com a transação')
+        }
+      })
+    )
   }
 
   ngOnChanges(changes: SimpleChanges) {

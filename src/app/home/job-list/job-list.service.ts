@@ -34,6 +34,10 @@ export class JobListService {
     return this.http.get<JobDetailsDto>(`${this._url}/${id}`)
   }
 
+  modifyApproval(jobId: number, userId: number, approved: boolean | null) {
+    return this.http.post(`${this._url}/${jobId}/job_applications/${userId}`, { approved })
+  }
+
   getJobs(category: any, salary: any, query: string) {
 
 

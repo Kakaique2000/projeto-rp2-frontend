@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { KnowledgeLevel, UserDto } from 'src/app/shared/models/user.model';
 
@@ -13,9 +13,18 @@ export class UserProfileCardComponent implements OnInit {
 
   readonly knowledgesLevels = ['INICIANTE', 'MÉDIO', 'AVANÇADO', 'EXPERT'];
 
-
   @Input()
   user: UserDto = this.route.snapshot.data.user;
+
+  @Input()
+  approved: boolean | null;
+
+  @Output()
+  clickApprove = new EventEmitter<boolean>();
+
+  @Output()
+  clickReject = new EventEmitter<boolean>();
+
 
   get userKnowledges(): KnowledgeSimple[] {
     return this.user.knowledges.map(e => ({
