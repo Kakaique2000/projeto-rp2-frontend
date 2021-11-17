@@ -8,8 +8,8 @@ export class BaseDataFetchComponent implements OnDestroy {
 
   subscriptions: Subscription[] = [];
 
-  addSub(sub: Subscription) {
-    this.subscriptions.push(sub)
+  addSub(...sub: Subscription[]) {
+    this.subscriptions.push(...sub)
   }
 
   ngOnDestroy(): void {

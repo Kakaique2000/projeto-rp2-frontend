@@ -43,6 +43,7 @@ import { MarkdownViewerComponent } from './shared/components/markdown-viewer/mar
 import { UserProfileCardComponent } from './shared/components/user-profile-card/user-profile-card.component';
 import { FormFieldComponent } from './shared/form-field/form-field.component';
 import { AsyncLoading } from './shared/pipes/async-loading.pipe';
+import { AddKnowledgeComponent } from './shared/components/add-knowledge/add-knowledge.component';
 
 const matModules = [
   MatCheckboxModule,
@@ -91,6 +92,7 @@ const projectComponents = [
     AsyncLoading,
     EllipsisPipe,
     ...projectComponents,
+    AddKnowledgeComponent,
 
   ],
   imports: [

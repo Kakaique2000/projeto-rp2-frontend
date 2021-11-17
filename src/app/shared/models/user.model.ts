@@ -32,6 +32,10 @@ export interface UserDto {
   certificates: UserCertifiedDto[];
 }
 
+export interface UserForm extends Omit<UserDto, 'knowledges'>{
+  knowledges: UserKnowledgeForm[];
+}
+
 export interface UserDetailsDto extends UserDto {
   companies: CompanyModel[],
   fullBiography: string,
@@ -41,6 +45,11 @@ export interface UserKnowledgeDto {
   knowledge:      KnowledgeDto;
   knowledgeLevel: KnowledgeLevel;
   validated:      boolean;
+}
+
+export interface UserKnowledgeForm {
+  knowledgeId:    number;
+  knowledgeLevel: KnowledgeLevel;
 }
 
 export interface UserExperienceDto {

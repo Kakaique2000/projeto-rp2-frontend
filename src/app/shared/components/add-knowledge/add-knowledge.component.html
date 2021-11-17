@@ -1,0 +1,57 @@
+<div>
+  <h1 class="text-3xl mb-4">Adicionar conhecimento</h1>
+
+  <div class="mb-2">
+    <label for="knowledgeLevel">Selecione o nível da habilidade</label>
+    <mat-select
+      id="knowledgeLevel"
+      placeholder="Nível de conhecimento"
+      [formControl]="knowledgeLevelControl"
+    >
+      <mat-option value="INICIANTE">iniciante</mat-option>
+      <mat-option value="MÉDIO">médio</mat-option>
+      <mat-option value="AVANÇADO">avançado</mat-option>
+      <mat-option value="EXPERT">expert</mat-option>
+    </mat-select>
+    <p *ngIf="invalidKnowledge.erroKnowledgeLevel" class="text-right text-red-600 mt-1">este campo é obrigatório</p>
+  </div>
+
+  <section *ngIf="isProfile">
+    <app-form-field
+      [fControl]="knowledgeControl"
+      [matAutocomplete]="auto"
+      label="habilidade"
+    >
+    </app-form-field>
+    <p
+      *ngIf="invalidKnowledge.erroKnowledgeValue && knowledgeControl.dirty"
+      class="text-right mt-1 text-red-600"
+    >
+      selecione um conhecimento válido
+    </p>
+
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let knowledge of knowledges" [value]="knowledge.name">
+        {{ knowledge.name }}
+      </mat-option>
+    </mat-autocomplete>
+
+    <button
+      [class.t-disabled]="
+        invalidKnowledge.erroKnowledgeLevel ||
+        invalidKnowledge.erroKnowledgeValue ||
+        loadingUserUpdate"
+      (click)="userKnowledgeSave()"
+      class="t-btn-indigo t-center t-btn mt-4 ml-auto whitespace-nowrap"
+    >
+
+
+    <span>  salvar</span>
+    <span class="ml-2" *ngIf="loadingUserUpdate">
+      <mat-spinner diameter="24"></mat-spinner>
+    </span>
+    </button>
+  </section>
+
+  <section *ngIf="!isProfile"></section>
+</div>

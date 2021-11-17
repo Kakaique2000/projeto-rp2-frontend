@@ -3,7 +3,7 @@
   (search)="search($event)"
   (selectEvent)="emitParamChange($event)"></app-job-search>
 </div>
-<div [ngClass]="{'showing-preview': showingPreview,'not-showing-preview': !showingPreview }" class="grid  mt-2" *ngIf="jobs?.length > 0">
+<div [ngClass]="{'showing-preview': showingPreview,'not-showing-preview': !showingPreview }" class="grid  mt-2" *ngIf="jobs?.length > 0 && !isLoading">
   <div *ngFor="let obj of jobs">
     <app-job-card
       (click)="onCardClick(obj)"

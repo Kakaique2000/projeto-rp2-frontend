@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { take, tap } from 'rxjs/operators';
+import { switchMap, take, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { HomeLoginService } from '../../login-home/login-home.service';
-import { UserDto } from '../models/user.model';
+import { UserDto, UserForm } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,15 @@ export class UserService {
       .pipe(tap(_ => {
         this.homeLoginService.reloadUser().pipe(take(1)).subscribe()
       }))
+  }
+
+  patchLoggedUser(userForm: Partial<UserForm>) {
+    return this.homeLoginService.loggedUser$.pipe(
+      switchMap(user => this.http.patch<UserDto>(`${this.API}/${user.id}`, userForm)
+        .pipe(tap(_ => {
+          this.homeLoginService.reloadUser().pipe(take(1)).subscribe()
+        })))
+    )
+
   }
 }

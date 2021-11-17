@@ -8,6 +8,8 @@ import * as AppValidators from "src/app/shared/validators";
 import { UserCertifiedDto, UserDto, UserExperienceDto } from '../shared/models/user.model';
 import { UserService } from '../shared/services/user.service';
 import { HomeLoginService } from './../login-home/login-home.service';
+import { AddKnowledgeComponent } from './../shared/components/add-knowledge/add-knowledge.component';
+import { KnowledgeService } from './../shared/services/knowledge.service';
 import { AvatarModalComponent } from './avatar-modal/avatar-modal.component';
 import { CertifiedModalComponent } from './certified-modal/certified-modal.component';
 import { ExperienceModalComponent } from './experience-modal/experience-modal.component';
@@ -31,6 +33,7 @@ export class MyProfileComponent implements OnInit, OnDestroy {
     private homeService: HomeLoginService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
+    public knowledgeService: KnowledgeService,
   ) { }
 
 
@@ -61,7 +64,11 @@ export class MyProfileComponent implements OnInit, OnDestroy {
 
   getCertified() {
     return  this.user.certificates.length > 0 ? this.user.certificates : [];
-   }
+  }
+
+  getKnowledges() {
+    return  this.user.knowledges;
+  }
 
   mensagemTransacao(message: string) {
     this.snackBar.open(message, 'ok', {duration: 2000 });
@@ -113,6 +120,20 @@ export class MyProfileComponent implements OnInit, OnDestroy {
         });
       }
     })
+  }
+
+  openKnowledgesDialog() {
+    const dialog = this.dialog.open(AddKnowledgeComponent);
+    const modal = dialog.componentInstance;
+
+    this.subscriptions.push(
+      modal.createUserKnowledge.subscribe({
+        next: val => {
+          console.log(val)
+        }
+      })
+    )
+
   }
 
   openCertifiedDialog() {

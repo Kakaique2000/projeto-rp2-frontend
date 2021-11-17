@@ -2,12 +2,23 @@
     >{{label}}</label
   >
   <div class="relative">
-    <input
+    <input *ngIf="matAutocomplete"
+      [formControl]="fControl"
+      (focus)="isInputInFocus = true"
+      (blur)="isInputInFocus = false"
+      [id]="label"
+      [matAutocomplete]="matAutocomplete"
+      [name]="label"
+      type="text"
+      class="t-input"
+    />
+    <input *ngIf="!matAutocomplete"
       [formControl]="fControl"
       (focus)="isInputInFocus = true"
       (blur)="isInputInFocus = false"
       [id]="label"
       [mask]="mask"
+      [name]="label"
       type="text"
       class="t-input"
     />

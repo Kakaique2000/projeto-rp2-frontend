@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatAutocomplete } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-form-field',
@@ -15,6 +16,9 @@ export class FormFieldComponent implements OnInit {
 
   @Input()
   fControl: FormControl;
+
+  @Input()
+  matAutocomplete: MatAutocomplete | null = null;
 
   @Input()
   label: string;

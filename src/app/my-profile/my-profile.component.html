@@ -9,35 +9,24 @@
   </article>
 
   <article class="container lg:px-36 t-card-no-anim py-4">
-    <h2 class="text-2xl md:text-3xl font-light md:text-center  ml-2 md:ml-4">dados pessoais</h2>
+    <h2 class="text-2xl md:text-3xl font-light md:text-center ml-2 md:ml-4">
+      dados pessoais
+    </h2>
     <!-- Grid -->
     <article
       class="p-2 md:p-4 grid md:grid-cols-2 sm:grid-cols-1 sm:items-center md:items-start"
     >
       <div class="flex items-center flex-col">
-        <h3 class="mt-4 self-start md:self-center text-lg  mb-2">Foto de perfil</h3>
+        <h3 class="mt-4 self-start md:self-center text-lg mb-2">
+          Foto de perfil
+        </h3>
         <div
           id="profilePic"
-          class="
-          mr-0
-          w-48 h-48
-          relative
-          rounded-full
-          cursor-pointer
-          shadow
-          self-center
-          bg-cover
-          bg-center
-          transition-all
-          hover:shadow-lg
-          active:bg-opacity
-          md:mr-4
-          md:w-64 md:h-64
-          "
-          [ngStyle]="{ 'background-image': 'url(' +  getProfilePic() + ')' }"
+          class="mr-0 w-48 h-48 relative rounded-full cursor-pointer shadow self-center bg-cover bg-center transition-all hover:shadow-lg active:bg-opacity md:mr-4 md:w-64 md:h-64"
+          [ngStyle]="{ 'background-image': 'url(' + getProfilePic() + ')' }"
         >
           <div
-          (click)="openProfileDialog()"
+            (click)="openProfileDialog()"
             class="text-4xl group active:bg-opacity-40 hover:bg-opacity-25 bg-opacity-0 top-0 bottom-0 right-0 left-0 transition-colors absolute t-center rounded-full bg-black"
           >
             <mat-icon
@@ -49,7 +38,9 @@
         </div>
         <div class="self-start">
           <label class="t-input-label" for="cpf">Tipo de conta</label>
-          <p *ngFor="let role of getRoles()" [title]="role.infos" >{{ role.label }}</p>
+          <p *ngFor="let role of getRoles()" [title]="role.infos">
+            {{ role.label }}
+          </p>
         </div>
       </div>
       <form [formGroup]="myInfosForm" class="flex self-center flex-col">
@@ -70,57 +61,82 @@
         ></app-form-field>
 
         <app-form-field
-        label="CPF / CNPJ"
-        [fControl]="cpfCnpjControl"
-        mask="000.000.000-00||00.000.000/0000-00"
-      ></app-form-field>
-      <div *ngIf="getRoles()[0].label !== 'Recrutador'">      
-        <label class="t-input-label" >Carta de Apresentação</label>
-        <textarea [formControl]="biographyControl" formControlName="biography" class="form-control" rows="7"
-        placeholder="Fale um pouco sobre você e suas habilidades" ></textarea>
-    </div>
+          label="CPF / CNPJ"
+          [fControl]="cpfCnpjControl"
+          mask="000.000.000-00||00.000.000/0000-00"
+        ></app-form-field>
+        <div *ngIf="getRoles()[0].label !== 'Recrutador'">
+          <label class="t-input-label">Carta de Apresentação</label>
+          <textarea
+            [formControl]="biographyControl"
+            formControlName="biography"
+            class="form-control"
+            rows="7"
+            placeholder="Fale um pouco sobre você e suas habilidades"
+          ></textarea>
+        </div>
       </form>
     </article>
     <mat-divider></mat-divider>
     <div *ngIf="getRoles()[0].label !== 'Recrutador'">
-    <label class="t-input-label mr-2" >Adicionar Experiência profissional</label>
-    <button (click)="openExperienceDialog()" mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" >
-      <mat-icon>add</mat-icon>
-    </button>
 
-    <div *ngIf="getExperience(); else elseNotInfos">
-      <div class="t-card" *ngFor='let obj of getExperience()'>
-        <mat-card class="example-card mt-3">
-          <mat-card-title>{{obj.companyName}}</mat-card-title>
-          <mat-card-content>
-            <p>{{obj.office}}</p>
-          </mat-card-content>
-          <mat-divider inset></mat-divider>
-          <mat-card-content>
-            <p>Período: {{obj.initialDate}} - {{obj.endDate}}</p>
-          </mat-card-content>
-        </mat-card>
-   </div>
-  </div>
+    <h3 class="text-3xl mt-2">Experiências profissionais</h3>
 
-  <ng-template  #elseNotInfos>
-    <mat-divider class="mt-2 mb-2"></mat-divider>
-  </ng-template>
+      <div *ngIf="getExperience(); else elseNotInfos">
+        <div class="t-card" *ngFor="let obj of getExperience()">
+          <mat-card class="example-card mt-3">
+            <mat-card-title>{{ obj.companyName }}</mat-card-title>
+            <mat-card-content>
+              <p>{{ obj.office }}</p>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-content>
+              <p>Período: {{ obj.initialDate }} - {{ obj.endDate }}</p>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
 
+      <ng-template #elseNotInfos>
+        <mat-divider class="mt-2 mb-2"></mat-divider>
+      </ng-template>
 
-    <label class="t-input-label mr-2" >Adicionar Certificado</label>
-    <button (click)="openCertifiedDialog()" mat-mini-fab color="primary" aria-label="Example icon button with a delete icon" >
-      <mat-icon>add</mat-icon>
-    </button>
+      <label class="t-input-label mr-2"
+      >Adicionar Experiência profissional</label>
+
+    <button
+    (click)="openExperienceDialog()"
+    mat-mini-fab
+    color="primary"
+    class="mt-2"
+    aria-label="Example icon button with a delete icon"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+
+    <mat-divider></mat-divider>
 
       <mat-card class="example-card mt-3 mb-3">
-        <mat-card-title>Certificados : </mat-card-title>
-        <mat-card-content *ngFor='let obj of getCertified()'>
-          <a href="{{obj.url}}" target="_blank"> - {{obj.name}}</a>
+        <mat-card-title>Certificados</mat-card-title>
+        <mat-card-content *ngFor="let obj of getCertified()">
+          <a href="{{ obj.url }}" target="_blank"> - {{ obj.name }}</a>
+
         </mat-card-content>
+        <mat-card-footer class="m-1">
+          <label class="t-input-label mr-2">Adicionar Certificado</label>
+          <button
+            (click)="openCertifiedDialog()"
+            mat-mini-fab
+            color="primary"
+            aria-label="Example icon button with a delete icon"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-card-footer>
       </mat-card>
 
-    <mat-form-field appearance="fill">
+
+      <!-- <mat-form-field appearance="fill">
       <mat-label>Skills</mat-label>
       <mat-select [formControl]="skills" multiple>
         <mat-select-trigger>
@@ -131,8 +147,35 @@
         </mat-select-trigger>
         <mat-option *ngFor="let skill of skillsList" [value]="skill">{{skill}}</mat-option>
       </mat-select>
-    </mat-form-field>
-  </div>
+    </mat-form-field> -->
+
+      <mat-card class="example-card mt-3 mb-3">
+        <mat-card-title>Habilidades </mat-card-title>
+        <mat-card-content>
+
+          <div class="flex flex-wrap">
+            <div class="t-card p-3 border mr-2 mb-2" *ngFor="let obj of getKnowledges()">
+              <h4 (click)="knowledgeService.popKnowledgeTips(obj.knowledge)" class="t-link-indigo font-light text-lg">{{ obj.knowledge.name }}</h4>
+              <p>{{ obj.knowledgeLevel | lowercase}}</p>
+            </div>
+          </div>
+
+        </mat-card-content>
+        <mat-card-footer class="m-1">
+          <label class="t-input-label mr-2">Adicionar Habilidade</label>
+          <button
+            (click)="openKnowledgesDialog()"
+            mat-mini-fab
+            color="primary"
+            aria-label="Example icon button with a delete icon"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </mat-card-footer>
+      </mat-card>
+
+
+    </div>
   </article>
   <footer class="container flex">
     <button
@@ -141,7 +184,8 @@
       class="t-center disabled:cursor-not-allowed disabled:opacity-50 t-btn text-xl mr-4 my-4 ml-auto text-white bg-indigo-600"
       class="{{ isSaving ? 'pointer-events-none cursor-wait opacity-50' : '' }}"
     >
-      <span>salvar</span> <mat-spinner class="ml-2" *ngIf="isSaving" diameter="25"></mat-spinner>
+      <span>salvar</span>
+      <mat-spinner class="ml-2" *ngIf="isSaving" diameter="25"></mat-spinner>
     </button>
     {{ myInfosForm.errors }}
   </footer>
