@@ -31,7 +31,7 @@ export class TokenInterceptor implements HttpInterceptor {
     changedRequest = request.clone({
       headers: newHeader
     });
-    await sleep()
+    await sleep(100)
     return next.handle(changedRequest).toPromise();
   }
 

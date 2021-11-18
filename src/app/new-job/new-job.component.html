@@ -25,12 +25,34 @@
       </select>
     </div>
 
-    <div class="form-group" *ngIf="areas">
-      <label id="labelDescription" for="exampleFormControlSelect1">Área da vaga</label>
-      <select class="form-control" id="typejob" formControlName="occupation">
-        <option value="" disabled selected>Selecione o setor da sua vaga</option>
-        <option *ngFor='let key of Object?.keys(areas)'>{{areas[key]}}</option>
-      </select>
+    <div class="form-group">
+      <div [class.t-disabled]="knowledgesSelected.length >= 5">
+        <app-form-field
+        [fControl]="knowledgeSearch"
+        [matAutocomplete]="auto"
+        label="quais conhecimentos que a sua vaga tem relação?">
+        </app-form-field>
+      </div>
+      <p *ngIf="knowledgesSelected.length >= 5" class="text-red-600 mt-2">voce chegou ao limite de conhecimentos relacionados</p>
+      <mat-autocomplete (optionSelected)="addKnowledge($event.option.value)" #auto="matAutocomplete">
+        <mat-option *ngFor="let knowledge of knowledgesFiltered" [value]="knowledge">
+          {{ knowledge.name }}
+        </mat-option>
+      </mat-autocomplete>
+
+      <div class="mt-2">
+
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let knowledge of knowledgesSelected" [selected]="true"
+                   [removable]="true" (removed)="removeKnowledge(knowledge)">
+            {{ knowledge.name }}
+            <button matChipRemove>
+                <mat-icon [style.color]="'white'" >cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+
     </div>
 
     <div class="form-group">
@@ -57,7 +79,7 @@
           • Formando em ciência da computação, Sistemas de Informação ou áreas correletas&#10;
           Benefícios: VT, VR, Plano de Saúde e PLR." maxlength="500" minlength="80"></textarea>
     </div>
-    <div 
+    <div
       class="preview-toggle"
       (click)="showDescriptionPreview = !showDescriptionPreview"
       [class.visible]="showDescriptionPreview"

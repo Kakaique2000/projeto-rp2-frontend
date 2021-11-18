@@ -12,6 +12,7 @@ import { SignupComponent } from './login-home/signup/signup.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { MyProfileResolver } from './my-profile/my-profile.resolver';
 import { NewCompanyComponent } from './new-company/new-company.component';
+import { NewJobKnowledgesResolver } from './new-job/new-job-knowledges.resolver';
 import { NewJobComponent } from './new-job/new-job.component';
 import { MyCreatedJobsResolver } from './recruiter/my-created-jobs.resolver';
 import { MyCreatedJobsComponent } from './recruiter/my-created-jobs/my-created-jobs.component';
@@ -46,6 +47,7 @@ const routes: Routes = [
     path: 'newjob',
     component: NewJobComponent,
     data: { showSideMenu: true },
+    resolve: { knowledges: NewJobKnowledgesResolver },
     canActivate: [LoggedGuard],
   },
   {

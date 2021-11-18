@@ -15,7 +15,7 @@ export class FormFieldComponent implements OnInit {
   activeElement: HTMLElement | null;
 
   @Input()
-  fControl: FormControl;
+  fControl: FormControl = new FormControl('');
 
   @Input()
   matAutocomplete: MatAutocomplete | null = null;
