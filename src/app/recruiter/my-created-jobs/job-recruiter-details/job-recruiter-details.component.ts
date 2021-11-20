@@ -71,8 +71,10 @@ export class JobRecruiterDetailsComponent extends BaseDataFetchComponent impleme
             .subscribe({
               next: val => {
                 this.job = val.content.find(e => e.id === this.job.id);
+                if (this.expand) {
+                  this.updateMaxHeightCard();
+                }
                 this.resetJobApplicationGrid();
-                this.updateMaxHeightCard();
               }
             }))
           this.snack.okTransacao('candidatura aprovada com sucesso')
@@ -87,8 +89,10 @@ export class JobRecruiterDetailsComponent extends BaseDataFetchComponent impleme
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.job) {
-      this.resetJobApplicationGrid()
-      this.updateMaxHeightCard();
+      this.resetJobApplicationGrid();
+      if (this.expand) {
+        this.updateMaxHeightCard();
+      }
     }
   }
 

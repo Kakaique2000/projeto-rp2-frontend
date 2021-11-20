@@ -13,6 +13,8 @@ import { JobDescriptorComponent } from './job-descriptor/job-descriptor.componen
 import { MarkdownModule } from 'ngx-markdown';
 import { JobSearchComponent } from './job-search/job-search.component';
 import { KnowledgeTipsComponent } from './knowledge-tips/knowledge-tips.component';
+import { KnowledgeListComponent } from './knowledge-list/knowledge-list.component';
+import { KnowledgeCardComponent } from './knowledge-list/knowledge-card/knowledge-card.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { KnowledgeTipsComponent } from './knowledge-tips/knowledge-tips.componen
     JobCardComponent,
     JobDescriptorComponent,
     JobSearchComponent,
-    KnowledgeTipsComponent],
+    KnowledgeTipsComponent,
+    KnowledgeListComponent,
+    KnowledgeCardComponent],
   imports: [
     HttpClientModule,
     FormsModule,

@@ -3,6 +3,7 @@ import { JobDto } from './job.models';
 export interface KnowledgeDto {
   id:   number;
   name: string;
+  image?: string;
   description: string;
   jobs?: JobDto[];
 }

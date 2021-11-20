@@ -1,0 +1,8 @@
+<article class="p-2 animate-in t-card border h-40 flex flex-col ">
+  <img class="rounded-full border t-rounded-image -mt-6" *ngIf="knowledge.image" [src]="knowledge.image" [alt]="knowledge.name">
+  <h2 class="text-indigo-600 text-lg mb-2">{{ knowledge.name }}</h2>
+  <p class="text-sm overflow-hidden overflow-ellipsis multi-line"> {{ knowledge.description }}</p>
+  <div class="mt-auto flex justify-end">
+    <a target="_blank" [routerLink]="['/knowledges', knowledge.id ]" href="javascript:null" class="t-link-indigo">ver mais</a>
+  </div>
+</article>

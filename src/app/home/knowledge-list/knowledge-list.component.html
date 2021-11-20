@@ -1,0 +1,34 @@
+<main>
+  <div *ngIf="searching" class="max-w-lg">
+    <app-form-field
+      [fControl]="knowledgeSearch"
+      label="filtre os conhecimentos"
+      placeholder="ex: Angular, Spring Boot, etc."
+      >
+    </app-form-field>
+  </div>
+  <div *ngIf="!isLoading; else loadingComponent" class="t-lgrid relative mt-4">
+    <app-knowledge-card
+     [knowledge]="knowledge"
+     *ngFor="let knowledge of knowledgesFiltered$ | async">
+    </app-knowledge-card>
+    <!-- Seta pra proxima pagina  -->
+    <div *ngIf="!knowledgesPage.isInLastPage" (click)="knowledgesPage.advancePage()" class="absolute cursor-pointer top-1/2 right-0 transform -translate-y-1/2 translate-x-3/4">
+      <span class="t-icon shadow bg-gray-50 hover:bg-indigo-50 active:bg-indigo-100 z-10 border">
+        <mat-icon>chevron_right</mat-icon>
+      </span>
+    </div>
+    <!-- Seta pra pagina anterior  -->
+    <div *ngIf="!knowledgesPage.isInFirstPage" (click)="knowledgesPage.backPage()" class="absolute cursor-pointer top-1/2 left-0 transform -translate-y-1/2 -translate-x-3/4">
+      <span class="t-icon shadow bg-gray-50 hover:bg-indigo-50 active:bg-indigo-100 z-10 border">
+        <mat-icon>chevron_left</mat-icon>
+      </span>
+    </div>
+  </div>
+  <ng-template #loadingComponent>
+    <div class="t-center pt-12">
+      <mat-spinner diameter="64"></mat-spinner>
+    </div>
+  </ng-template>
+
+</main>

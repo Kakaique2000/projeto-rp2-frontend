@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   salarySelected: any;
   query: string;
 
+  searchingKnowledges = false;
+
   cardSelected?: JobDto;
   isLoading = false;
 

@@ -24,7 +24,7 @@ export class FormFieldComponent implements OnInit {
   label: string;
 
   @Input()
-  placeholder: string = 'insira seu ' + this!.label;
+  placeholder: string = '';
 
   @Input()
   mask: string;

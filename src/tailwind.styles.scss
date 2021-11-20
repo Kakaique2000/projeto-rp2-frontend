@@ -7,6 +7,10 @@
     @apply rounded-md shadow-sm border;
   }
 
+  .t-ellipsis {
+    @apply overflow-hidden whitespace-nowrap overflow-ellipsis;
+  }
+
   .t-btn {
     @apply py-2 px-4 rounded-3xl transition-all transform;
   }
@@ -17,6 +21,20 @@
 
   .t-divider {
     @apply block border-t;
+  }
+
+  .t-lgrid {
+    @apply grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2  gap-2;
+  }
+
+  .t-rounded-image {
+    @apply w-10 h-10 object-cover rounded-full bg-white;
+    &__big {
+      @apply t-rounded-image w-16 h-16;
+    }
+    &__small {
+      @apply t-rounded-image w-6 h-6;
+    }
   }
 
   .t-btn:active {

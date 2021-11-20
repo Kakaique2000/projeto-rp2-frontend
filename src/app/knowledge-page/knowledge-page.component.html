@@ -1,7 +1,13 @@
 
   <main class="container">
 
-    <h1 class="text-3xl p-4">{{ knowledge.name }}</h1>
+    <section class="flex items-center">
+      <img *ngIf="knowledge.image" [src]="knowledge.image" class="t-rounded-image__big mr-2 border" alt="">
+      <h1 class="text-3xl py-4">
+      {{ knowledge.name }}
+      </h1>
+
+    </section>
 
     <p class="p-4 bg-gray-100">{{ knowledge.description }}</p>
 

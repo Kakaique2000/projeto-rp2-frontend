@@ -1,10 +1,17 @@
 <main>
-  <!-- <div class="container px-4">
-      <h2 class="text-3xl my-4">Turbine seu portfolio com treinamentos exclusivos HEFEST!</h2>
-    </div> -->
+  <div class="container px-4 mt-4">
+    <h2 class="text-3xl mt-4">As tecnologias que estão bombando nas empresas
+      <a href="javascript:null"
+      (click)="searchingKnowledges = !searchingKnowledges"
+      [class.t-link-indigo]="searchingKnowledges">
+        <mat-icon [inline]="true">search</mat-icon>
+      </a>
+    </h2>
+      <app-knowledge-list [searching]="searchingKnowledges"></app-knowledge-list>
+  </div>
 
   <!-- Jobs -->
-  <div class="container px-4">
+  <div class="container pt-4 px-4">
     <h2 class="text-3xl my-4">Vagas abertas perfeitas para você!</h2>
     <section
       class="mt-4 mx-auto home-grid"

@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 export class BaseDataFetchComponent implements OnDestroy {
 
   subscriptions: Subscription[] = [];
+  isLoading = false;
 
   addSub(...sub: Subscription[]) {
     this.subscriptions.push(...sub)
