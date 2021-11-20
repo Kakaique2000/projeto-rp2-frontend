@@ -25,7 +25,7 @@ export class KnowledgeListComponent extends BaseDataFetchComponent implements On
   @Input()
   searching = false;
   knowledges: KnowledgeDto[] = [];
-  knowledgesPage: MemoryPage<KnowledgeDto> = new MemoryPage([], 2);
+  knowledgesPage: MemoryPage<KnowledgeDto> = new MemoryPage([]);
   knowledgeSearch = new FormControl('');
 
   knowledgesFiltered$: Observable<KnowledgeDto[]> = this.knowledgeSearch

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="573" viewBox="0 0 1600 573">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #332b82;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        filter: url(#filter);
+      }
+
+      .cls-3 {
+        filter: url(#filter-2);
+      }
+
+      .cls-4 {
+        filter: url(#filter-3);
+      }
+    </style>
+    <filter id="filter" x="1294" y="40" width="258" height="486" filterUnits="userSpaceOnUse">
+      <feImage preserveAspectRatio="none" x="1294" y="40" width="258" height="486" result="image" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjU4IiBoZWlnaHQ9IjQ4NiIgdmlld0JveD0iMCAwIDI1OCA0ODYiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6IHVybCgjbGluZWFyLWdyYWRpZW50KTsKICAgICAgfQogICAgPC9zdHlsZT4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50IiB4MT0iLTQ5NCIgeTE9IjUzMyIgeDI9Ii00OTQiIHkyPSItNDAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjIyIiBzdG9wLWNvbG9yPSIjMTgxNTNiIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMC43OCIgc3RvcC1jb2xvcj0iIzMzMmI4MiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iMjU4IiBoZWlnaHQ9IjQ4NiIvPgo8L3N2Zz4K"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+    <filter id="filter-2" x="1450.56" y="450.344" width="65.6" height="58.562" filterUnits="userSpaceOnUse">
+      <feImage preserveAspectRatio="none" x="1450.56" y="450.344" width="65.6" height="58.562" result="image" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNjUuNiIgaGVpZ2h0PSI1OC41NjIiIHZpZXdCb3g9IjAgMCA2NS42IDU4LjU2MiI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogdXJsKCNsaW5lYXItZ3JhZGllbnQpOwogICAgICB9CiAgICA8L3N0eWxlPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIHgxPSItNjUwLjU2IiB5MT0iMTIyLjY1NiIgeDI9Ii02NTAuNTYiIHkyPSItNDUwLjM0NCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNDUiIHN0b3AtY29sb3I9IiMxODE1M2IiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjMzMyYjgyIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCBjbGFzcz0iY2xzLTEiIHdpZHRoPSI2NS42IiBoZWlnaHQ9IjU4LjU2MiIvPgo8L3N2Zz4K"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+    <filter id="filter-3" x="1455.28" y="485.938" width="126.88" height="40.812" filterUnits="userSpaceOnUse">
+      <feImage preserveAspectRatio="none" x="1455.28" y="485.938" width="126.88" height="40.812" result="image" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTI2Ljg4IiBoZWlnaHQ9IjQwLjgxMiIgdmlld0JveD0iMCAwIDEyNi44OCA0MC44MTIiPgogIDxkZWZzPgogICAgPHN0eWxlPgogICAgICAuY2xzLTEgewogICAgICAgIGZpbGw6IHVybCgjbGluZWFyLWdyYWRpZW50KTsKICAgICAgfQogICAgPC9zdHlsZT4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50IiB4MT0iLTY1NS4yOCIgeTE9Ijg3LjA2MiIgeDI9Ii02NTUuMjgiIHkyPSItNDg1LjkzOCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAuNDUiIHN0b3AtY29sb3I9IiMxODE1M2IiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIwLjU1IiBzdG9wLWNvbG9yPSIjMzMyYjgyIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCBjbGFzcz0iY2xzLTEiIHdpZHRoPSIxMjYuODgiIGhlaWdodD0iNDAuODEyIi8+Cjwvc3ZnPgo="/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path id="Hefes" class="cls-1" d="M258.856,356.74V525.21h77.756v-414.7H258.856v168.47H129.264V110.515H51.509v168.47L25.591,356.74H51.509V525.21h77.755V356.74H258.856Zm196.731,0h77.756l25.918-77.755H455.587v-64.8H559.261V136.434H377.832V499.292H559.261l25.918-77.756H455.587v-64.8ZM600.482,136.434V499.292h77.755V356.74h77.756l25.918-77.755H678.237v-64.8H781.911V136.434H600.482Zm300.4,220.306h77.755l25.918-77.755H900.887v-64.8H1004.56V136.434H823.131V499.292H1004.56l25.92-77.756H900.887v-64.8Zm268,0q32.4,0,32.4,32.4t-32.4,32.4H1045.78v77.756h123.11q110.16,0,110.16-110.154T1168.89,278.985h-12.96q-32.4,0-32.39-32.4t32.39-32.4h97.2l25.92-77.755H1155.93q-110.145,0-110.15,110.153T1155.93,356.74h12.96Z"/>
+  <path id="Forma_1" data-name="Forma 1" class="cls-2" d="M1294,68.629l0.7,122.2h90.19L1386.99,526h60.13l2.1-334.474L1552,174.767V114.716s-39.44-45.432-105.58-43.992c-0.66-.174,0-30.724,0-30.724H1384.2l0.69,30.724S1294.2,75.1,1294,54.664C1295.42,53.6,1294,68.629,1294,68.629Z"/>
+  <path id="Forma_3" data-name="Forma 3" class="cls-3" d="M1510.47,465.6l-14.41.67,20.09-15.927-48.22,20.011,19.89,3.8-37.25,34.772,35.69-14.709Z"/>
+  <path id="Forma_4" data-name="Forma 4" class="cls-4" d="M1455.29,525.571l79.11,1.178-23.27-14.58,71.03-24.6-58.5-1.63-46.72,20.237,10.42,6.273Z"/>
+</svg>

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit{
         this.loginService.authenticate(email, password)
         .subscribe(() => {
             this.isLogingIn = false;
-            this.router.navigateByUrl('profile');
+            this.router.navigateByUrl('home');
           },
           erro => {
             alert('email/senha errada ;(');
