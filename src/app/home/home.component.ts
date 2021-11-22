@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
 import { JobDto } from '../shared/models/job.models';
+import { HomeLoginService } from './../login-home/login-home.service';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +24,13 @@ export class HomeComponent implements OnInit {
   cardSelected?: JobDto;
   isLoading = false;
 
-  constructor(private serviceJob: JobListService) { }
+  isUser$ = this.homeLoginService.loggedUser$
+    .pipe(
+      map(e => e?.roles?.find(role => role.name === 'ROLE_USER')
+      )
+    );
+
+  constructor(private serviceJob: JobListService, private homeLoginService: HomeLoginService) { }
 
   shrinkSearchCard(contracted: boolean) {
 
@@ -38,7 +46,7 @@ export class HomeComponent implements OnInit {
       this.categorySelected = param.data;
     } else if (param.type === 'salary') {
       this.salarySelected = param.data;
-    } else  {
+    } else {
       this.query = param.data;
     }
 
@@ -48,13 +56,13 @@ export class HomeComponent implements OnInit {
   searchJobs() {
     this.isLoading = true;
     this.serviceJob.getJobs(this.categorySelected, this.salarySelected, this.query)
-    .subscribe((res: any) => {
+      .subscribe((res: any) => {
         this.isLoading = false;
         console.log(res);
         this.jobs = res['content'] as JobDto[];
         console.log(this.jobs);
       },
-      erro => {
+        erro => {
           this.isLoading = false;
           console.log(erro);
         });

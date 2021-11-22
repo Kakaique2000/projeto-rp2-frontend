@@ -17,4 +17,8 @@ export class MyCreatedJobsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  deleteJob(job: JobRecruiterDetailsDto) {
+    this.jobs = this.jobs.filter(e => e.id === job.id)
+  }
+
 }

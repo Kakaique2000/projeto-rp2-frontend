@@ -89,4 +89,8 @@ export class JobListService {
     return this.http.get<Page<JobRecruiterDetailsDto>>(`${this._url}/created`)
   }
 
+  deleteJob(job: JobDto) {
+    return this.http.delete(`${this._url}/${job.id}`)
+  }
+
 }

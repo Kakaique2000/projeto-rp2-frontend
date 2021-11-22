@@ -13,8 +13,8 @@
     </div>
 
     <div class="flex flex-col md:flex-row">
-      <button (click)="$event.stopPropagation()" class="ml-auto mb-2 t-btn-indigo-sec h-fit-content t-icon md:text-lg sm:text-md">
-        <mat-icon>edit</mat-icon>
+      <button (click)="deleteJob(); $event.stopPropagation()" class="ml-auto mb-2 t-btn-indigo-sec h-fit-content t-icon md:text-lg sm:text-md">
+        <mat-icon>delete</mat-icon>
       </button>
       <button
       (click)="expand = !expand; $event.stopPropagation()"

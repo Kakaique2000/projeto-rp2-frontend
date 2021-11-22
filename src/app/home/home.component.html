@@ -11,7 +11,7 @@
   </div>
 
   <!-- Jobs -->
-  <div class="container pt-4 px-4">
+  <div *ngIf="isUser$ | async" class="container pt-4 px-4">
     <h2 class="text-3xl my-4">Vagas abertas perfeitas para você!</h2>
     <section
       class="mt-4 mx-auto home-grid"

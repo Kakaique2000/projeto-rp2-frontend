@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { JobRecruiterDetailsDto } from 'src/app/shared/models/job.models';
 import { UserDto } from 'src/app/shared/models/user.model';
 import { BreakpointUtils } from 'src/app/shared/utils/breakpoint.util';
@@ -21,6 +21,9 @@ export class JobRecruiterDetailsComponent extends BaseDataFetchComponent impleme
 
   @Input()
   job: JobRecruiterDetailsDto;
+
+  @Output()
+  jobDeleted = new EventEmitter();
 
   @ViewChild('main')
   mainElement: ElementRef<HTMLElement>
@@ -93,6 +96,24 @@ export class JobRecruiterDetailsComponent extends BaseDataFetchComponent impleme
       if (this.expand) {
         this.updateMaxHeightCard();
       }
+    }
+  }
+
+  deleteJob() {
+    const confirmation = confirm('Você tem certeza que quer excluir a vaga ' + this.job.title + '?');
+    if (confirmation) {
+      this.addSub(
+        this.jobService.deleteJob(this.job).subscribe({
+          next: _e => {
+            this.snack.okTransacao('Vaga removida com sucesso!');
+            this.jobDeleted.emit();
+        },
+          error: _e => {
+            this.snack.okTransacao('ops, ocorreu um erro com a transação');
+
+        }
+        })
+      )
     }
   }
 
