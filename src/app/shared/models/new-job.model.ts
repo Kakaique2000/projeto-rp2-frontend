@@ -33,6 +33,7 @@ export interface TypeSalary {
 
 export interface NewJob {
   title: string;
+  description: string;
   fullDescription: string;
   salary: string;
   occupation: string;

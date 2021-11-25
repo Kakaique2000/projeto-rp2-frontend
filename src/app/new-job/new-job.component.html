@@ -41,6 +41,12 @@
 
       <input currencyMask class="form-control" formControlName="salary" placeholder="R$ 980,00">
     </div>
+
+    <div class="form-group">
+      <label id="label" for="exampleFormControlInput1">Descrição resumida</label>
+
+      <input class="form-control" formControlName="description" placeholder="procuramos um desenvolvedor que seja capaz de criar Sistemas em React...">
+    </div>
     <!--
       <div class="form-group">
         <label id ="labelDescription"  for="exampleFormControlSelect1">Salário mensal</label>
@@ -50,8 +56,18 @@
       </div>
   -->
     <div class="form-group">
-      <label id="labelDescription" for="exampleFormControlTextarea1">Descrição da vaga</label>
-      <textarea formControlName="fullDescription" class="form-control" id="exampleFormControlTextarea1" rows="10"
+      <div class="flex items-center">
+        <label id="labelDescription" for="exampleFormControlTextarea1">Descrição da vaga</label>
+        <div
+        class="preview-toggle mb-2 ml-auto"
+        (click)="showDescriptionPreview = !showDescriptionPreview"
+        [class.visible]="showDescriptionPreview"
+        >
+        <span>{{showDescriptionPreview ? 'Esconder prévia' : 'Visualizar prévia'}}</span>
+        <mat-icon>{{ showDescriptionPreview ? 'visibility_off' :  'visibility'  }}</mat-icon>
+      </div>
+    </div>
+      <textarea [hidden]="showDescriptionPreview" formControlName="fullDescription" class="form-control" id="exampleFormControlTextarea1" rows="10"
         placeholder="Vaga de desenvolvedor mobile &#10;
         Experiência:
           • Experiência com Android, kotlin e java;&#10;
@@ -60,18 +76,10 @@
           • Formando em ciência da computação, Sistemas de Informação ou áreas correletas&#10;
           Benefícios: VT, VR, Plano de Saúde e PLR." maxlength="500" minlength="80"></textarea>
     </div>
-    <div
-      class="preview-toggle"
-      (click)="showDescriptionPreview = !showDescriptionPreview"
-      [class.visible]="showDescriptionPreview"
-      >
-      <span>{{showDescriptionPreview ? 'Esconder prévia' : 'Visualizar prévia'}}</span>
-      <mat-icon>remove_red_eye</mat-icon>
-    </div>
-    <div class="description-preview" *ngIf="showDescriptionPreview">
-      <markdown [data]="jobForm.get('fullDescription').value ? jobForm.get('fullDescription').value : ''">
+    <div class="description-preview bg-white p-4 border rounded mb-2" *ngIf="showDescriptionPreview">
+      <app-markdown-viewer [data]="jobForm.get('fullDescription').value ? jobForm.get('fullDescription').value : ''">
 
-      </markdown>
+      </app-markdown-viewer>
     </div>
     <div class="btnsendcenter">
       <button class="button">Enviar vaga</button>

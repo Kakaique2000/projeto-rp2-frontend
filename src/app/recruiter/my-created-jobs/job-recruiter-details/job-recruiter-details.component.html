@@ -1,13 +1,21 @@
-<div (click)="expand == false ? (expand = true) : null" class="border overflow-y-auto max-height md:m-4 m-1.5 shadow-md rounded-md md:p-8 p-2.5 transition-colors focus:bg-indigo-50">
+<div (click)="expand == false ? (expand = true) : null" class="border relative overflow-y-auto max-height md:m-4 m-1.5 shadow-md rounded-md md:p-8 p-2.5 transition-colors focus:bg-indigo-50">
+  <small class="text-gray-500 absolute top-4 right-4">criado em {{ job.createdAt | date:'dd/MM/YYYY' }}</small>
   <header class="flex items-center justify-between overflow-ellipsis">
     <div class="flex justify-center overflow-hidden pr-1.5 md:pr-4 flex-col flex-1">
       <!-- <a href="javascript:null" [title]="job.companyId" class="t-link-indigo">{{ job.companyId }}</a> -->
+      <div class="flex items-center mb-3">
+        <img class="t-rounded-image border mr-2" *ngIf="job.companyLogo as logo" [src]="logo" alt="">
+        <div>
+          <span class="text-lg">{{ job.companyName }}</span>
+        </div>
+
+
+      </div>
       <h2
         [title]="job.title"
         class="flex md:flex-row flex-col justify-between md:text-xl sm:text-lg  overflow-ellipsis whitespace-nowrap pr-2"
       >
         <span class="overflow-ellipsis overflow-hidden">{{ job.title }}</span>
-        <small class="text-gray-500">criado em {{ job.createdAt | date:'dd/MM/YYYY' }}</small>
       </h2>
       <sub class="font-light md:text-lg text-sm text-gray-500">{{ job.description }}</sub>
     </div>

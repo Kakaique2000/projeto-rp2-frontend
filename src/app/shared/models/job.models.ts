@@ -31,6 +31,7 @@ export interface JobDetailsDto {
 export interface JobRecruiterDetailsDto extends Omit<JobDetailsDto, 'company'> {
   companyId: number;
   companyName: string;
+  companyLogo?: string;
   jobApplications: JobApplicationDto[];
 }
 

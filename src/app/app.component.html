@@ -19,14 +19,14 @@
         <div style="width: 200px" class="d-flex flex-column">
           <div>
             <label class="p-2 my-2 block text-right bg-gray-100" for="">Área do Usuário</label>
-            <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['home']" (click)="clickMenu()"> início</a></p>
-            <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['profile']" (click)="clickMenu()"> meu perfil</a></p>
-            <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['myregister']" (click)="clickMenu()"> minhas Inscrições</a></p>
+            <p style="text-align:center; margin-top: 10px;"><a routerLinkActive="t-disabled" [routerLink]="['home']" (click)="clickMenu()"> início</a></p>
+            <p style="text-align:center; margin-top: 10px;"><a routerLinkActive="t-disabled" [routerLink]="['profile']" (click)="clickMenu()"> meu perfil</a></p>
+            <p style="text-align:center; margin-top: 10px;"><a routerLinkActive="t-disabled" [routerLink]="['myregister']" (click)="clickMenu()"> minhas Inscrições</a></p>
             <ng-container *ngIf="isRecruiter$() | async">
               <label class="p-2 my-2 block text-right bg-gray-100" for="">Área do Recrutador</label>
-              <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['newjob']" (click)="clickMenu()"> Criar uma Vaga</a></p>
-              <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['recruiter/jobs']" (click)="clickMenu()"> Vagas cadastradas</a></p>
-              <p style="text-align:center; margin-top: 10px;"><a [routerLink]="['newcompany']" (click)="clickMenu()"> Cadastre uma empresa</a></p>
+              <p style="text-align:center; margin-top: 10px;"><a routerLinkActive="t-disabled" [routerLink]="['newjob']" (click)="clickMenu()"> Criar uma Vaga</a></p>
+              <p style="text-align:center; margin-top: 10px;"><a routerLinkActive="t-disabled" [routerLink]="['recruiter/jobs']" (click)="clickMenu()"> Vagas cadastradas</a></p>
+              <p style="text-align:center; margin-top: 10px;"><a routerLinkActive="t-disabled" [routerLink]="['newcompany']" (click)="clickMenu()"> Cadastre uma empresa</a></p>
             </ng-container>
           </div>
 

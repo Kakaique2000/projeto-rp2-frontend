@@ -53,7 +53,7 @@ export class NewJobService {
     let options = { headers: headers };
 
     const title = newjob.title;
-    const description = newjob.fullDescription;
+    const description = newjob.description;
     const salary = newjob.salary;
     const companyId = newjob.companyId;
     const knowledges = newjob.knowledges;

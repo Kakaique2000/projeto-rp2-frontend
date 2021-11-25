@@ -19,7 +19,7 @@ export class NewJobComponent implements OnInit {
   salary;
   jobForm: FormGroup;
   listCompanies: CompanyModel[] = [];
-  showDescriptionPreview = true;
+  showDescriptionPreview = false;
   knowledgesSelected: KnowledgeDto[] = [];
 
   constructor(private formBuilder: FormBuilder,
@@ -85,6 +85,12 @@ export class NewJobComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(2)
+        ]
+      ],
+      description: [
+        '',
+        [
+          Validators.required
         ]
       ],
       fullDescription: ['',

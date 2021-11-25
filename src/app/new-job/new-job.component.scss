@@ -29,7 +29,6 @@
 }
 
 .preview-toggle {
-	color: red;
 	cursor: pointer;
 	display: flex;
 	align-items: flex-end;
@@ -39,17 +38,13 @@
 		margin-right: 5px;
 	}
 
-	mat-icon {
-		color: red;
-	}
 
-	&.visible {
 		color: green;
 
 		mat-icon {
 			color: green;
 		}
-	}
+
 }
 
 .btnsendcenter {

@@ -6,8 +6,19 @@
 
     <h5 class="mb-4 text-lg">Minhas Inscrições: </h5>
     <div *ngIf="listRegistrations?.length > 0">
-      <div class="t-card bg-white p-2 mt-2" *ngFor='let obj of listRegistrations'>
-        <p> <b>Vaga:</b> {{obj.job.title}}, <b>Local:</b> {{obj.job.city}} - <b>Remuneração:</b> R${{obj.job.salary}}</p>
+      <div class="t-card bg-white p-4 mt-2" *ngFor='let obj of listRegistrations'>
+
+        <div class="flex items-center mb-3">
+          <img class="t-rounded-image border mr-2" *ngIf="obj.job.companyLogo as logo" [src]="logo" alt="">
+          <div>
+            <span class="text-lg">{{ obj.job.companyName }}</span>
+            <p class="text-md">{{ obj.job.title }}</p>
+
+          </div>
+        </div>
+
+        <p><b>Local:</b> {{obj.job.city}} </p>
+        <p><b>Remuneração:</b> R${{obj.job.salary}}</p>
         <p class="mt-2">
           <b>status: </b> {{ getApprovalState(obj) }}
         </p>
