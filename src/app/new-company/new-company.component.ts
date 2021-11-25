@@ -18,10 +18,10 @@ export class NewCompanyComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private router : Router, private newCompanyService: NewCompanyService) {  }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.configForm()
     this.getCompanies()
-    
+
     }
 
   createCompany(){
@@ -30,7 +30,7 @@ export class NewCompanyComponent implements OnInit {
         this.newCompanyService.createCompany(newCompany)
         .subscribe((res) => {
           alert("companhia criada")
-          this.getCompanies()  
+          this.getCompanies()
         },
         erro => {
             alert('Compania inválida, revise os campos cadastrados novamente');
@@ -42,7 +42,7 @@ export class NewCompanyComponent implements OnInit {
         .subscribe((res) => {
           this.listCompanies = res['content'] as CompanyModel[]
           console.log(this.listCompanies)
-          
+
         },
         erro => {
             console.log(erro);
@@ -88,10 +88,17 @@ export class NewCompanyComponent implements OnInit {
           [
               Validators.required
           ]
+      ],
+      imageUrl: [
+          '',
+          [
+            Validators.required,
+          ]
+
       ]
   });
 
   }
-  
+
 
 }

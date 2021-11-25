@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ContentDto, KnowledgeDetailsDto, KnowledgeDto } from 'src/app/shared/models/knowledge.model';
+import { KnowledgeLevel } from 'src/app/shared/models/user.model';
 import { KnowledgeService } from 'src/app/shared/services/knowledge.service';
 import { BaseDataFetchComponent } from './../base-data-fetching.component';
 
@@ -15,13 +16,24 @@ export class KnowledgeContentListComponent extends BaseDataFetchComponent implem
   _contents: ContentDto[] = [];
 
   get contents() {
-    if (this.filterContent) {
-      return this._contents
-        .filter(e => e.contentType.toLocaleLowerCase() === this.filterContent.toLocaleLowerCase())
-        .slice(0, this.limit)
+
+    let contents = this._contents;
+
+    if (this.filterContentLevel) {
+      contents = contents
+        .filter(e => e.knowledgeLevel.toLocaleLowerCase() === this.filterContentLevel.toLocaleLowerCase())
     }
 
-    return this._contents;
+    if (this.filterContent) {
+      contents = contents
+        .filter(e => e.contentType.toLocaleLowerCase() === this.filterContent.toLocaleLowerCase())
+    }
+
+    contents = contents.slice(0, this.limit);
+
+
+
+    return contents;
   }
 
   constructor(private knowledgeService: KnowledgeService) {
@@ -36,6 +48,9 @@ export class KnowledgeContentListComponent extends BaseDataFetchComponent implem
 
   @Input()
   filterContent = null;
+
+  @Input()
+  filterContentLevel: KnowledgeLevel = null
 
   @Input()
   limit = 3;

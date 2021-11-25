@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { KnowledgeDetailsDto } from './../shared/models/knowledge.model';
+import { KnowledgeLevel } from './../shared/models/user.model';
 
 @Component({
   selector: 'app-knowledge-page',
@@ -12,6 +13,21 @@ export class KnowledgePageComponent implements OnInit {
   subscriptions: Subscription[] = [];
 
   knowledge: KnowledgeDetailsDto = this.route.snapshot.data.knowledge;
+
+  private _knowledgeLevelFilter?: KnowledgeLevel;
+
+  get knowledgeLevelFilter() {
+    return this._knowledgeLevelFilter;
+  }
+
+  set knowledgeLevelFilter(knowledgeLevel: KnowledgeLevel) {
+    if (this._knowledgeLevelFilter === knowledgeLevel) {
+      delete this._knowledgeLevelFilter;
+    } else {
+      this._knowledgeLevelFilter = knowledgeLevel;
+    }
+
+  }
 
   contents: any;
 

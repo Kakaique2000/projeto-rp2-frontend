@@ -4,7 +4,7 @@
    [content]="content">
   </app-knowledge-content>
   <div *ngIf="contents?.length===0">
-    <p class="text-center">lamentamos, mas não encontramos nenhum conteúdo sobre {{ knowledge.name }}</p>
+    <p class="text-center">lamentamos, mas não encontramos nenhum conteúdo {{ filterContentLevel | lowercase}} sobre {{ knowledge.name }}</p>
   </div>
 </div>
 

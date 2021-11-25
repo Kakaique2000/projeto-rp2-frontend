@@ -12,11 +12,20 @@
     <p class="p-4 bg-gray-100">{{ knowledge.description }}</p>
 
     <section *ngIf="knowledge.contents.length > 0" class="p-4" id="knowledges">
-      <h2 class="text-2xl my-2">Aumente seu conhecimento</h2>
+      <div class="flex items-center">
+        <h2 class="text-2xl my-2">Aumente seu conhecimento</h2>
+        <div class="ml-auto">
+          <span class="mr-2">filtre o conteúdo</span>
+          <a (click)="knowledgeLevelFilter = 'INICIANTE'" [class.opacity-50]="knowledgeLevelFilter === 'INICIANTE'" class="t-link-indigo mx-1" href="javascript:null">iniciante</a>
+          <a (click)="knowledgeLevelFilter = 'MÉDIO'" [class.opacity-50]="knowledgeLevelFilter === 'MÉDIO'" class="t-link-indigo mx-1" href="javascript:null">médio</a>
+          <a (click)="knowledgeLevelFilter = 'AVANÇADO'" [class.opacity-50]="knowledgeLevelFilter === 'AVANÇADO'" class="t-link-indigo mx-1" href="javascript:null">avançado</a>
+          <a (click)="knowledgeLevelFilter = 'EXPERT'" [class.opacity-50]="knowledgeLevelFilter === 'EXPERT'" class="t-link-indigo mx-1" href="javascript:null">expert</a>
+        </div>
+      </div>
       <div class="py-4" *ngFor="let contentType of tiposConteudo">
         <div *ngIf="hasContentType(contentType, knowledge)">
           <h3 class="text-xl mb-2">{{ contentType | lowercase }}s</h3>
-          <app-knowledge-content-list [limit]="9" [filterContent]="contentType" [columns]="3" [knowledge]="knowledge">
+          <app-knowledge-content-list [limit]="9" [filterContentLevel]="knowledgeLevelFilter" [filterContent]="contentType" [columns]="3" [knowledge]="knowledge">
 
           </app-knowledge-content-list>
         </div>

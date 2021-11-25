@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
 import { environment as env } from 'src/environments/environment';
-import { CompanyModel } from './new-company.model';
 import { CookieService } from '../cookie.service';
+import { CompanyModel } from './new-company.model';
 
 const API_URL = env.api + '/users/';
 @Injectable({
@@ -35,9 +35,10 @@ export class NewCompanyService {
     const cep = newCompany.cep;
     const city = newCompany.city;
     const state = newCompany.state;
+    const imageUrl = newCompany.imageUrl
 
     return this.http.post<CompanyModel>(`${API_URL}${this.cookie.get('userId')}/companies`,
-    { cnpj, name, street, number, complement, cep, city, state }, options);
+    { cnpj, name, street, number, complement, cep, city, state, imageUrl }, options);
   }
 
 

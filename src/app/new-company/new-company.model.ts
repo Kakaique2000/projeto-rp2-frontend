@@ -11,6 +11,7 @@ export interface CompanyModel {
   cep: String
   city: String
   state: String
+  imageUrl: string
 
 }
 
