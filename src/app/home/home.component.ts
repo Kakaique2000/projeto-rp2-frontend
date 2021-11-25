@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
 import { JobDto } from '../shared/models/job.models';
 import { HomeLoginService } from './../login-home/login-home.service';
+import { KnowledgeDto } from './../shared/models/knowledge.model';
 
 @Component({
   selector: 'app-home',
@@ -51,6 +52,10 @@ export class HomeComponent implements OnInit {
     }
 
     this.searchJobs();
+  }
+
+  updateKnowledge(knowledges: KnowledgeDto[]) {
+
   }
 
   searchJobs() {

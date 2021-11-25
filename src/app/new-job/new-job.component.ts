@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CompanyModel } from '../new-company/new-company.model';
 import { NewJob, TypeJob } from '../shared/models/new-job.model';
@@ -20,46 +20,19 @@ export class NewJobComponent implements OnInit {
   jobForm: FormGroup;
   listCompanies: CompanyModel[] = [];
   showDescriptionPreview = true;
-  knowledgesSelected: KnowledgeDto[] = []
-
-  knowledgeSearch = new FormControl('');
+  knowledgesSelected: KnowledgeDto[] = [];
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private newJobService: NewJobService,
     private route: ActivatedRoute,
   private snack: SnackHelperService) { }
 
-  knowledges: KnowledgeDto[] = this.route.snapshot.data.knowledges;
-
-  get knowledgesFiltered() {
-    return this.knowledges
-    .filter(e => e.name.toLocaleLowerCase().includes(this.knowledgeSearch.value.toLocaleLowerCase()))
-    .filter(e => !this.knowledgesSelected.find(selected => selected.id === e.id))
-
-  }
 
   ngOnInit() {
     this.configForm()
     this.callAreas()
     this.callCompanies()
   }
-
-  addKnowledge(knowledge: KnowledgeDto) {
-    this.knowledgeSearch.setValue('');
-    (document.activeElement as HTMLElement).blur();
-    if (this.knowledgesSelected.find(e => e.id === knowledge.id)) {
-      return
-    }
-    this.knowledgesSelected.push(knowledge);
-  }
-
-  removeKnowledge(knowledge: KnowledgeDto) {
-    const index = this.knowledgesSelected.findIndex(e => e.id === knowledge.id)
-    this.knowledgesSelected.splice(index, 1);
-    // this.snack.okTransacao('você removeu o conhecimento: ' + knowledge.name);
-  }
-
-
 
   callAreas() {
     this.newJobService.getAreas()
@@ -81,6 +54,10 @@ export class NewJobComponent implements OnInit {
         erro => {
           console.log(erro)
         });
+  }
+
+  setKnowledges(knowledges: KnowledgeDto[]) {
+    this.knowledgesSelected = knowledges;
   }
 
   createJob() {

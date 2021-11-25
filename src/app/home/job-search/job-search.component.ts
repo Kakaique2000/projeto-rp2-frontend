@@ -23,16 +23,12 @@ export class JobSearchComponent implements OnInit {
   @Output() focus = new EventEmitter();
 
   @Output() selectEvent = new EventEmitter();
+  @Output() knowledgesFilterChange = new EventEmitter<KnowledgeDto[]>()
 
   ngOnInit(): void {
     this.jobService.getSalaries().subscribe({
       next: salaries => {
         this.salaries = salaries
-      }
-    })
-    this.jobService.getKnowledges().subscribe({
-      next: knowledges => {
-        this.knowledges = knowledges;
       }
     })
   }
@@ -43,7 +39,7 @@ export class JobSearchComponent implements OnInit {
 
   selectSalary(salary: any) {
     this.salarySelected = salary;
-    
+
     this.emitChange({
       type: 'salary',
       data: salary == "todos" ? null : salary ,

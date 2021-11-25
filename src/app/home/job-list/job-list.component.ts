@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { JobListService } from 'src/app/home/job-list/job-list.service';
 import { HomeLoginService } from 'src/app/login-home/login-home.service';
+import { KnowledgeDto } from 'src/app/shared/models/knowledge.model';
 import { SnackHelperService } from 'src/app/shared/snack-helper.service';
 import { JobDto } from '../../shared/models/job.models';
 @Component({
@@ -22,6 +23,7 @@ export class JobListComponent implements OnInit {
   @Input() contracted = false;
   @Output() contractedChange = new EventEmitter<boolean>();
   @Output() paramChange = new EventEmitter();
+  @Output() knowledgeParamChange = new EventEmitter<KnowledgeDto[]>();
 
   selectedId = -1;
   loadingId = -1
@@ -58,6 +60,10 @@ export class JobListComponent implements OnInit {
 
   emitParamChange(data) {
     this.paramChange.emit(data);
+  }
+
+  emitKnowledgeParamChange(knowledge: KnowledgeDto[]) {
+    this.knowledgeParamChange.emit(knowledge);
   }
 
 }

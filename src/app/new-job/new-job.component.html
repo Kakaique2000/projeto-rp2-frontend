@@ -26,32 +26,13 @@
     </div>
 
     <div class="form-group">
-      <div [class.t-disabled]="knowledgesSelected.length >= 5">
-        <app-form-field
-        [fControl]="knowledgeSearch"
-        [matAutocomplete]="auto"
-        label="quais conhecimentos que a sua vaga tem relação?">
-        </app-form-field>
-      </div>
-      <p *ngIf="knowledgesSelected.length >= 5" class="text-red-600 mt-2">voce chegou ao limite de conhecimentos relacionados</p>
-      <mat-autocomplete (optionSelected)="addKnowledge($event.option.value)" #auto="matAutocomplete">
-        <mat-option *ngFor="let knowledge of knowledgesFiltered" [value]="knowledge">
-          {{ knowledge.name }}
-        </mat-option>
-      </mat-autocomplete>
 
-      <div class="mt-2">
+      <app-knowledge-multiple-select
+      (knowledgeSelect)="setKnowledges($event)"
+      label="quais conhecimentos que a sua vaga tem relação?"
+      >
 
-        <mat-chip-list #chipList aria-label="Fruit selection">
-          <mat-chip *ngFor="let knowledge of knowledgesSelected" [selected]="true"
-                   [removable]="true" (removed)="removeKnowledge(knowledge)">
-            {{ knowledge.name }}
-            <button matChipRemove>
-                <mat-icon [style.color]="'white'" >cancel</mat-icon>
-            </button>
-          </mat-chip>
-        </mat-chip-list>
-      </div>
+      </app-knowledge-multiple-select>
 
     </div>
 

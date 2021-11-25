@@ -8,7 +8,7 @@
     <mat-icon>search</mat-icon>
   </div>
 </div>
-<div class="flex flex-wrap" *ngIf="showSelect">
+<div class="" *ngIf="showSelect">
 
   <!-- Select de salários -->
   <div class="flex flex-col mr-2 mt-2 text-sm items-start" >
@@ -19,11 +19,12 @@
     </select>
   </div>
   <!-- Select de conhecimentos -->
-  <div class="flex flex-col mt-2 text-sm items-start">
-    <label class="mb-0" for="">habilidade</label>
-    <select class="rounded-md p-1 mt-1 shadow-sm border">
-      <option *ngFor="let knowledge of knowledges" [value]="knowledge.id">{{ knowledge.name }}</option>
-    </select>
+  <div class="block max-w-md">
+    <app-knowledge-multiple-select
+    (knowledgeSelect)="this.knowledgesFilterChange.emit($event)"
+    [maxSelection]="3"
+    label="filtre por conhecimento">
+    </app-knowledge-multiple-select>
   </div>
 
 </div>

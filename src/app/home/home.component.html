@@ -20,6 +20,7 @@
       <app-job-list
         [(contracted)]="contractedSearchCard"
         (paramChange)="updateParams($event)"
+        (knowledgeParamChange)="updateKnowledge($event)"
         (keyup)="filter = $event.target['value']"
         (selectCard)="cardSelected = $event"
         [isLoading]="isLoading"

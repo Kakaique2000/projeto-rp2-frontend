@@ -1,4 +1,4 @@
-  <label [ngClass]="getLabelNgClass()" [for]="label"
+  <label *ngIf="label" [ngClass]="getLabelNgClass()" [for]="label"
     >{{label}}</label
   >
   <div class="relative">

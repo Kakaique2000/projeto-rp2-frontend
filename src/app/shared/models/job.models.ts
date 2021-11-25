@@ -11,6 +11,7 @@ export interface JobDto {
   knowledges: KnowledgeDto[];
   city: string;
   companyLogo?: string;
+  companyName: string;
 
 }
 
@@ -29,6 +30,7 @@ export interface JobDetailsDto {
 
 export interface JobRecruiterDetailsDto extends Omit<JobDetailsDto, 'company'> {
   companyId: number;
+  companyName: string;
   jobApplications: JobApplicationDto[];
 }
 

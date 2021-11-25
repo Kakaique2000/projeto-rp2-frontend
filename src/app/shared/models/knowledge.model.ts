@@ -1,3 +1,4 @@
+import { KnowledgeLevel } from 'src/app/shared/models/user.model';
 import { JobDto } from './job.models';
 
 export interface KnowledgeDto {
@@ -17,5 +18,6 @@ export interface ContentDto {
   title:       string;
   url:         string;
   description: string;
-  imageUrl:    string;
+  imageUrl: string;
+  knowledgeLevel: KnowledgeLevel;
 }

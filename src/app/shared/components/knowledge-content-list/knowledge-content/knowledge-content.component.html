@@ -1,6 +1,12 @@
 <div class="t-card bg-white hover:bg-gray-50 p-3 mb-2 border relative">
   <small class="text-indigo-600">{{ content.contentType }}</small>
-  <h2 class="text-lg font-light mb-2">{{ content.title }}</h2>
+  <div class="flex items-center mb-2">
+    <img class="mr-2 t-rounded-image__small border" *ngIf="content.imageUrl" [src]="content.imageUrl" alt="">
+    <h2 class="text-lg font-light ">{{ content.title }}</h2>
+  </div>
   <p class="text-sm">{{ content.description }}</p>
-  <a [href]="content.url" target="_blank" class="t-link-indigo text-lg absolute right-1.5 top-2"><mat-icon [inline]="true">open_in_new</mat-icon></a>
+  <div class="absolute right-1.5 top-2 t-center">
+    <span class="mr-2 lowercase text-sm text-gray-400" title="nível de conhecimento {{ content.knowledgeLevel | lowercase}}">{{ content.knowledgeLevel }}</span>
+    <a [href]="content.url" target="_blank" class="t-link-indigo text-lg"><mat-icon [inline]="true">open_in_new</mat-icon></a>
+  </div>
 </div>

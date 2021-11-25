@@ -44,6 +44,7 @@ import { UserProfileCardComponent } from './shared/components/user-profile-card/
 import { FormFieldComponent } from './shared/form-field/form-field.component';
 import { AsyncLoading } from './shared/pipes/async-loading.pipe';
 import { AddKnowledgeComponent } from './shared/components/add-knowledge/add-knowledge.component';
+import { KnowledgeMultipleSelectComponent } from './shared/components/knowledge-multiple-select/knowledge-multiple-select.component';
 
 const matModules = [
   MatCheckboxModule,
@@ -93,6 +94,7 @@ const projectComponents = [
     EllipsisPipe,
     ...projectComponents,
     AddKnowledgeComponent,
+    KnowledgeMultipleSelectComponent,
 
   ],
   imports: [
@@ -114,6 +116,7 @@ const projectComponents = [
     NgxMaskModule,
     ...projectComponents,
     ...matModules,
+    KnowledgeMultipleSelectComponent,
   ],
   providers: [],
 })
