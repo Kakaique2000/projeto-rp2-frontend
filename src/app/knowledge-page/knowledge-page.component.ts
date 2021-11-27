@@ -47,10 +47,7 @@ export class KnowledgePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscriptions.push(
-
-
-    )
+    document.title = this.knowledge.name;
   }
 
   ngOnDestroy(): void {

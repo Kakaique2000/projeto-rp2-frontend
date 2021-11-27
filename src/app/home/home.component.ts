@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
       map(e => e?.roles?.find(role => role.name === 'ROLE_USER')
       )
     );
+  knowledgesParams: number[];
 
   constructor(private serviceJob: JobListService, private homeLoginService: HomeLoginService) { }
 
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.searchJobs();
+    document.title = "Hefest - Vagas";
   }
 
   updateParams(param) {
@@ -55,12 +57,14 @@ export class HomeComponent implements OnInit {
   }
 
   updateKnowledge(knowledges: KnowledgeDto[]) {
+    this.knowledgesParams = knowledges.map(e => e.id)
 
+    this.searchJobs();
   }
 
   searchJobs() {
     this.isLoading = true;
-    this.serviceJob.getJobs(this.categorySelected, this.salarySelected, this.query)
+    this.serviceJob.getJobs(this.categorySelected, this.salarySelected, this.query, this.knowledgesParams)
       .subscribe((res: any) => {
         this.isLoading = false;
         console.log(res);

@@ -17,6 +17,8 @@ import { NewJobComponent } from './new-job/new-job.component';
 import { MyCreatedJobsResolver } from './recruiter/my-created-jobs.resolver';
 import { MyCreatedJobsComponent } from './recruiter/my-created-jobs/my-created-jobs.component';
 import { RegistrationsComponent } from './registrations/registrations.component';
+import { UserDetailsComponent } from './shared/components/user-details/user-details.component';
+import { UserDetailsResolver } from './shared/components/user-details/user-details.resolver';
 
 const routes: Routes = [
   {
@@ -24,6 +26,13 @@ const routes: Routes = [
     component: HomeComponent,
     data: { showSideMenu: true },
     canActivate: [LoggedGuard],
+  },
+  {
+    path: 'users/:id',
+    component: UserDetailsComponent,
+    data: { showSideMenu: true },
+    canActivate: [LoggedGuard],
+    resolve: {user: UserDetailsResolver}
   },
   {
     path: 'knowledges/:id',

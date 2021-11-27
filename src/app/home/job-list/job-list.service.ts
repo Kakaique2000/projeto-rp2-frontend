@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import { Params } from '@angular/router';
 import { Subject } from 'rxjs';
 import { finalize, map, switchMap } from 'rxjs/operators';
 import { CookieService } from 'src/app/cookie.service';
@@ -38,13 +39,17 @@ export class JobListService {
     return this.http.post(`${this._url}/${jobId}/job_applications/${userId}`, { approved })
   }
 
-  getJobs(category: any, salary: any, query: string) {
+  getJobs(category: any, salary: any, query: string, knowledges: number[]) {
 
 
-    const params: any = {};
+    const params: Params = {};
 
     if (category && category !== 'Todos') {
       params.occupation = category;
+    }
+
+    if (knowledges?.length) {
+      params.knowledges = knowledges;
     }
 
     if (salary) {

@@ -32,6 +32,9 @@ export interface UserDto {
   certificates: UserCertifiedDto[];
 }
 
+export interface UserPublicDto extends Omit<UserDto, 'emailVerified' | 'roles'| 'cpf'| 'jobApplications' > {
+}
+
 export interface UserForm extends Omit<UserDto, 'knowledges'>{
   knowledges: UserKnowledgeForm[];
 }

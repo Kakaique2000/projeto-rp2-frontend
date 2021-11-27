@@ -48,6 +48,7 @@ export class SignupComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    document.title = "Hefest - Faça seu cadastro";
     this.signupForm = this.formBuilder.group({
       firstName: ['',
         [

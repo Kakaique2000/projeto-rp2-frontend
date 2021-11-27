@@ -45,6 +45,7 @@ import { FormFieldComponent } from './shared/form-field/form-field.component';
 import { AsyncLoading } from './shared/pipes/async-loading.pipe';
 import { AddKnowledgeComponent } from './shared/components/add-knowledge/add-knowledge.component';
 import { KnowledgeMultipleSelectComponent } from './shared/components/knowledge-multiple-select/knowledge-multiple-select.component';
+import { UserDetailsComponent } from './shared/components/user-details/user-details.component';
 
 const matModules = [
   MatCheckboxModule,
@@ -95,6 +96,7 @@ const projectComponents = [
     ...projectComponents,
     AddKnowledgeComponent,
     KnowledgeMultipleSelectComponent,
+    UserDetailsComponent,
 
   ],
   imports: [

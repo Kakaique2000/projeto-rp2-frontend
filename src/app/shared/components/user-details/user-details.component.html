@@ -1,0 +1,64 @@
+<header class="flex p-4 container">
+  <img [src]="getProfilePic()" alt="" class="t-rounded-image__big mr-4">
+  <div>
+    <h1 class="text-3xl">{{ user.name }}</h1>
+    <h2 class="text-xl">{{ user.city }}, {{ user.state }}</h2>
+  </div>
+</header>
+
+<main class="p-4 container">
+  <ng-container *ngIf="user.biography">
+    <h2 class="text-2xl mb-3">Biografia</h2>
+    <div class="border rounded mb-4 p-4 bg-white">
+      <app-markdown-viewer [data]="user.biography">
+      </app-markdown-viewer>
+    </div>
+  </ng-container>
+  <section class="grid sm:grid-cols-1 md:grid-cols-2">
+    <div>
+      <h2 class="text-2xl mb-3">Contato</h2>
+      <div class="flex flex-col">
+        <div class="t-card p-3 bg-white border mr-2 mb-2">
+          <p class="text-lg">telefone</p>
+          <p>{{ user.phone }}</p>
+        </div>
+        <div class="t-card p-3 bg-white border mr-2 mb-2">
+          <p class="text-lg">e-mail</p>
+          <p>{{ user.email }}</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 class="text-2xl mb-3">Experiências profissionais</h2>
+      <div *ngIf="user.experience.length" class="flex mb-4 flex-wrap">
+        <article class="p-3 t-card bg-white border mr-2" *ngFor="let experience of user.experience">
+          <p class="text-lg font-bold">{{ experience.companyName }}</p>
+          <p class="mb-2">{{ experience.office }}</p>
+          <p>{{ experience.initialDate }} - {{ experience.endDate }}</p>
+        </article>
+      </div>
+    </div>
+
+
+  </section>
+  <section class="grid mt-4 sm:grid-cols-1 md:grid-cols-2">
+    <div>
+      <h2 class="text-2xl mb-3">Habilidades</h2>
+      <div class="flex flex-wrap">
+        <div class="t-card bg-white p-3 border mr-2 mb-2" *ngFor="let obj of user.knowledges">
+          <h4 (click)="knowledgeService.popKnowledgeTips(obj.knowledge)" class="t-link-indigo font-light text-lg">{{ obj.knowledge.name }}</h4>
+          <p>{{ obj.knowledgeLevel | lowercase}}</p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="user.certificates.length">
+      <h2 class="text-2xl mb-3">Certificados</h2>
+      <div class="flex mb-4 flex-wrap">
+        <article class="p-3 t-card bg-white border mr-2" *ngFor="let certificate of user.certificates">
+          <p class="text-lg font-bold">{{ certificate.name }}</p>
+          <a [href]="certificate.url" target="_blank" class="t-link-indigo mb-2">{{ certificate.url }}</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>

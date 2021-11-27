@@ -1,8 +1,8 @@
 <article class="t-card group border mb-2 flex flex-col hover:bg-gray-100 ">
   <header class="flex active:bg-gray-200 transition-colors p-2 items-center">
-    <img [src]="getProfilePic()" width="64" height="64" class="border rounded-full object-cover" alt="">
+    <img [src]="getProfilePic()" class="border t-rounded-image__big" alt="">
     <div class="ml-4">
-      <h3 class="text-lg group cursor-pointer hover:underline hover:text-indigo-600">{{ user.name }}
+      <h3 class="text-lg group cursor-pointer hover:underline hover:text-indigo-600"><a  [routerLink]="['/users', user.id]" target="_blank" href="javascript:null">{{ user.name }}</a>
       </h3>
       <span class="text-md font-light group-hover:text-indigo-400 text-gray-400"><mat-icon [inline]="true" >place</mat-icon> {{ user.city }}, {{ user.state }}</span>
     </div>
